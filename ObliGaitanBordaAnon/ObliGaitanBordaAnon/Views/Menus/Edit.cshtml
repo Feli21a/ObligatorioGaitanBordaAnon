@@ -1,0 +1,47 @@
+﻿@model ObliGaitanBordaAnon.Models.Menu
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar menu</h1>
+
+<h4>Menu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NombrePlato" class="control-label">Nombre del plato:</label>
+                <input asp-for="NombrePlato" class="form-control" />
+                <span asp-validation-for="NombrePlato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label">Descripcion del plato:</label>
+                <textarea asp-for="Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label">Precio del menu:</label>
+                <div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="vd754c" asp-for="Precio">
+                    </div>
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

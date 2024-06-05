@@ -1,0 +1,38 @@
+﻿@model ObliGaitanBordaAnon.Models.OrdenDetalle
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Agregar detalle de orden</h1>
+
+<h4>Detalles de orden</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrdenId" class="control-label">Id de la orden:</label>
+                <select asp-for="OrdenId" class ="form-control" asp-items="ViewBag.OrdenId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuId" class="control-label">Id del menu:</label>
+                <select asp-for="MenuId" class ="form-control" asp-items="ViewBag.MenuId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label">Cantidad de menu:</label>
+                <input type="number" asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <hr />
+            <input type="submit" value="Crear" class="btn btn-primary" />
+            <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

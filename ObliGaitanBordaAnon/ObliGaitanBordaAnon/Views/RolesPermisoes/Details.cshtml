@@ -1,0 +1,30 @@
+﻿@model ObliGaitanBordaAnon.Models.RolesPermiso
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RolesPermiso</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Permiso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Permiso.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rol.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a class="btn btn-light" asp-action="Index">Volver a la lista</a>
+</div>

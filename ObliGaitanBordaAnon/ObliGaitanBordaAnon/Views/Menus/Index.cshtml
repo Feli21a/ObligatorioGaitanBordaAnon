@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Menus</h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create">Agregar menu</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre del plato
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    $ @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
