@@ -1,11 +1,19 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OBGaitanBordaAnon
 build_property.RootNamespace = OBGaitanBordaAnon
@@ -18,6 +26,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\felia\source\repos\ObligatorioGaitanBordaAnon\OBGaitanBordaAnon\OBGaitanBordaAnon
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Clientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Clientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Clientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Clientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Climas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Climas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Climas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Climas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Climas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,12 +74,192 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Menus/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Menus/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Menus/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Menus/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Menus/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Mesas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Mesas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Mesas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Mesas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Mesas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/OrdenDetalles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5EZXRhbGxlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/OrdenDetalles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5EZXRhbGxlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/OrdenDetalles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5EZXRhbGxlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/OrdenDetalles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5EZXRhbGxlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/OrdenDetalles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5EZXRhbGxlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Ordenes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Ordenes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Ordenes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Ordenes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Ordenes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZW5lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Pagoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Pagoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Pagoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Pagoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Pagoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Resenias/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZW5pYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Resenias/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZW5pYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Resenias/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZW5pYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Resenias/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZW5pYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Resenias/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZW5pYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Reservas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Reservas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Reservas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Reservas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Reservas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Restaurantes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Restaurantes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Restaurantes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Restaurantes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Restaurantes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Usuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Usuarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Usuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Usuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/Usuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/felia/source/repos/ObligatorioGaitanBordaAnon/OBGaitanBordaAnon/OBGaitanBordaAnon/Views/_ViewImports.cshtml]
