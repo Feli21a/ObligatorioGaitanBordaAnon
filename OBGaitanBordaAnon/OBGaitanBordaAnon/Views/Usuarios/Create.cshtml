@@ -1,0 +1,68 @@
+﻿@model OBGaitanBordaAnon.Models.Usuario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasenia" class="control-label"></label>
+                <input asp-for="Contrasenia" class="form-control" />
+                <span asp-validation-for="Contrasenia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsAdmin" class="control-label"></label>
+                <input asp-for="EsAdmin" class="form-control" />
+                <span asp-validation-for="EsAdmin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsCliente" class="control-label"></label>
+                <input asp-for="EsCliente" class="form-control" />
+                <span asp-validation-for="EsCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsMozo" class="control-label"></label>
+                <input asp-for="EsMozo" class="form-control" />
+                <span asp-validation-for="EsMozo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsCajero" class="control-label"></label>
+                <input asp-for="EsCajero" class="form-control" />
+                <span asp-validation-for="EsCajero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsRecepcionista" class="control-label"></label>
+                <input asp-for="EsRecepcionista" class="form-control" />
+                <span asp-validation-for="EsRecepcionista" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
