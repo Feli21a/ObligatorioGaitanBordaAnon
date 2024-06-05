@@ -10,17 +10,17 @@
     <h4>RolesPermiso</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Permiso)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Permiso):
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Permiso.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Permiso.Nombre) (@Html.DisplayFor(model => model.Permiso.Id))
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Rol)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rol.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rol.Nombre) (@Html.DisplayFor(model => model.Rol.Id))
         </dd>
     </dl>
 </div>

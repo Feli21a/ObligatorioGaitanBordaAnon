@@ -4,22 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pagos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-warning" asp-action="Create">Generar pago</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Monto)
+                @Html.DisplayNameFor(model => model.Monto):
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaPago)
+                Fecha de pago
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MetodoPago)
+                Metodo de pago
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Clima)
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.Monto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaPago)
+                $ @Html.DisplayFor(modelItem => item.FechaPago)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MetodoPago)
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Clima.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Reserva.Id)
+                Nro. @Html.DisplayFor(modelItem => item.Reserva.Id)
             </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

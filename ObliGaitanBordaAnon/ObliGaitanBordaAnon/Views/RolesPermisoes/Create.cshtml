@@ -4,21 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Asignar permisos a roles</h1>
 
-<h4>RolesPermiso</h4>
+<h4>Permiso-Roles</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="RolId" class="control-label"></label>
-                <select asp-for="RolId" class ="form-control" asp-items="ViewBag.RolId"></select>
+                <label asp-for="RolId" class="control-label">ID del rol:</label>
+                <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PermisoId" class="control-label"></label>
-                <select asp-for="PermisoId" class ="form-control" asp-items="ViewBag.PermisoId"></select>
+                <label asp-for="PermisoId" class="control-label">Id del permiso:</label>
+                <select asp-for="PermisoId" class="form-control" asp-items="ViewBag.PermisoId"></select>
             </div>
             <div class="form-group">
                 <hr />
@@ -31,5 +31,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -30,12 +30,13 @@
                         <span class="input-group-text">$</span>
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="vd754c" asp-for="Precio">
                     </div>
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <hr />
-                <input type="submit" value="Guardar" class="btn btn-success" />
-                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <hr />
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+                </div>
             </div>
         </form>
     </div>
@@ -43,5 +44,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
