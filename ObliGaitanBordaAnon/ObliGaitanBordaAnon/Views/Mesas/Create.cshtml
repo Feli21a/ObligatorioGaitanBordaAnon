@@ -13,22 +13,26 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NumeroMesa" class="control-label"></label>
+                <label asp-for="NumeroMesa" class="control-label">Nro. mesa:</label>
                 <input asp-for="NumeroMesa" class="form-control" />
                 <span asp-validation-for="NumeroMesa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Capacidad" class="control-label"></label>
+                <label asp-for="Capacidad" class="control-label">Capacidad mesa:</label>
                 <input asp-for="Capacidad" class="form-control" />
                 <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
+                <label asp-for="Estado" class="control-label">Estado de la mesa:</label>
+                <select asp-for="Estado" class="form-control">
+                    <option value="Reservada">Reservada</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="Ocupada">Ocupada</option>
+                </select>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RestauranteId" class="control-label"></label>
+                <label asp-for="RestauranteId" class="control-label">Id del restaurante:</label>
                 <select asp-for="RestauranteId" class ="form-control" asp-items="ViewBag.RestauranteId"></select>
             </div>
             <div class="form-group">

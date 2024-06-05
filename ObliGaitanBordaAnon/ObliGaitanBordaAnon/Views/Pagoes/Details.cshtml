@@ -4,41 +4,41 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles del pago</h1>
 
 <div>
     <h4>Pago</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Monto)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Monto):
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Monto)
+        <dd class="col-sm-10">
+            $ @Html.DisplayFor(model => model.Monto)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaPago)
+        <dt class="col-sm-2">
+            Fecha del pago:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FechaPago)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MetodoPago)
+        <dt class="col-sm-2">
+            Metodo de pago:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MetodoPago)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Clima)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Clima):
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Clima.Id)
+        <dd class="col-sm-10">
+            ID. @Html.DisplayFor(model => model.Clima.Id)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reserva)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reserva):
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reserva.Id)
+        <dd class="col-sm-10">
+            Nro. @Html.DisplayFor(model => model.Reserva.Id)
         </dd>
     </dl>
 </div>

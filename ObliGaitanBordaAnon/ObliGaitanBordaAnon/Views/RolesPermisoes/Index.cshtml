@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Asignaciones</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-warning" asp-action="Create">Asignar permisos a roles</a>
 </p>
 <table class="table">
     <thead>
@@ -26,10 +26,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Permiso.Id)
+                    @Html.DisplayFor(modelItem => item.Permiso.Nombre) (@Html.DisplayFor(modelItem => item.Permiso.Id))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rol.Id)
+                    @Html.DisplayFor(modelItem => item.Rol.Nombre) (@Html.DisplayFor(modelItem => item.Rol.Id))
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
