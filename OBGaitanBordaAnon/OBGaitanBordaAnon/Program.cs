@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using OBGaitanBordaAnon.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<RestoMalTiempoDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conectionSQL")));
 
 var app = builder.Build();
 
