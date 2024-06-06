@@ -1,0 +1,50 @@
+﻿@model ObliGaitanBordaAnon.Models.Mesa
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Mesa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumeroMesa" class="control-label">Nro. mesa:</label>
+                <input asp-for="NumeroMesa" class="form-control" />
+                <span asp-validation-for="NumeroMesa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidad" class="control-label">Capacidad mesa:</label>
+                <input asp-for="Capacidad" class="form-control" />
+                <span asp-validation-for="Capacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label">Estado de la mesa:</label>
+                <select asp-for="Estado" class="form-control">
+                    <option value="Reservada">Reservada</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="Ocupada">Ocupada</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestauranteId" class="control-label">Id del restaurante:</label>
+                <select asp-for="RestauranteId" class="form-control" asp-items="ViewBag.RestauranteId"></select>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

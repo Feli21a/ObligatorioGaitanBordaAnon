@@ -1,0 +1,49 @@
+﻿@model ObliGaitanBordaAnon.Models.Clima
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar clima</h1>
+
+<h4>Clima</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label">Fecha:</label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Temperatura" class="control-label">Temperatura:</label>
+                <input asp-for="Temperatura" class="form-control" />
+                <span asp-validation-for="Temperatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lluvia" class="control-label">Lluvia</label>
+                <input type="checkbox" asp-for="Lluvia" class="form-control" />
+                <input type="hidden" name="Lluvia" value="false" />
+                <span asp-validation-for="Lluvia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionClima" class="control-label">Descripcion del clima:</label>
+                <textarea asp-for="DescripcionClima" class="form-control"></textarea>
+                <span asp-validation-for="DescripcionClima" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

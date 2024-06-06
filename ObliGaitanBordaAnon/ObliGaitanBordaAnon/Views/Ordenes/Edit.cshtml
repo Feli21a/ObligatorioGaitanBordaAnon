@@ -1,0 +1,43 @@
+﻿@model ObliGaitanBordaAnon.Models.Ordene
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar ordenes</h1>
+
+<h4>Orden</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ReservaId" class="control-label">Id de la reserva:</label>
+                <select asp-for="ReservaId" class="form-control" asp-items="ViewBag.ReservaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label">Total de la orden:</label>
+                <div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="j8b7h" asp-for="Total">
+                    </div>
+                    <span asp-validation-for="Total" class="text-danger"></span>
+                </div>
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

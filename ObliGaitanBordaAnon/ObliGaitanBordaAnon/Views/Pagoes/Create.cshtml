@@ -1,0 +1,62 @@
+﻿@model ObliGaitanBordaAnon.Models.Pago
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear pago</h1>
+
+<h4>Pago</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReservaId" class="control-label">Id de la reserva:</label>
+                <select asp-for="ReservaId" class="form-control" asp-items="ViewBag.ReservaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monto" class="control-label">Monto a pagar:</label>
+                <div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="j8b7h" asp-for="Monto">
+                    </div>
+                    <span asp-validation-for="Monto" class="text-danger"></span>
+                </div>
+                <span asp-validation-for="Monto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPago" class="control-label">Fecha del pago:</label>
+                <input asp-for="FechaPago" class="form-control" />
+                <span asp-validation-for="FechaPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetodoPago" class="control-label">Metodo de pago:</label>
+                <select asp-for="MetodoPago" class="form-control">
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                </select>
+                <span asp-validation-for="MetodoPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClimaId" class="control-label">Id del clima:</label>
+                <select asp-for="ClimaId" class="form-control" asp-items="ViewBag.ClimaId"></select>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

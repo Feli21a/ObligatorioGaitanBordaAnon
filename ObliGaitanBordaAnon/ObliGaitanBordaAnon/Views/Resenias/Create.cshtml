@@ -1,0 +1,54 @@
+﻿@model ObliGaitanBordaAnon.Models.Resenia
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear reseña</h1>
+
+<h4>Reseña</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label">Id del cliente:</label>
+                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestauranteId" class="control-label">Id del resaturante:</label>
+                <select asp-for="RestauranteId" class ="form-control" asp-items="ViewBag.RestauranteId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Puntaje" class="control-label"></label>
+                <input type="range" class="form-range" min="1" max="10" step="0.5" id="customRange3" asp-for="Puntaje">
+                <span asp-validation-for="Puntaje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comentario" class="control-label">Comentario:</label>
+                <textarea asp-for="Comentario" class="form-control"></textarea>
+                <span asp-validation-for="Comentario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaResenia" class="control-label">Fecha de la reseña:</label>
+                <input asp-for="FechaResenia" class="form-control" />
+                <span asp-validation-for="FechaResenia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email:</label>
+                <input type="email" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,42 @@
+﻿@model ObliGaitanBordaAnon.Models.Mesa
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles de la mesa</h1>
+
+<div>
+    <h4>Mesa</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nro. mesa:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroMesa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacidad) mesa:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Capacidad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado) mesa:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Restaurante):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Restaurante.Nombre) (@Html.DisplayFor(model => model.Restaurante.Id))
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a class="btn btn-light" asp-action="Index">Volver a la lista</a>
+</div>
