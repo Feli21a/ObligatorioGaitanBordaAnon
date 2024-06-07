@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                Contraseña:
+                Contraseña
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rol)
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Contrasenia)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rol.Id)
+                    @Html.DisplayFor(modelItem => item.Rol.Nombre)
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
