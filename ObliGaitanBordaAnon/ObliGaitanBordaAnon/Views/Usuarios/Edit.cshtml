@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar usuario</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -14,24 +14,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
+                <label asp-for="Nombre" class="control-label">Nombre de usuario:</label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="control-label">Email:</label>
+                <input type="email" asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contrasenia" class="control-label"></label>
-                <input asp-for="Contrasenia" class="form-control" />
+                <label asp-for="Contrasenia" class="control-label">Contraseña:</label>
+                <input type="password" asp-for="Contrasenia" class="form-control" />
                 <span asp-validation-for="Contrasenia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RolId" class="control-label"></label>
+                <label asp-for="RolId" class="control-label">Id del rol:</label>
                 <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
-                <span asp-validation-for="RolId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <hr />
