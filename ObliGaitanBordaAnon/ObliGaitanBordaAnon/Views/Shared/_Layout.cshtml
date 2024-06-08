@@ -32,7 +32,7 @@
                                 <a class="dropdown-item" asp-controller="Reservas" asp-action="Index">Gestion de Reservas</a>
                                 <a class="dropdown-item" asp-controller="Ordenes" asp-action="Index">Gestion de Ordenes</a>
                                 <a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index">Gest. Detalles de Orden</a>
-                                <a class="dropdown-item" asp-controller="Resenias" asp-action="Index">Gestion de Reseñas</a>
+                                <a class="dropdown-item" asp-controller="Resenias" asp-action="Index">Gestion de ReseÃ±as</a>
                                 <a class="dropdown-item" asp-controller="Pagoes" asp-action="Index">Gestion de Pagos</a>
                                 <a class="dropdown-item" asp-controller="Climas" asp-action="Index">Gestion de Clima</a>
                                 <a class="dropdown-item" asp-controller="Roles" asp-action="Index">Gestion de Roles</a>
@@ -43,6 +43,23 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="">Sobre nosotros</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <form class="d-flex" asp-action="Login" asp-controller="Cuenta">
+
+                                    <button class="btn btn-outline-light" type="submit">Login</button>
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

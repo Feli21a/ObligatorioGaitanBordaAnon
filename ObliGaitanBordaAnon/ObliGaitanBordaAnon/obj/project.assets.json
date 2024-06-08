@@ -8166,23 +8166,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
+    "C:\\Users\\felia\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\obligatorio PROGRAMACION 3\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon.csproj",
+      "projectUniqueName": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon.csproj",
       "projectName": "ObliGaitanBordaAnon",
-      "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\obligatorio PROGRAMACION 3\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\obligatorio PROGRAMACION 3\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\obj\\",
+      "projectPath": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon.csproj",
+      "packagesPath": "C:\\Users\\felia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\felia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
