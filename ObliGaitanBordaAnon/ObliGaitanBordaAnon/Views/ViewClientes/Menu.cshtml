@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Menu>
+
+@{
+    ViewData["Title"] = "Menú Principal";
+}
+
+<h2>Menú Principal</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="@Url.Content($"~/img/{item.ImagenNombre}")" class="card-img-top" alt="@item.NombrePlato">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.NombrePlato</h5>
+                                <p class="card-text">@item.Descripcion</p>
+                                <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
+                                <button class="btn btn-primary">Añadir al pedido</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Orden Detalles
+                </div>
+                <ul class="list-group list-group-flush">
+                    <!-- Aquí se mostrarán los detalles de la orden -->
+                </ul>
+                <div class="card-body">
+                    <h5 class="card-title">Total</h5>
+                    <p class="card-text"><strong>$<span id="totalAmount">0.00</span></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+        .card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+    .card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .card-text {
+        margin: 10px 0;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .list-group-item {
+        font-size: 1.1em;
+    }
+
+    .card .card-body h5 {
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+</style>

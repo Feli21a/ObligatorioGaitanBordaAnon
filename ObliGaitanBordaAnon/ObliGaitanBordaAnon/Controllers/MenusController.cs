@@ -42,21 +42,29 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(menu);
         }
 
-        // GET: Menus/Create
+        // GET: Menu/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Menus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Menu/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId")] Menu menu, IFormFile ImagenArchivo)
         {
             if (ModelState.IsValid)
             {
+                if (ImagenArchivo != null && ImagenArchivo.Length > 0)
+                {
+                    var fileName = Path.GetFileName(ImagenArchivo.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImagenArchivo.CopyToAsync(fileStream);
+                    }
+                    menu.ImagenNombre = fileName;
+                }
                 _context.Add(menu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -65,7 +73,7 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
 
-        // GET: Menus/Edit/5
+        // GET: Menu/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +89,10 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(menu);
         }
 
-        // POST: Menus/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Menu/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,ImagenNombre")] Menu menu, IFormFile ImagenArchivo)
         {
             if (id != menu.Id)
             {
@@ -97,6 +103,28 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 try
                 {
+                    if (ImagenArchivo != null && ImagenArchivo.Length > 0)
+                    {
+                        // Eliminar la imagen anterior si existe
+                        if (!string.IsNullOrEmpty(menu.ImagenNombre))
+                        {
+                            var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", menu.ImagenNombre);
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+                        }
+
+                        // Guardar la nueva imagen
+                        var fileName = Path.GetFileName(ImagenArchivo.FileName);
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await ImagenArchivo.CopyToAsync(fileStream);
+                        }
+                        menu.ImagenNombre = fileName;
+                    }
+
                     _context.Update(menu);
                     await _context.SaveChangesAsync();
                 }

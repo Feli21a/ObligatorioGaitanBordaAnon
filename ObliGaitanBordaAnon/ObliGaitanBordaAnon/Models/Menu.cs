@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ObliGaitanBordaAnon.Models;
 
@@ -14,6 +15,9 @@ public partial class Menu
     public int Precio { get; set; }
 
     public int? CotizacionId { get; set; }
+
+    [NotMapped]
+    public string ImagenNombre { get; set; }
 
     public virtual Cotizacione? Cotizacion { get; set; }
 
