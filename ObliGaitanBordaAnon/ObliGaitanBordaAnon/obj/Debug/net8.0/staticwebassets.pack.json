@@ -193,6 +193,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\img\\Biscet con pure de calabaza.png",
+      "PackagePath": "staticwebassets\\img\\Biscet con pure de calabaza.png"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\img\\Foto pasta.png",
+      "PackagePath": "staticwebassets\\img\\Foto pasta.png"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\img\\Milanesa con pure.png",
+      "PackagePath": "staticwebassets\\img\\Milanesa con pure.png"
+    },
+    {
       "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -13,5 +13,9 @@ public partial class Menu
 
     public int Precio { get; set; }
 
+    public int? CotizacionId { get; set; }
+
+    public virtual Cotizacione? Cotizacion { get; set; }
+
     public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();
 }

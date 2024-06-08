@@ -9,22 +9,22 @@ using ObliGaitanBordaAnon.Models;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
-    public class MenusController : Controller
+    public class CotizacionesController : Controller
     {
         private readonly RestoMalTiempoDbContext _context;
 
-        public MenusController(RestoMalTiempoDbContext context)
+        public CotizacionesController(RestoMalTiempoDbContext context)
         {
             _context = context;
         }
 
-        // GET: Menus
+        // GET: Cotizaciones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Menus.ToListAsync());
+            return View(await _context.Cotizaciones.ToListAsync());
         }
 
-        // GET: Menus/Details/5
+        // GET: Cotizaciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,40 +32,39 @@ namespace ObliGaitanBordaAnon.Controllers
                 return NotFound();
             }
 
-            var menu = await _context.Menus
+            var cotizacione = await _context.Cotizaciones
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (menu == null)
+            if (cotizacione == null)
             {
                 return NotFound();
             }
 
-            return View(menu);
+            return View(cotizacione);
         }
 
-        // GET: Menus/Create
+        // GET: Cotizaciones/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Menus/Create
+        // POST: Cotizaciones/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Create([Bind("Id,TipoMonedas,CotizacionMoneda")] Cotizacione cotizacione)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(menu);
+                _context.Add(cotizacione);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(menu);
+            return View(cotizacione);
         }
 
-
-        // GET: Menus/Edit/5
+        // GET: Cotizaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +72,22 @@ namespace ObliGaitanBordaAnon.Controllers
                 return NotFound();
             }
 
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null)
+            var cotizacione = await _context.Cotizaciones.FindAsync(id);
+            if (cotizacione == null)
             {
                 return NotFound();
             }
-            return View(menu);
+            return View(cotizacione);
         }
 
-        // POST: Menus/Edit/5
+        // POST: Cotizaciones/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoMonedas,CotizacionMoneda")] Cotizacione cotizacione)
         {
-            if (id != menu.Id)
+            if (id != cotizacione.Id)
             {
                 return NotFound();
             }
@@ -97,12 +96,12 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 try
                 {
-                    _context.Update(menu);
+                    _context.Update(cotizacione);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MenuExists(menu.Id))
+                    if (!CotizacioneExists(cotizacione.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +112,10 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(menu);
+            return View(cotizacione);
         }
 
-        // GET: Menus/Delete/5
+        // GET: Cotizaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +123,34 @@ namespace ObliGaitanBordaAnon.Controllers
                 return NotFound();
             }
 
-            var menu = await _context.Menus
+            var cotizacione = await _context.Cotizaciones
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (menu == null)
+            if (cotizacione == null)
             {
                 return NotFound();
             }
 
-            return View(menu);
+            return View(cotizacione);
         }
 
-        // POST: Menus/Delete/5
+        // POST: Cotizaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu != null)
+            var cotizacione = await _context.Cotizaciones.FindAsync(id);
+            if (cotizacione != null)
             {
-                _context.Menus.Remove(menu);
+                _context.Cotizaciones.Remove(cotizacione);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MenuExists(int id)
+        private bool CotizacioneExists(int id)
         {
-            return _context.Menus.Any(e => e.Id == id);
+            return _context.Cotizaciones.Any(e => e.Id == id);
         }
     }
 }
