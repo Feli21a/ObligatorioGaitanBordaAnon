@@ -16,9 +16,6 @@ public partial class Menu
 
     public int? CotizacionId { get; set; }
 
-    [NotMapped]
-    public string ImagenNombre { get; set; }
-
     public virtual Cotizacione? Cotizacion { get; set; }
 
     public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();

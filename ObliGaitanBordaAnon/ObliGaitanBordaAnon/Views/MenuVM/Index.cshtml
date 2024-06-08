@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.MenuViewModel>
+
+@{
+    ViewData["Title"] = "Menú Principal";
+}
+<hr />
+<h2>Menú Principal</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    @{
+                        string ubiImg = "~/img/default.png"; // Imagen por defecto
+                        switch (item.Id)
+                        {
+                            case 1:
+                                ubiImg = "~/img/Foto pasta.png";
+                                break;
+                            case 2:
+                                ubiImg = "~/img/Milanesa con pure.png";
+                                break;
+                            case 3:
+                                ubiImg = "~/img/Biscet con pure de calabaza.png";
+                                break;
+                                // Agrega más casos según sea necesario
+                        }
+                    }
+                    <img src="@Url.Content(ubiImg)" class="card-img-top" alt="@item.NombrePlato">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.NombrePlato</h5>
+                        <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
+                        <a class="btn btn-link" href="@Url.Action("Detalles", "MenuVM", new { id = item.Id })">Ver Mas +</a>
+                        <button class="btn btn-dark">Añadir al pedido</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        height: 100%; /* Asegurar que todas las tarjetas tengan la misma altura */
+    }
+
+        .card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+    .card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .card-text {
+        margin: 10px 0;
+        max-height: 60px;
+        overflow: hidden;
+        transition: max-height 0.2s ease;
+    }
+
+        .card-text.expanded {
+            max-height: none;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+    .card .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card .card-body .ver-mas {
+            margin-top: auto;
+        }
+</style>

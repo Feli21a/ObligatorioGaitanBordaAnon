@@ -1,0 +1,89 @@
+﻿@model ObliGaitanBordaAnon.Models.MenuViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Plato";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                @{
+                    string ubiImg = "~/img/default.png"; // Imagen por defecto
+                    switch (Model.Id)
+                    {
+                        case 1:
+                            ubiImg = "~/img/Foto pasta.png";
+                            break;
+                        case 2:
+                            ubiImg = "~/img/Milanesa con pure.png";
+                            break;
+                        case 3:
+                            ubiImg = "~/img/Biscet con pure de calabaza.png";
+                            break;
+                            // Agrega más casos según sea necesario
+                    }
+                }
+                <img src="@Url.Content(ubiImg)" class="card-img" alt="@Model.NombrePlato">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h1 class="card-title">@Html.DisplayFor(model => model.NombrePlato)</h1>
+                    <hr />
+                    <h4>Descripción</h4>
+                    <p class="card-text">@Html.DisplayFor(model => model.Descripcion)</p>
+                    <h4>Precio</h4>
+                    <p class="card-text display-4">$@Html.DisplayFor(model => model.Precio)</p>
+                    <a class="btn btn-primary btn-lg mt-3" asp-action="Index">Volver al Menú</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .card-img {
+        height: 100%;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .card-body {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .card-title {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 1.2em;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>

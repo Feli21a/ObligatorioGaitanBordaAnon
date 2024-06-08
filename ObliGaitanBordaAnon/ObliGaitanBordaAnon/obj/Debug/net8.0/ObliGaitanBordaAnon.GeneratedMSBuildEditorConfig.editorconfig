@@ -114,6 +114,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/MenuVM/Detalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVZNXERldGFsbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/MenuVM/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVZNXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/Mesas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -340,10 +348,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/ViewClientes/Menu.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld0NsaWVudGVzXE1lbnUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/felia/Desktop/REPOSITORIO/ObligatorioGaitanBordaAnon/ObliGaitanBordaAnon/ObliGaitanBordaAnon/Views/_ViewImports.cshtml]
