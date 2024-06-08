@@ -9,6 +9,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<RestoMalTiempoDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conectionSQL")));
 
+builder.Services.AddControllersWithViews().AddViewOptions(options => {options.HtmlHelperOptions.ClientValidationEnabled = true;});
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dSdrT9gk+4iJnwKo9IN4MVSyZa2gnteYY7yH7QHAMNM=",
+  "Hash": "NcFeU+h0nUF8OD6Smai+hrknALT8PRlQB4kdCe7Ftdc=",
   "Source": "ObliGaitanBordaAnon",
   "BasePath": "_content/ObliGaitanBordaAnon",
   "Mode": "Default",
@@ -984,6 +984,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Foto pasta.png"
+    },
+    {
+      "Identity": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\img\\Logo resto mal tiempo.png",
+      "SourceId": "ObliGaitanBordaAnon",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\",
+      "BasePath": "_content/ObliGaitanBordaAnon",
+      "RelativePath": "img/Logo resto mal tiempo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\Logo resto mal tiempo.png"
     },
     {
       "Identity": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\img\\Milanesa con pure.png",

@@ -1,38 +1,58 @@
 ﻿@model ObliGaitanBordaAnon.Models.LoginViewModel
 
-@{
-    ViewData["Title"] = "Iniciar Sesión";
-}
-
-<h1>Iniciar Sesión</h1>
-
-<form asp-action="Login" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input type="email" asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-        <div class="container login-container">
-            <div class="row">
-                <div class="col-md-6 login-form-1">
-
-                    <form asp-action="Login" method="post">
-                        <div class="form-group">
-                            <input asp-for="Email" class="form-control" placeholder="Your Email *" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ObliGaitanBordaAnon</title>
+    <link rel="stylesheet" href="~/css/Zhapyr.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="bg-light py-3 py-md-5">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-5">
+                                    <h3>Inicio de sesión</h3>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input asp-for="Password" class="form-control" type="password" placeholder="Your Password *" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        <button type="submit" class="btnSubmit">Login</button>
-                    </form>
+                        <form asp-action="Login" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="row gy-3 gy-md-4 overflow-hidden">
+                                <div class="col-12">
+                                    <label asp-for="Email" class="form-label">Email: <span class="text-danger">*</span></label>
+                                    <input asp-for="Email" class="form-control" placeholder="Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label asp-for="Password" class="form-label">Constraseña: <span class="text-danger">*</span></label>
+                                    <input asp-for="Password" class="form-control" placeholder="Contraseña" type="password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" type="password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-</form>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>
