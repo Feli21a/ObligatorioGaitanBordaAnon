@@ -154,13 +154,5 @@ namespace ObliGaitanBordaAnon.Controllers
             return _context.Clientes.Any(e => e.Id == id);
         }
 
-        // Vista del menú para los clientes
-        [AllowAnonymous]
-        public async Task<IActionResult> Menu()
-        {
-            var menuItems = await _context.Menus.ToListAsync();
-            return View("~/Views/ClientesViews/Menu/Menu.cshtml", menuItems);
-        }
-
     }
 }
