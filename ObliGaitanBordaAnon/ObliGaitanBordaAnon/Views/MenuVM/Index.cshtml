@@ -6,6 +6,22 @@
 <hr />
 <h2>Menú Principal</h2>
 
+<!-- Filtro de categorías -->
+<form asp-action="Index" method="get" class="form-inline" id="filterForm">
+    <div class="form-group mr-2">
+        <label for="categoria" class="mr-2">Filtrar </label>
+        <div class="custom-select-container">
+            <select name="categoria" class="form-control form-control-sm" id="categoria" onchange="this.form.submit()">
+                <option>Categoria</option>
+                <option value="Principal">Principal</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Tragos">Tragos</option>
+                <option value="Postres">Postres</option>
+            </select>
+        </div>
+    </div>
+</form>
+
 <div class="container-fluid">
     <div class="row">
         @foreach (var item in Model)
@@ -17,14 +33,36 @@
                         switch (item.Id)
                         {
                             case 1:
-                                ubiImg = "~/img/Foto pasta.png";
+                                ubiImg = "~/img/Fideos.png";
                                 break;
                             case 2:
                                 ubiImg = "~/img/Milanesa con pure.png";
                                 break;
                             case 3:
-                                ubiImg = "~/img/Biscet con pure de calabaza.png";
+                                ubiImg = "~/img/Biscet.png";
                                 break;
+                            case 4:
+                                ubiImg = "~/img/Hamburguesa.png";
+                                break;
+                            case 5:
+                                ubiImg = "~/img/Guiso.png";
+                                break;
+                            case 6:
+                                ubiImg = "~/img/Asado.png";
+                                break;
+                            case 7:
+                                ubiImg = "~/img/Ensalada.png";
+                                break;
+                            case 8:
+                                ubiImg = "~/img/Lomo.png";
+                                break;
+                            case 9:
+                                ubiImg = "~/img/Pollo.png";
+                                break;
+                            case 10:
+                                ubiImg = "~/img/Salmon.png";
+                                break;
+
                                 // Agrega más casos según sea necesario
                         }
                     }
@@ -32,7 +70,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@item.NombrePlato</h5>
                         <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
-                        <a class="btn btn-link" href="@Url.Action("Detalles", "MenuVM", new { id = item.Id })">Ver Mas +</a>
+                        <a class="btn btn-link" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
                         <button class="btn btn-dark">Añadir al pedido</button>
                     </div>
                 </div>
@@ -69,9 +107,9 @@
             max-height: none;
         }
 
-        .btn-link:hover {
-            text-decoration: underline;
-        }
+    .btn-link:hover {
+        text-decoration: underline;
+    }
 
     .card .card-body {
         display: flex;
@@ -81,4 +119,36 @@
         .card .card-body .ver-mas {
             margin-top: auto;
         }
+
+    .form-inline {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    .form-control-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .btn-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 200px; /* Ajusta el valor según sea necesario */
+    }
+
 </style>
+

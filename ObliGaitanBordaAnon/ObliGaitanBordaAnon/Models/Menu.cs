@@ -16,6 +16,10 @@ public partial class Menu
 
     public int? CotizacionId { get; set; }
 
+    public string? Categoria { get; set; }
+
+    public string? ImagenUrl { get; set; } = string.Empty!;
+
     public virtual Cotizacione? Cotizacion { get; set; }
 
     public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();

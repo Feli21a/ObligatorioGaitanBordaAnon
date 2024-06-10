@@ -14,23 +14,28 @@ public class MenuVMController : Controller
     }
 
     // GET: MenuVM
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string categoria)
     {
-        var menus = await _context.Menus
+        var menus = _context.Menus
             .Select(m => new MenuViewModel
             {
                 Id = m.Id,
                 NombrePlato = m.NombrePlato,
                 Descripcion = m.Descripcion,
-                Precio = m.Precio
-            })
-            .ToListAsync();
+                Precio = m.Precio,
+                Categoria = m.Categoria
+            });
 
-        return View(menus);
+        if (!string.IsNullOrEmpty(categoria))
+        {
+            menus = menus.Where(m => m.Categoria == categoria);
+        }
+
+        return View(await menus.ToListAsync());
     }
 
-    // GET: MenuVM/Details/5
-    public async Task<IActionResult> Details(int? id)
+    // GET: Menu/Details/5
+    public async Task<IActionResult> Detalles(int? id)
     {
         if (id == null)
         {
@@ -44,7 +49,8 @@ public class MenuVMController : Controller
                 Id = m.Id,
                 NombrePlato = m.NombrePlato,
                 Descripcion = m.Descripcion,
-                Precio = m.Precio
+                Precio = m.Precio,
+                Categoria = m.Categoria
             })
             .FirstOrDefaultAsync();
 

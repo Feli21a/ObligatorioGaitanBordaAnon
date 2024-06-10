@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Imagen
+            </th>
+            <th>
                 Nombre del plato
             </th>
             <th>
@@ -20,6 +23,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
             </th>
             <th></th>
         </tr>
@@ -29,13 +35,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                    @Html.DisplayFor(modelItem => item.ImagenUrl)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                </td>
+                <td class="truncate">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
                     $ @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

@@ -51,7 +51,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // POST: Menu/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId")] Menu menu)
+        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria")] Menu menu)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +59,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "TipoMonedas");
             return View(menu);
         }
 
@@ -81,7 +82,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // POST: Menu/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria")] Menu menu)
         {
             if (id != menu.Id)
             {
@@ -106,6 +107,7 @@ namespace ObliGaitanBordaAnon.Controllers
                         throw;
                     }
                 }
+                ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "TipoMonedas");
                 return RedirectToAction(nameof(Index));
             }
             return View(menu);
