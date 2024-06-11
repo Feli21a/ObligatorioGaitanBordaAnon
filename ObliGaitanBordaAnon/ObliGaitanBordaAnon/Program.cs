@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using ObliGaitanBordaAnon.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,20 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// configuramos la ruta para los archivos estaticos (imagenes)
+var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img"); //nos paramos en la carpeta
+if (!Directory.Exists(externalImagePath))
+{
+    Directory.CreateDirectory(externalImagePath); //si no existe la creamos
+}
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(externalImagePath),
+    RequestPath = "/ExternalImages" //usamos la carpeta con esta ruta
+});
+
 
 app.UseRouting();
 

@@ -48,7 +48,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Reservas/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre");
             ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id");
             return View();
         }
@@ -58,7 +58,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClienteId,MesaId,FechaReservada,Estado")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("Id,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +66,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id", reserva.MesaId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -94,7 +94,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,MesaId,FechaReservada,Estado")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
         {
             if (id != reserva.Id)
             {
@@ -121,8 +121,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id", reserva.MesaId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", reserva.Cliente.Nombre);
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id", reserva.Mesa.NumeroMesa);
             return View(reserva);
         }
 
