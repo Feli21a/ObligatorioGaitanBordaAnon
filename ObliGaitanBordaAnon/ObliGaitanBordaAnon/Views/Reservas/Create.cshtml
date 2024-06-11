@@ -13,16 +13,16 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ClienteId" class="control-label">Id del cliente:</label>
+                <label asp-for="ClienteId" class="control-label">Cliente registrado:</label>
                 <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Nombre" class="control-label">Nombre:</label>
+                <label asp-for="Nombre" class="control-label">Nombre para reserva:</label>
                 <input type="text" asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MesaId" class="control-label">Id de la mesa:</label>
+                <label asp-for="MesaId" class="control-label">Nro. mesa:</label>
                 <select asp-for="MesaId" class ="form-control" asp-items="ViewBag.MesaId"></select>
             </div>
             <div class="form-group">
@@ -32,7 +32,6 @@
             </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label">Estado de la reserva:</label>
-                <label asp-for="Estado" class="control-label">Estado de la mesa:</label>
                 <select asp-for="Estado" class="form-control">
                     <option value="Pendiente">Pendiente</option>
                     <option value="Confirmada">Confirmada</option>

@@ -48,7 +48,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: OrdenDetalles/Create
         public IActionResult Create()
         {
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id");
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato");
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id");
             return View();
         }
@@ -66,9 +66,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id", ordenDetalle.Cantidad);
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato", ordenDetalle.Menu.NombrePlato);
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenDetalle.OrdenId);
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id");
             return View(ordenDetalle);
         }
 
@@ -122,7 +121,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id", ordenDetalle.MenuId);
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato", ordenDetalle.Menu.NombrePlato);
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenDetalle.OrdenId);
             return View(ordenDetalle);
         }

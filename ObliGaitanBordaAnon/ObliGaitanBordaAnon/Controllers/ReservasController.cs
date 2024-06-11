@@ -49,7 +49,7 @@ namespace ObliGaitanBordaAnon.Controllers
         public IActionResult Create()
         {
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre");
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id");
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.Cliente.Nombre);
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.Mesa.NumeroMesa);
             return View(reserva);
         }
 

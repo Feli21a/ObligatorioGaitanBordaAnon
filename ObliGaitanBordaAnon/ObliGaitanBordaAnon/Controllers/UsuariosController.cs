@@ -47,7 +47,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.Rol.Nombre);
             return View(usuario);
         }
 
@@ -81,7 +81,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.RolId);
             return View(usuario);
         }
 
@@ -117,7 +117,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.Rol.Nombre);
             return View(usuario);
         }
 
