@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Página de Inicio";
+}
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col-12">
+            <img src="~/ExternalImages/LogoRestaurante.png" alt="Logo del Restaurante" style="max-width: 200px;">
+        </div>
+        <div class="col-12">
+            <h1 class="mt-3">BIENVENIDO A<br>AL MAL TIEMPO BUENA CARA</h1>
+            <h3 class="mt-3">¿Eres cliente registrado?</h3>
+        </div>
+        <div class="col-12 mt-3">
+            <a href="@Url.Action("Login", "Login")" class="btn btn-success btn-lg mx-2">Sí</a>
+            <a href="@Url.Action("AutoLogin", "Login")" class="btn btn-warning btn-lg mx-2">No, Ver Menú</a>
+        </div>
+        <div class="col-12 mt-3">
+            <a href="@Url.Action("Registrarse", "Login")" class="btn btn-link">Quiero registrarme</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    img {
+        max-width: 200px;
+    }
+
+    .btn-lg {
+        width: 200px;
+    }
+
+    .btn-link {
+        font-size: 1.2em;
+    }
+
+    .btn-primary {
+        color: white !important;
+    }
+
+        .btn-primary:hover {
+            color: white !important;
+        }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    .mt-3 {
+        margin-top: 1rem !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+</style>

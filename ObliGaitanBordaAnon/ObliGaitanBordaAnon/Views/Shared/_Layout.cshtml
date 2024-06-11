@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" asp-area="" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestiones</a>
@@ -48,13 +48,13 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Logout">Logout</a>
+                                <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <form class="d-flex" asp-action="Login" asp-controller="Cuenta">
+                                <form class="d-flex" asp-action="Login" asp-controller="Login">
 
                                     <button class="btn btn-secondary" type="submit">Login</button>
                                 </form>

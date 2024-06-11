@@ -8,13 +8,20 @@ using System.Threading.Tasks;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
-    public class CuentaController : Controller
+    public class LoginController : Controller
     {
         private readonly RestoMalTiempoDbContext _context;
 
-        public CuentaController(RestoMalTiempoDbContext context)
+        public LoginController(RestoMalTiempoDbContext context)
         {
             _context = context;
+        }
+
+        // GET: Index
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
         }
 
         // GET: Account/Login
@@ -37,7 +44,7 @@ namespace ObliGaitanBordaAnon.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Email),
-                        // Añadir otros claims si es necesario
+                       
                     };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -50,9 +57,31 @@ namespace ObliGaitanBordaAnon.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Email o contraseña incorrectos.");
             }
             return View(model);
+        }
+
+        public async Task<IActionResult> AutoLogin()
+        {
+            var cliente = _context.Clientes.SingleOrDefault(u => u.Email == "ClienteRestoMalTiempo@gmail.com"); //usuario generico
+            if (cliente != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, cliente.Email),
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return RedirectToAction("Index", "Menus");
+            }
+
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Logout()
