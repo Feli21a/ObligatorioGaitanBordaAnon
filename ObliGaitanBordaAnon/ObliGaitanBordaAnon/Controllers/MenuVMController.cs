@@ -23,7 +23,8 @@ public class MenuVMController : Controller
                 NombrePlato = m.NombrePlato,
                 Descripcion = m.Descripcion,
                 Precio = m.Precio,
-                Categoria = m.Categoria
+                Categoria = m.Categoria,
+                ImagenUrl = m.ImagenUrl
             });
 
         if (!string.IsNullOrEmpty(categoria))
@@ -50,7 +51,8 @@ public class MenuVMController : Controller
                 NombrePlato = m.NombrePlato,
                 Descripcion = m.Descripcion,
                 Precio = m.Precio,
-                Categoria = m.Categoria
+                Categoria = m.Categoria,
+                ImagenUrl = m.ImagenUrl
             })
             .FirstOrDefaultAsync();
 

@@ -19,9 +19,17 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Menus
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string categoria)
         {
-            return View(await _context.Menus.ToListAsync());
+
+            var menu = from m in _context.Menus select m;
+
+            if (!string.IsNullOrEmpty(categoria))
+            {
+                menu = menu.Where(m => m.Categoria == categoria);
+            }
+
+            return View(await menu.ToListAsync());
         }
 
         // GET: Menu/Details/5
@@ -51,15 +59,33 @@ namespace ObliGaitanBordaAnon.Controllers
         // POST: Menu/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria")] Menu menu)
+        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria,ImagenUrl")] Menu menu, IFormFile ImagenFile)
         {
+            if (ImagenFile != null && ImagenFile.Length > 0)
+            {
+                // Ruta fuera del proyecto
+                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img");
+                if (!Directory.Exists(externalImagePath))
+                {
+                    Directory.CreateDirectory(externalImagePath);
+                }
+
+                var filePath = Path.Combine(externalImagePath, ImagenFile.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImagenFile.CopyToAsync(stream);
+                }
+
+                menu.ImagenUrl = "/ExternalImages/" + ImagenFile.FileName;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(menu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "TipoMonedas");
             return View(menu);
         }
 
@@ -82,11 +108,30 @@ namespace ObliGaitanBordaAnon.Controllers
         // POST: Menu/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria,ImagenUrl")] Menu menu, IFormFile ImagenFile)
         {
             if (id != menu.Id)
             {
                 return NotFound();
+            }
+
+            if (ImagenFile != null && ImagenFile.Length > 0)
+            {
+                // Ruta fuera del proyecto
+                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img");
+                if (!Directory.Exists(externalImagePath))
+                {
+                    Directory.CreateDirectory(externalImagePath);
+                }
+
+                var filePath = Path.Combine(externalImagePath, ImagenFile.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImagenFile.CopyToAsync(stream);
+                }
+
+                menu.ImagenUrl = "/ExternalImages/" + ImagenFile.FileName;
             }
 
             if (ModelState.IsValid)
@@ -107,7 +152,6 @@ namespace ObliGaitanBordaAnon.Controllers
                         throw;
                     }
                 }
-                ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "TipoMonedas");
                 return RedirectToAction(nameof(Index));
             }
             return View(menu);

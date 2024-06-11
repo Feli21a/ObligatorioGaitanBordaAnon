@@ -38,10 +38,17 @@
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
-                   Nro. @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    @if (item.Nombre != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Cliente.Nombre) @Html.DisplayText("ID: ") @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    }
                 </td>
                 <td>
-                    ID @Html.DisplayFor(modelItem => item.Mesa.Id)
+                    ID @Html.DisplayFor(modelItem => item.Mesa.NumeroMesa)
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

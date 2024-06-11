@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - ObliGaitanBordaAnon</title>
     <link rel="stylesheet" href="~/css/Zhapyr.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/OBGaitanBordaAnon.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -22,10 +23,10 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index">Menú</a>
+                            <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index"><i class="bi bi-book-half"></i> Menú</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" asp-area="" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestiones</a>
+                            <a class="nav-link dropdown-toggle" asp-area="" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-tools"></i> Gestiones</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
                                 <a class="dropdown-item" asp-controller="Usuarios" asp-action="Index">Usuarios</a>

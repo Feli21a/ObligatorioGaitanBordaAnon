@@ -4,19 +4,19 @@
     ViewData["Title"] = "Menú Principal";
 }
 <hr />
-<h2>Menú Principal</h2>
+<h2>Menú</h2>
 
 <!-- Filtro de categorías -->
-<form asp-action="Index" method="get" class="form-inline" id="filterForm">
-    <div class="form-group mr-2">
-        <label for="categoria" class="mr-2">Filtrar </label>
+<form asp-action="Index" method="get" class="form-inline mb-4" id="filterForm">
+    <div class="form-group mr-3">
+        <label for="categoria" class="mr-2">Filtrar</label>
         <div class="custom-select-container">
             <select name="categoria" class="form-control form-control-sm" id="categoria" onchange="this.form.submit()">
                 <option>Categoria</option>
-                <option value="Principal">Principal</option>
-                <option value="Bebidas">Bebidas</option>
-                <option value="Tragos">Tragos</option>
-                <option value="Postres">Postres</option>
+                <option value="Principal">Principales</option>
+                <option value="Bebida">Bebidas</option>
+                <option value="Trago">Tragos</option>
+                <option value="Postre">Postres</option>
             </select>
         </div>
     </div>
@@ -29,49 +29,17 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     @{
-                        string ubiImg = "~/img/default.png"; // Imagen por defecto
-                        switch (item.Id)
+                        string ubiImg = "~/img/Logo.png"; // Imagen por defecto
+                        if (!string.IsNullOrEmpty(item.ImagenUrl))
                         {
-                            case 1:
-                                ubiImg = "~/img/Fideos.png";
-                                break;
-                            case 2:
-                                ubiImg = "~/img/Milanesa con pure.png";
-                                break;
-                            case 3:
-                                ubiImg = "~/img/Biscet.png";
-                                break;
-                            case 4:
-                                ubiImg = "~/img/Hamburguesa.png";
-                                break;
-                            case 5:
-                                ubiImg = "~/img/Guiso.png";
-                                break;
-                            case 6:
-                                ubiImg = "~/img/Asado.png";
-                                break;
-                            case 7:
-                                ubiImg = "~/img/Ensalada.png";
-                                break;
-                            case 8:
-                                ubiImg = "~/img/Lomo.png";
-                                break;
-                            case 9:
-                                ubiImg = "~/img/Pollo.png";
-                                break;
-                            case 10:
-                                ubiImg = "~/img/Salmon.png";
-                                break;
-
-                                // Agrega más casos según sea necesario
+                            ubiImg = item.ImagenUrl;
                         }
                     }
                     <img src="@Url.Content(ubiImg)" class="card-img-top" alt="@item.NombrePlato">
                     <div class="card-body">
-                        <h5 class="card-title">@item.NombrePlato</h5>
+                        <h5 class="card-title" >@item.NombrePlato</h5>
                         <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
-                        <a class="btn btn-link" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
-                        <button class="btn btn-dark">Añadir al pedido</button>
+                        <a class="btn btn-info" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
                     </div>
                 </div>
             </div>
@@ -81,10 +49,14 @@
 
 <style>
     .card {
-        margin: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        height: 100%; /* Asegurar que todas las tarjetas tengan la misma altura */
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.2s ease-in-out; /* Agregar transición para la transformación */
     }
+
+        .card:hover {
+            transform: scale(1.03); /* Mover ligeramente hacia arriba en hover */
+        }
 
         .card img {
             height: 150px;
@@ -106,10 +78,6 @@
         .card-text.expanded {
             max-height: none;
         }
-
-    .btn-link:hover {
-        text-decoration: underline;
-    }
 
     .card .card-body {
         display: flex;
@@ -138,17 +106,24 @@
         border-radius: .2rem;
     }
 
-    .btn-sm {
-        padding: .25rem .5rem;
-        font-size: .875rem;
-        line-height: 1.5;
-        border-radius: .2rem;
-    }
-
     .custom-select-width {
         width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
         max-width: 200px; /* Ajusta el valor según sea necesario */
     }
 
-</style>
+    .btn-info {
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.0em;
+        color: white !important; /* Asegura que el texto sea siempre blanco */
+    }
 
+        .btn-info:hover,
+        .btn-info:focus,
+        .btn-info:active {
+            color: white !important; /* Mantiene el color del texto en blanco */
+        }
+    .mr-2 {
+        margin-right: 5px;
+    }
+</style>
