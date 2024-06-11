@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.MenuViewModel>
+
+@{
+    ViewData["Title"] = "Menú Principal";
+}
+<hr />
+<h2>Menú</h2>
+
+<!-- Filtro de categorías -->
+<form asp-action="Index" method="get" class="form-inline mb-4" id="filterForm">
+    <div class="form-group mr-3">
+        <label for="categoria" class="mr-2">Filtrar</label>
+        <div class="custom-select-container">
+            <select name="categoria" class="form-control form-control-sm" id="categoria" onchange="this.form.submit()">
+                <option>Categoria</option>
+                <option value="Principal">Principales</option>
+                <option value="Bebida">Bebidas</option>
+                <option value="Trago">Tragos</option>
+                <option value="Postre">Postres</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    @{
+                        string ubiImg = "~/img/Logo.png"; // Imagen por defecto
+                        if (!string.IsNullOrEmpty(item.ImagenUrl))
+                        {
+                            ubiImg = item.ImagenUrl;
+                        }
+                    }
+                    <img src="@Url.Content(ubiImg)" class="card-img-top" alt="@item.NombrePlato">
+                    <div class="card-body">
+                        <h5 class="card-title" >@item.NombrePlato</h5>
+                        <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
+                        <a class="btn btn-info" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.2s ease-in-out; /* Agregar transición para la transformación */
+    }
+
+        .card:hover {
+            transform: scale(1.03); /* Mover ligeramente hacia arriba en hover */
+        }
+
+        .card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+    .card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .card-text {
+        margin: 10px 0;
+        max-height: 60px;
+        overflow: hidden;
+        transition: max-height 0.2s ease;
+    }
+
+        .card-text.expanded {
+            max-height: none;
+        }
+
+    .card .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card .card-body .ver-mas {
+            margin-top: auto;
+        }
+
+    .form-inline {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    .form-control-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 200px; /* Ajusta el valor según sea necesario */
+    }
+
+    .btn-info {
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.0em;
+        color: white !important; /* Asegura que el texto sea siempre blanco */
+    }
+
+        .btn-info:hover,
+        .btn-info:focus,
+        .btn-info:active {
+            color: white !important; /* Mantiene el color del texto en blanco */
+        }
+    .mr-2 {
+        margin-right: 5px;
+    }
+</style>

@@ -19,12 +19,20 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Menus
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string categoria)
         {
-            return View(await _context.Menus.ToListAsync());
+
+            var menu = from m in _context.Menus select m;
+
+            if (!string.IsNullOrEmpty(categoria))
+            {
+                menu = menu.Where(m => m.Categoria == categoria);
+            }
+
+            return View(await menu.ToListAsync());
         }
 
-        // GET: Menus/Details/5
+        // GET: Menu/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,19 +50,36 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(menu);
         }
 
-        // GET: Menus/Create
+        // GET: Menu/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Menus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Menu/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Create([Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria,ImagenUrl")] Menu menu, IFormFile ImagenFile)
         {
+            if (ImagenFile != null && ImagenFile.Length > 0)
+            {
+                // Ruta fuera del proyecto
+                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img");
+                if (!Directory.Exists(externalImagePath))
+                {
+                    Directory.CreateDirectory(externalImagePath);
+                }
+
+                var filePath = Path.Combine(externalImagePath, ImagenFile.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImagenFile.CopyToAsync(stream);
+                }
+
+                menu.ImagenUrl = "/ExternalImages/" + ImagenFile.FileName;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(menu);
@@ -64,8 +89,7 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(menu);
         }
 
-
-        // GET: Menus/Edit/5
+        // GET: Menu/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,16 +105,33 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(menu);
         }
 
-        // POST: Menus/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Menu/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombrePlato,Descripcion,Precio,CotizacionId,Categoria,ImagenUrl")] Menu menu, IFormFile ImagenFile)
         {
             if (id != menu.Id)
             {
                 return NotFound();
+            }
+
+            if (ImagenFile != null && ImagenFile.Length > 0)
+            {
+                // Ruta fuera del proyecto
+                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img");
+                if (!Directory.Exists(externalImagePath))
+                {
+                    Directory.CreateDirectory(externalImagePath);
+                }
+
+                var filePath = Path.Combine(externalImagePath, ImagenFile.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImagenFile.CopyToAsync(stream);
+                }
+
+                menu.ImagenUrl = "/ExternalImages/" + ImagenFile.FileName;
             }
 
             if (ModelState.IsValid)

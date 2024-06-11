@@ -6,12 +6,30 @@
 
 <h1>Menus</h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Agregar menu</a>
-</p>
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="categoria" class="mr-2">Filtrar por categoría:</label>
+            <select name="categoria"  class="form-control form-control-sm custom-select-width" id="categoria" onchange="this.form.submit()">
+                <option value="Principal" value="Bebida" value="Trago" value="Postre">Todas</option>
+                <option value="Principal">Principales</option>
+                <option value="Bebida">Bebidas</option>
+                <option value="Trago">Tragos</option>
+                <option value="Postre">Postres</option>
+            </select>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar menú</a>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                Imagen
+            </th>
             <th>
                 Nombre del plato
             </th>
@@ -21,6 +39,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,13 +50,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                    <img src="@item.ImagenUrl" alt="@item.NombrePlato" style="max-width: 50px; max-height: 50px;" />
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                </td>
+                <td class="truncate">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
                     $ @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
@@ -46,3 +73,11 @@
         }
     </tbody>
 </table>
+
+<style>
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 150px; /* Ajusta el valor según sea necesario */
+    }
+
+</style>

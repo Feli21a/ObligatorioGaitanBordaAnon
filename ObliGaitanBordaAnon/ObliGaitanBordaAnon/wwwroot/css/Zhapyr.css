@@ -13940,7 +13940,7 @@ thead th {
 
 .card {
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 }
 
     .card:hover {
@@ -13958,4 +13958,10 @@ thead th {
 
 .modal-content {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Ajusta el ancho según sea necesario */
 }

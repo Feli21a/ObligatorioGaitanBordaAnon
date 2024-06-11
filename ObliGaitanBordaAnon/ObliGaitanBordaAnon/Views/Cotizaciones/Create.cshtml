@@ -4,27 +4,28 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Agregar cotizacion del dia</h1>
 
-<h4>Cotizacione</h4>
+<h4>Cotizaciones</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TipoMonedas" class="control-label"></label>
+                <label asp-for="TipoMonedas" class="control-label">Cotizacion:</label>
                 <input asp-for="TipoMonedas" class="form-control" />
                 <span asp-validation-for="TipoMonedas" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CotizacionMoneda" class="control-label"></label>
+                <label asp-for="CotizacionMoneda" class="control-label">Valor:</label>
                 <input asp-for="CotizacionMoneda" class="form-control" />
                 <span asp-validation-for="CotizacionMoneda" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a  asp-action="Index">Back to List</a>
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-secondary"  asp-action="Index">Volver a la lista</a>
             </div>
         </form>
     </div>
