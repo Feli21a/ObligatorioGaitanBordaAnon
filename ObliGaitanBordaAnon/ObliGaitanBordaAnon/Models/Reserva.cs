@@ -17,6 +17,8 @@ public partial class Reserva
 
     public string? Estado { get; set; }
 
+    public int? RestauranteId { get; set; }
+
     public virtual Cliente? Cliente { get; set; }
 
     public virtual Mesa? Mesa { get; set; }
@@ -24,4 +26,6 @@ public partial class Reserva
     public virtual ICollection<Ordene> Ordenes { get; set; } = new List<Ordene>();
 
     public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+
+    public virtual Restaurante? Restaurante { get; set; }
 }

@@ -21,7 +21,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
-            var restoMalTiempoDbContext = _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa);
+            var restoMalTiempoDbContext = _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r=>r.Restaurante);
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace ObliGaitanBordaAnon.Controllers
             var reserva = await _context.Reservas
                 .Include(r => r.Cliente)
                 .Include(r => r.Mesa)
+                .Include(r => r.Restaurante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reserva == null)
             {
@@ -48,8 +49,10 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Reservas/Create
         public IActionResult Create()
         {
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre");
             ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa");
+
             return View();
         }
 
@@ -58,7 +61,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("Id,RestauranteId,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +69,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", reserva.Restaurante.Direccion);
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.Cliente.Nombre);
             ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.Mesa.NumeroMesa);
             return View(reserva);
@@ -84,8 +88,9 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id", reserva.MesaId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion",reserva.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -94,7 +99,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,RestauranteId,ClienteId,Nombre,MesaId,FechaReservada,Estado")] Reserva reserva)
         {
             if (id != reserva.Id)
             {
@@ -121,8 +126,9 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", reserva.Cliente.Nombre);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "Id", reserva.Mesa.NumeroMesa);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion",reserva.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -137,6 +143,7 @@ namespace ObliGaitanBordaAnon.Controllers
             var reserva = await _context.Reservas
                 .Include(r => r.Cliente)
                 .Include(r => r.Mesa)
+                .Include (r => r.Restaurante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reserva == null)
             {

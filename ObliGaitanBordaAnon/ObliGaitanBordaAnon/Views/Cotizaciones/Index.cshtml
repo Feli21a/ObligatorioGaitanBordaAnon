@@ -25,10 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoMonedas)
+                @Html.DisplayFor(modelItem => item.NombreDivisa)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CotizacionMoneda)
+                @Html.DisplayFor(modelItem => item.CotizacionDivisa)
             </td>
             <td>
                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

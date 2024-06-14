@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Sucursal
+            </th>
+            <th>
                 Fecha reserva
             </th>
             <th>
@@ -32,6 +35,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Restaurante.Nombre) (@Html.DisplayFor(modelItem => item.Restaurante.Direccion))
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FechaReservada)
                 </td>
                 <td>
@@ -44,7 +50,7 @@
                     }
                     else
                     {
-                        @Html.DisplayFor(modelItem => item.Cliente.Nombre) @Html.DisplayText("ID: ") @Html.DisplayFor(modelItem => item.Cliente.Id)
+                        @Html.DisplayFor(modelItem => item.Cliente.Nombre)
                     }
                 </td>
                 <td>

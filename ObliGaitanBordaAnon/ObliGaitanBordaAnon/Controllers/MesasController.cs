@@ -47,7 +47,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Mesas/Create
         public IActionResult Create()
         {
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id");
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", mesa.RestauranteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", mesa.Restaurante.Direccion);
             return View(mesa);
         }
 
@@ -81,7 +81,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", mesa.RestauranteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", mesa.RestauranteId);
             return View(mesa);
         }
 
@@ -117,7 +117,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", mesa.RestauranteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", mesa.RestauranteId);
             return View(mesa);
         }
 
