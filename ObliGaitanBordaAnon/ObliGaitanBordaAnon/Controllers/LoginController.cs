@@ -39,12 +39,31 @@ namespace ObliGaitanBordaAnon.Controllers
             if (ModelState.IsValid)
             {
                 var user = _context.Usuarios.SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Password);
+                var cliente = _context.Clientes.SingleOrDefault(u => u.Email == model.Email);
                 if (user != null)
                 {
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Email),
                        
+                    };
+
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
+                    {
+                        // Configura otras propiedades si es necesario
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else if(cliente != null)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, cliente.Email),
+
                     };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -78,7 +97,7 @@ namespace ObliGaitanBordaAnon.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                return RedirectToAction("Index", "Menus");
+                return RedirectToAction("Index", "Ordenes");
             }
 
             return RedirectToAction("Index");
@@ -87,7 +106,7 @@ namespace ObliGaitanBordaAnon.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Cuenta");
+            return RedirectToAction("Login", "Login");
         }
     }
 }

@@ -11,6 +11,8 @@ public partial class Reserva
 
     public int? MesaId { get; set; }
 
+    public string? Nombre { get; set; }
+
     public DateTime FechaReservada { get; set; }
 
     public string? Estado { get; set; }
