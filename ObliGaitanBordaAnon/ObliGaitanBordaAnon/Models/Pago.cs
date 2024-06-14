@@ -17,7 +17,11 @@ public partial class Pago
 
     public int? ClimaId { get; set; }
 
+    public int? CotizacionId { get; set; }
+
     public virtual Clima? Clima { get; set; }
+
+    public virtual Cotizacione? Cotizacion { get; set; }
 
     public virtual Reserva? Reserva { get; set; }
 }
