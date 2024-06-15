@@ -48,7 +48,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Pagoes/Create
         public IActionResult Create()
         {
-            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Id");
+            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha");
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id");
             return View();
         }
@@ -66,7 +66,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Id", pago.ClimaId);
+            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             return View(pago);
         }
@@ -84,7 +84,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Id", pago.ClimaId);
+            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             return View(pago);
         }
@@ -121,7 +121,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Id", pago.ClimaId);
+            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             return View(pago);
         }

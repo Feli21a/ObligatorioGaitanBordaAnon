@@ -48,8 +48,8 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Resenias/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id");
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email");
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 
@@ -84,8 +84,8 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 
@@ -121,8 +121,8 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 

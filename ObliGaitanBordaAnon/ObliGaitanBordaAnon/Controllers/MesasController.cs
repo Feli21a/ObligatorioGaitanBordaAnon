@@ -64,7 +64,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", mesa.Restaurante.Direccion);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", mesa.RestauranteId);
             return View(mesa);
         }
 
