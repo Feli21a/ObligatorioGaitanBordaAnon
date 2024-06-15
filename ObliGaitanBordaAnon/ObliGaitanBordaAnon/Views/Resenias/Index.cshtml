@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente.Email) cliente
+                @Html.DisplayNameFor(model => model.Cliente.Nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Restaurante)
@@ -40,17 +40,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Puntaje)
                 </td>
-                <td>
+                <td style="max-width: 200px;">
                     @Html.DisplayFor(modelItem => item.Comentario)
                 </td>
-                <td>
+                <td style="max-width: 150px;">
                     @Html.DisplayFor(modelItem => item.FechaResenia)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cliente.Email)
+                <td style="max-width: 150px;">
+                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Restaurante.Nombre) (@Html.DisplayFor(modelItem => item.Restaurante.Id))

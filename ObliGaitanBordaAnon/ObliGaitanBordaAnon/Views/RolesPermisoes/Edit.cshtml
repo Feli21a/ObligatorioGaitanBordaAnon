@@ -14,16 +14,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="RolId" class="control-label">ID del rol:</label>
+                <label asp-for="RolId" class="control-label">Rol:</label>
                 <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PermisoId" class="control-label">Id del permiso:</label>
+                <label asp-for="PermisoId" class="control-label">Permiso:</label>
                 <select asp-for="PermisoId" class="form-control" asp-items="ViewBag.PermisoId"></select>
             </div>
             <div class="form-group">
                 <hr />
-                <input type="submit" value="Crear" class="btn btn-success" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
                 <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
             </div>
         </form>

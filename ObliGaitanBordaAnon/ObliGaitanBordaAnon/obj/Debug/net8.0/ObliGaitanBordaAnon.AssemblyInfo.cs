@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ObliGaitanBordaAnon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63da1cac17e7ab26b817db6cfadab7af0d3fdabf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab55ed42998847d7eff49b3738d962823a8c3d8e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ObliGaitanBordaAnon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ObliGaitanBordaAnon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
