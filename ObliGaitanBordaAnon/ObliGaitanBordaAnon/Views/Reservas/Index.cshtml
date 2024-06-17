@@ -6,9 +6,20 @@
 
 <h1>Reservas</h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Crear reserva</a>
-</p>
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="fechafiltro" class="mr-2">Filtrar por fecha:</label>
+            <input type="date" name="fechafiltro" class="form-control form-control-sm custom-select-width" id="fechafiltro">
+            <div>
+                <input type="submit" value="Filtrar" class="btn btn-warning btn-sm" asp-action="Index"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar reserva</a>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -35,7 +46,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Restaurante.Nombre) (@Html.DisplayFor(modelItem => item.Restaurante.Direccion))
+                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion) (@Html.DisplayFor(modelItem => item.RestauranteId))
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FechaReservada)
@@ -54,14 +65,23 @@
                     }
                 </td>
                 <td>
-                    Nro. @Html.DisplayFor(modelItem => item.Mesa.NumeroMesa)
+                    Nro. @Html.DisplayFor(modelItem => item.Mesa.NumeroMesa) (@Html.DisplayFor(modelItem => item.Mesa.Estado))
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a> |
+                    <a title="Confirmar" class="btn btn-success" asp-action="Confirmar" asp-route-idReserva="@item.Id" asp-route-nroMesa="@item.Mesa.NumeroMesa"><i class="bi bi-check-lg"></i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 150px; /* Ajusta el valor según sea necesario */
+    }
+
+</style>

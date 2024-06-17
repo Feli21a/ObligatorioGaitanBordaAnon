@@ -19,10 +19,18 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime? fechafiltro)
         {
-            var restoMalTiempoDbContext = _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r=>r.Restaurante);
-            return View(await restoMalTiempoDbContext.ToListAsync());
+            // Creamos la consulta con los Includes necesarios
+            var reservasPorFechas = _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurante).AsQueryable(); // Convertimos a IQueryable para la consistencia de tipos
+
+            // Aplicamos el filtro de fecha si está presente
+            if (fechafiltro.HasValue)
+            {
+                reservasPorFechas = reservasPorFechas.Where(r => r.FechaReservada.Date == fechafiltro.Value.Date);
+            }
+
+            return View(await reservasPorFechas.ToListAsync());
         }
 
         // GET: Reservas/Details/5
@@ -51,7 +59,7 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre");
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa");
+            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(r => r.Estado == "Disponible"), "Id", "NumeroMesa");
 
             return View();
         }
@@ -65,13 +73,23 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
+                var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
+                if (reserva.Estado == "Pendiente")
+                {
+                    mesa.Estado = "Reservada";
+                }
+                else if (reserva.Estado == "Confirmada")
+                {
+                    mesa.Estado = "Ocupada";
+                }
+
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", reserva.RestauranteId);
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(r => r.Estado == "Disponible"), "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -88,9 +106,9 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion",reserva.RestauranteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", reserva.RestauranteId);
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(m => m.Id == id), "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -110,6 +128,20 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 try
                 {
+                    var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
+                    if (reserva.Estado == "Pendiente")
+                    {
+                        mesa.Estado = "Reservada";
+                    }
+                    else if (reserva.Estado == "Confirmada")
+                    {
+                        mesa.Estado = "Ocupada";
+                    }
+                    else
+                    {
+                        mesa.Estado = "Disponible";
+                    }
+
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                 }
@@ -126,9 +158,9 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion",reserva.RestauranteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", reserva.RestauranteId);
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas, "Id", "NumeroMesa", reserva.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(m => m.Id == id), "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 
@@ -143,7 +175,7 @@ namespace ObliGaitanBordaAnon.Controllers
             var reserva = await _context.Reservas
                 .Include(r => r.Cliente)
                 .Include(r => r.Mesa)
-                .Include (r => r.Restaurante)
+                .Include(r => r.Restaurante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reserva == null)
             {
@@ -164,7 +196,33 @@ namespace ObliGaitanBordaAnon.Controllers
                 _context.Reservas.Remove(reserva);
             }
 
+            var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
+            mesa.Estado = "Disponible";
+
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Confirmar(int? idReserva, int? nroMesa)
+        {
+            if (idReserva == null || nroMesa == null)
+            {
+                return NotFound();
+            }
+
+            // Buscar la reserva por su ID
+            var reserva = await _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurante).FirstOrDefaultAsync(r => r.Id == idReserva);
+
+            if (reserva == null)
+            {
+                return NotFound();
+            }
+            reserva.Estado = "Confirmada";
+
+            reserva.Mesa.Estado = "Ocupada";
+
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

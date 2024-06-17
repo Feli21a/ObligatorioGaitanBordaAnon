@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaReservada" class="control-label">Fecha de la reserva:</label>
-                <input asp-for="FechaReservada" class="form-control" />
+                <input type="date" asp-for="FechaReservada" class="form-control" />
                 <span asp-validation-for="FechaReservada" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <hr />
-                <input type="submit" value="Crear" class="btn btn-success" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
                 <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
             </div>
         </form>

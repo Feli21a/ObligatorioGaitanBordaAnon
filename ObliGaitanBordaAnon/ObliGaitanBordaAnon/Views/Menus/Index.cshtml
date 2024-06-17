@@ -10,13 +10,16 @@
     <div class="col-md-6">
         <form asp-action="Index" method="get" class="form-inline align-items-center">
             <label for="categoria" class="mr-2">Filtrar por categoría:</label>
-            <select name="categoria"  class="form-control form-control-sm custom-select-width" id="categoria" onchange="this.form.submit()">
+            <select name="categoria"  class="form-control form-control-sm custom-select-width" id="categoria">
                 <option value="Principal" value="Bebida" value="Trago" value="Postre">Todas</option>
                 <option value="Principal">Principales</option>
                 <option value="Bebida">Bebidas</option>
                 <option value="Trago">Tragos</option>
                 <option value="Postre">Postres</option>
             </select>
+            <div class="col-md-6 text-end">
+                <input type="submit" class="btn btn-warning btn-sm" value="Filtrar" asp-action="Index"/>
+            </div>
         </form>
     </div>
     <div class="col-md-6 text-end">
@@ -65,9 +68,9 @@
                     @Html.DisplayFor(modelItem => item.Categoria)
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
                 </td>
             </tr>
         }
