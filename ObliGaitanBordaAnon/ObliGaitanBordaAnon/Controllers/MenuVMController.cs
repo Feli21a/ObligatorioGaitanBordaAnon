@@ -17,14 +17,14 @@ public class MenuVMController : Controller
     public async Task<IActionResult> Index(string categoria)
     {
         var menus = _context.Menus
-            .Select(m => new MenuViewModel
+            .Select(menu => new MenuViewModel
             {
-                Id = m.Id,
-                NombrePlato = m.NombrePlato,
-                Descripcion = m.Descripcion,
-                Precio = m.Precio,
-                Categoria = m.Categoria,
-                ImagenUrl = m.ImagenUrl
+                Id = menu.Id,
+                NombrePlato = menu.NombrePlato,
+                Descripcion = menu.Descripcion,
+                Precio = menu.Precio,
+                Categoria = menu.Categoria,
+                ImagenUrl = menu.ImagenUrl
             });
 
         if (!string.IsNullOrEmpty(categoria))
@@ -44,15 +44,15 @@ public class MenuVMController : Controller
         }
 
         var menu = await _context.Menus
-            .Where(m => m.Id == id)
-            .Select(m => new MenuViewModel
+            .Where(menu => menu.Id == id)
+            .Select(menu => new MenuViewModel
             {
-                Id = m.Id,
-                NombrePlato = m.NombrePlato,
-                Descripcion = m.Descripcion,
-                Precio = m.Precio,
-                Categoria = m.Categoria,
-                ImagenUrl = m.ImagenUrl
+                Id = menu.Id,
+                NombrePlato = menu.NombrePlato,
+                Descripcion = menu.Descripcion,
+                Precio = menu.Precio,
+                Categoria = menu.Categoria,
+                ImagenUrl = menu.ImagenUrl
             })
             .FirstOrDefaultAsync();
 

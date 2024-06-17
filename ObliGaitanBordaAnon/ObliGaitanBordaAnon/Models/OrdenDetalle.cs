@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ObliGaitanBordaAnon.Models;
 
@@ -10,7 +11,7 @@ public partial class OrdenDetalle
     public int? OrdenId { get; set; }
 
     public int? MenuId { get; set; }
-
+    [Required(ErrorMessage = "Ingresa la cantidad de menus")]
     public int Cantidad { get; set; }
 
     public virtual Menu? Menu { get; set; }
