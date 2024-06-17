@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Cliente.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Restaurante)
+                @Html.DisplayNameFor(model => model.Restaurante) (sucursal)
             </th>
             <th></th>
         </tr>
@@ -53,7 +53,7 @@
                     @Html.DisplayFor(modelItem => item.Cliente.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Restaurante.Nombre) (@Html.DisplayFor(modelItem => item.Restaurante.Id))
+                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion) (@Html.DisplayFor(modelItem => item.Restaurante.Id))
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
