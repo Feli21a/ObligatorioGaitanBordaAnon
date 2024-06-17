@@ -23,7 +23,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 // configuramos la ruta para los archivos estaticos (imagenes)
-var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img"); //nos paramos en la carpeta
+var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorio", "img"); //nos paramos en la carpeta
 if (!Directory.Exists(externalImagePath))
 {
     Directory.CreateDirectory(externalImagePath); //si no existe la creamos

@@ -64,7 +64,7 @@ namespace ObliGaitanBordaAnon.Controllers
             if (ImagenFile != null && ImagenFile.Length > 0)
             {
                 // Ruta fuera del proyecto
-                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorios", "img");
+                var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorio", "img");
                 if (!Directory.Exists(externalImagePath))
                 {
                     Directory.CreateDirectory(externalImagePath);
