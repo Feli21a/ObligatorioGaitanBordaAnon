@@ -13,6 +13,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.6",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.2",
+          "Newtonsoft.Json": "13.0.3",
+          "RestSharp": "111.3.0",
           "bootstrap": "5.3.3"
         },
         "runtime": {
@@ -1601,6 +1603,14 @@
           }
         }
       },
+      "RestSharp/111.3.0": {
+        "runtime": {
+          "lib/net8.0/RestSharp.dll": {
+            "assemblyVersion": "111.3.0.0",
+            "fileVersion": "111.3.0.0"
+          }
+        }
+      },
       "System.CodeDom/5.0.0": {
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {
@@ -2724,6 +2734,13 @@
       "sha512": "sha512-ypnSvEtpNGo48bAWn95J1oHChycCXcevFSbn53fqzLxlXFSZP7dawu8p/7mHAfGufZQSV2sBpW80XQGIfXO8kQ==",
       "path": "nuget.versioning/6.9.1",
       "hashPath": "nuget.versioning.6.9.1.nupkg.sha512"
+    },
+    "RestSharp/111.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+cHtmb3I5efys4scOCo+pWRgJNkwyEI8p39d4VMTbCXpPwsDeGP6OJH+1m4xtYUAZttMp2s4yxagy3usl2X13g==",
+      "path": "restsharp/111.3.0",
+      "hashPath": "restsharp.111.3.0.nupkg.sha512"
     },
     "System.CodeDom/5.0.0": {
       "type": "package",
