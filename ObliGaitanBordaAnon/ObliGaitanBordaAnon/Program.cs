@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using NuGet.Protocol.Plugins;
 using ObliGaitanBordaAnon.Models;
+using RestSharp;
+using Newtonsoft.Json;
+using System.Linq;
+using ConsoleAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,3 +50,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+

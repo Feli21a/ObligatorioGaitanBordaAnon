@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsoleAPI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ObliGaitanBordaAnon.Models;
+using RestSharp;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
@@ -53,7 +56,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TipoMonedas,CotizacionMoneda")] Cotizacione cotizacione)
+        public async Task<IActionResult> Create([Bind("Id,NombreDivisa,CotizacionDivisa")] Cotizacione cotizacione)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +88,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoMonedas,CotizacionMoneda")] Cotizacione cotizacione)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDivisa,CotizacionDivisa")] Cotizacione cotizacione)
         {
             if (id != cotizacione.Id)
             {

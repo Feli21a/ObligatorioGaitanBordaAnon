@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oBskWrPwmdSc9Z1QxpQN0uqGnuk4FULMzpW+StadnOEwJddHYoaDcXy3Z9tmYrPugUPdz62INJ4tDNCNeArStA==",
+  "dgSpecHash": "yuzPuB2Wr6iBfjvxzmYHmwVN+QDYvwcmX+nIQ4qIf2mDQ8URr4FhtTg6Vz8iqsmPwYd6hpRqyEAr+Zck8QGuyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon.csproj",
   "expectedPackageFiles": [
@@ -125,6 +125,7 @@
     "C:\\Users\\felia\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\felia\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\felia\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
+    "C:\\Users\\felia\\.nuget\\packages\\restsharp\\111.3.0\\restsharp.111.3.0.nupkg.sha512",
     "C:\\Users\\felia\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\felia\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
     "C:\\Users\\felia\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",
