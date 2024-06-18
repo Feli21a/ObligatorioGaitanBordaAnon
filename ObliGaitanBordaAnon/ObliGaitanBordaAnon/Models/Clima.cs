@@ -11,7 +11,7 @@ public partial class Clima
 
     public int? Temperatura { get; set; }
 
-    public bool? Lluvia { get; set; }
+    public bool Lluvia { get; set; }
 
     public string DescripcionClima { get; set; } = null!;
 

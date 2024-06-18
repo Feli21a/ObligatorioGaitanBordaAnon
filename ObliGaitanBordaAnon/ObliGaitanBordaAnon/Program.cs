@@ -1,5 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using NuGet.Protocol.Plugins;
 using ObliGaitanBordaAnon.Models;
+using RestSharp;
+using Newtonsoft.Json;
+using System.Linq;
+using ConsoleAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +27,20 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// configuramos la ruta para los archivos estaticos (imagenes)
+var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorio", "img"); //nos paramos en la carpeta
+if (!Directory.Exists(externalImagePath))
+{
+    Directory.CreateDirectory(externalImagePath); //si no existe la creamos
+}
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(externalImagePath),
+    RequestPath = "/ExternalImages" //usamos la carpeta con esta ruta
+});
+
+
 app.UseRouting();
 
 app.UseAuthorization();
@@ -30,3 +50,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+

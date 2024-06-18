@@ -1,0 +1,54 @@
+﻿@model ObliGaitanBordaAnon.Models.ReseniaViewModel
+
+@{
+    ViewData["Title"] = "Agregar Reseña";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Agregar Reseña</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body" style="margin-top: 10px">
+                    <form asp-action="Crear" method="post">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label">Email</label>
+                            <input type="email" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Puntaje" class="control-label">Puntaje</label>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-emoji-frown-fill me-2"></i>
+                                <input type="range" class="form-range" min="0" max="10" asp-for="Puntaje" id="customRange3">
+                                <i class="bi bi-emoji-smile-fill ms-2"></i>
+                            </div>
+                            <span asp-validation-for="Puntaje" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Comentario" class="control-label">Comentario</label>
+                            <textarea asp-for="Comentario" class="form-control"></textarea>
+                            <span asp-validation-for="Comentario" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Agregar" class="btn btn-primary btn-lg" style="margin-top: 10px" />
+                            <a asp-action="Index" class="btn btn-secondary btn-lg" style="margin-top: 10px">Volver a la lista</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+        .card:hover {
+            transform: none;
+        }
+</<style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

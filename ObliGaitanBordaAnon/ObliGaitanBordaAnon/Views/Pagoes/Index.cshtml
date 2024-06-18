@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Monto):
+                @Html.DisplayNameFor(model => model.Monto)
             </th>
             <th>
                 Fecha de pago
@@ -31,29 +31,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monto)
-            </td>
-            <td>
-                $ @Html.DisplayFor(modelItem => item.FechaPago)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MetodoPago)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clima.Id)
-            </td>
-            <td>
-                Nro. @Html.DisplayFor(modelItem => item.Reserva.Id)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    $ @Html.DisplayFor(modelItem => item.Monto) (@Html.DisplayFor(modelItem => item.Cotizacion.NombreDivisa))
                 </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MetodoPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clima.Id)
+                </td>
+                <td>
+                    Nro. @Html.DisplayFor(modelItem => item.Reserva.Id)
+                </td>
+                <td>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

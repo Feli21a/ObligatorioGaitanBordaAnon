@@ -1,8 +1,87 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página de Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <img src="/ExternalImages/Logo.png" alt="Logo del Restaurante" class="img-fluid logo">
+        </div>
+        <div class="col-12 mt-4">
+            <h1 class="display-4">Bienvenido a<br>Al Mal Tiempo Buena Cara</h1>
+            <p class="lead">Descubre las ventajas de ser nuestro cliente</p>
+            <a class="btn btn-warning btn-lg" asp-controller="MenuVM" asp-action="Index">Ver menú</a>
+        </div>
+
+
+        <div class="col-12 mt-4">
+            <h3 class="mb-4">Nuestros tipos de clientes</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3" style="max-width: 20rem; margin-left: 0px">
+                <div class="card-body">
+                    <h4 class="card-title">Cliente Nuevo</h4>
+                    <p class="card-text">
+                        Disfruta de nuestra deliciosa comida.
+                        <br>Simplemente disfruta de tu primer plato en nuestro restaurante.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3" style="max-width: 20rem; margin: 0 auto;">
+                <div class="card-body">
+                    <h4 class="card-title">Cliente Frecuente</h4>
+                    <p class="card-text">
+                        Recibe un <strong>10% de descuento</strong> en todos tus platos.
+                        <br>Conviértete en cliente frecuente al disfrutar de 5 platos de nuestro menú.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger mb-3" style="max-width: 20rem; margin-right: 0px">
+                <div class="card-body">
+                    <h4 class="card-title">Cliente VIP</h4>
+                    <p class="card-text">
+                        Disfruta de un <strong>20% de descuento</strong> en todos tus platos.
+                        <br>Hazte VIP con una suscripción mensual a nuestro restaurante.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .logo {
+        max-width: 200px;
+    }
+
+    .display-4 {
+        font-weight: bold;
+    }
+
+
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+    .card-title {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 1.15em;
+        flex-grow: 1;
+    }
+</style>
