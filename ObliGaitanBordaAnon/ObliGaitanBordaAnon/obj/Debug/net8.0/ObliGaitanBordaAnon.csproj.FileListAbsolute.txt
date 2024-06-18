@@ -756,3 +756,4 @@ C:\Users\felia\Desktop\REPOSITORIO\ObligatorioGaitanBordaAnon\ObliGaitanBordaAno
 C:\Users\felia\Desktop\REPOSITORIO\ObligatorioGaitanBordaAnon\ObliGaitanBordaAnon\ObliGaitanBordaAnon\obj\Debug\net8.0\ObliGaitanBordaAnon.pdb
 C:\Users\felia\Desktop\REPOSITORIO\ObligatorioGaitanBordaAnon\ObliGaitanBordaAnon\ObliGaitanBordaAnon\obj\Debug\net8.0\ObliGaitanBordaAnon.genruntimeconfig.cache
 C:\Users\felia\Desktop\REPOSITORIO\ObligatorioGaitanBordaAnon\ObliGaitanBordaAnon\ObliGaitanBordaAnon\obj\Debug\net8.0\ref\ObliGaitanBordaAnon.dll
+C:\Users\felia\Desktop\REPOSITORIO\ObligatorioGaitanBordaAnon\ObliGaitanBordaAnon\ObliGaitanBordaAnon\bin\Debug\net8.0\RestSharp.dll
