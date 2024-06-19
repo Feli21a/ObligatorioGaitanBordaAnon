@@ -21,8 +21,8 @@ builder.Services.AddControllersWithViews().AddViewOptions(options => { options.H
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Cuenta/Login";
-        options.LogoutPath = "/Cuenta/Logout";
+        options.LoginPath = "/LoginVM/Login";
+        options.LogoutPath = "/LoginVM/Logout";
     });
 
 var app = builder.Build();
