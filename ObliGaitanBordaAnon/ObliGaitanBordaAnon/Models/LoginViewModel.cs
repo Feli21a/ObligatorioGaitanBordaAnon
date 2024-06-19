@@ -5,10 +5,11 @@ namespace ObliGaitanBordaAnon.Models
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "El campo Email es obligatorio.")]
+        [Required(ErrorMessage = "Ingresa un email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Ingresa una contraseña")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Contrasenia { get; set; }
     }
 }       

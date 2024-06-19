@@ -24,15 +24,15 @@
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
-                                    <label asp-for="Password" class="form-label">Constraseña: <span class="text-danger">*</span></label>
-                                    <input asp-for="Password" class="form-control" placeholder="Contraseña" type="password">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <label asp-for="Contrasenia" class="form-label">Constraseña: <span class="text-danger">*</span></label>
+                                    <input asp-for="Contrasenia" class="form-control" placeholder="Contraseña" type="password">
+                                    <span asp-validation-for="Contrasenia" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button class="btn btn-lg btn-primary" type="submit" asp-action="Index" asp-controller="Menus">Iniciar sesión</button>
+                                        <button class="btn btn-lg btn-primary" type="submit" asp-controller="Home" asp-action="Index">Iniciar sesión</button>
                                         <hr />
-                                        <button class="btn btn-lg btn-secondary" asp-action="Index">Volver al inicio</button>
+                                        <a class="btn btn-secondary btn-lg" asp-controller="Home" asp-action="Index">Volver a la lista</a>
                                     </div>
                                 </div>
                             </div>

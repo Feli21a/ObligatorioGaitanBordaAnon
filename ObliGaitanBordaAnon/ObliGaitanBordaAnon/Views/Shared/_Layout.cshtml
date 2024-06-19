@@ -53,6 +53,20 @@
                             </div>
                         </li>
                     </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-dark" asp-area="" asp-controller="LoginVM" asp-action="Logout">Logout <i class="bi bi-box-arrow-right"></i></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-light" asp-area="" asp-controller="LoginVM" asp-action="Login">Login <i class="bi bi-person-fill"></i></a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

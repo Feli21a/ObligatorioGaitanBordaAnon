@@ -6,7 +6,6 @@
 <hr />
 <h2>Menú</h2>
 
-<!-- Filtro de categorías -->
 <form asp-action="Index" method="get" class="form-inline mb-4" id="filterForm">
     <div class="form-group mr-3">
         <label for="categoria" class="mr-2">Filtrar</label>
@@ -29,7 +28,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     @{
-                        string ubiImg = "~/img/Logo.png"; // Imagen por defecto
+                        string ubiImg = "~/ExternalImages/Logo.png";
                         if (!string.IsNullOrEmpty(item.ImagenUrl))
                         {
                             ubiImg = item.ImagenUrl;
@@ -39,7 +38,7 @@
                     <div class="card-body">
                         <h5 class="card-title" >@item.NombrePlato</h5>
                         <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
-                        <a class="btn btn-info" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
+                        <a class="btn btn-primary" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
                     </div>
                 </div>
             </div>

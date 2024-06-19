@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
-    public class LoginController : Controller
+    public class LoginVMController : Controller
     {
         private readonly RestoMalTiempoDbContext _context;
 
-        public LoginController(RestoMalTiempoDbContext context)
+        public LoginVMController(RestoMalTiempoDbContext context)
         {
             _context = context;
         }
@@ -38,7 +38,7 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _context.Usuarios.SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Password);
+                var user = _context.Usuarios.SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Contrasenia);
                 var cliente = _context.Clientes.SingleOrDefault(u => u.Email == model.Email);
                 if (user != null)
                 {
@@ -106,7 +106,7 @@ namespace ObliGaitanBordaAnon.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Login", "LoginVM");
         }
     }
 }
