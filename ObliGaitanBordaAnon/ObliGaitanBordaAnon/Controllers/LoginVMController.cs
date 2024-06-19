@@ -39,30 +39,11 @@ namespace ObliGaitanBordaAnon.Controllers
             if (ModelState.IsValid)
             {
                 var user = _context.Usuarios.SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Contrasenia);
-                var cliente = _context.Clientes.SingleOrDefault(u => u.Email == model.Email);
                 if (user != null)
                 {
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Email),
-
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var authProperties = new AuthenticationProperties
-                    {
-                        // Configura otras propiedades si es necesario
-                    };
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else if (cliente != null)
-                {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, cliente.Email),
 
                     };
 
