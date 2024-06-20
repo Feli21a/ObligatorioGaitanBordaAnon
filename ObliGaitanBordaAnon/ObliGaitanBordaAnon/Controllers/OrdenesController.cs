@@ -60,6 +60,7 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _context.Add(ordene);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

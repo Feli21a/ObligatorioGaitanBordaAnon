@@ -74,13 +74,18 @@ namespace ObliGaitanBordaAnon.Controllers
             if (ModelState.IsValid)
             {
                 var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
-                if (reserva.Estado == "Pendiente")
+                if (reserva.Estado == "Pendiente") //PREGUNTAR PARA EL ESTADO DE LAS MESAS SEGUN LAS FECHAS
                 {
                     mesa.Estado = "Reservada";
                 }
                 else if (reserva.Estado == "Confirmada")
                 {
                     mesa.Estado = "Ocupada";
+                    //Ordene orden = new Ordene()
+                    //{
+                    //    ReservaId = reserva.Id,
+                    //    Total = 0
+                    //};
                 }
 
                 _context.Add(reserva);
@@ -89,7 +94,7 @@ namespace ObliGaitanBordaAnon.Controllers
             }
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", reserva.RestauranteId);
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", reserva.ClienteId);
-            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(r => r.Estado == "Disponible"), "Id", "NumeroMesa", reserva.MesaId);
+            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(m => m.Estado == "Disponible"), "Id", "NumeroMesa", reserva.MesaId);
             return View(reserva);
         }
 

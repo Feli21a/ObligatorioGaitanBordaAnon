@@ -45,10 +45,7 @@ public partial class RestoMalTiempoDbContext : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source= DELLFELI\\SQLEXPRESS;Initial Catalog= RestoMalTiempoDB;Integrated Security=True; TrustServerCertificate=True");
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>(entity =>
@@ -143,6 +140,7 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Restaurante).WithMany(p => p.Mesas)
                 .HasForeignKey(d => d.RestauranteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fkMesasRest");
         });
 
@@ -157,10 +155,12 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Menu).WithMany(p => p.OrdenDetalles)
                 .HasForeignKey(d => d.MenuId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk2OrdenDetalles");
 
             entity.HasOne(d => d.Orden).WithMany(p => p.OrdenDetalles)
                 .HasForeignKey(d => d.OrdenId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk1OrdenDetalles");
         });
 
@@ -174,6 +174,7 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Reserva).WithMany(p => p.Ordenes)
                 .HasForeignKey(d => d.ReservaId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fkOrdenes");
         });
 
@@ -192,6 +193,7 @@ public partial class RestoMalTiempoDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("metodoPago");
             entity.Property(e => e.Monto).HasColumnName("monto");
+            entity.Property(e => e.OrdenDetalleId).HasColumnName("ordenDetalleId");
             entity.Property(e => e.ReservaId).HasColumnName("reservaId");
 
             entity.HasOne(d => d.Clima).WithMany(p => p.Pagos)
@@ -203,6 +205,10 @@ public partial class RestoMalTiempoDbContext : DbContext
                 .HasForeignKey(d => d.CotizacionId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk3Pagos");
+
+            entity.HasOne(d => d.OrdenDetalle).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.OrdenDetalleId)
+                .HasConstraintName("fk4Pagos");
 
             entity.HasOne(d => d.Reserva).WithMany(p => p.Pagos)
                 .HasForeignKey(d => d.ReservaId)
@@ -243,10 +249,12 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.Resenia)
                 .HasForeignKey(d => d.ClienteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk1Resenias");
 
             entity.HasOne(d => d.Restaurante).WithMany(p => p.Resenia)
                 .HasForeignKey(d => d.RestauranteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk2Resenias");
         });
 
@@ -323,10 +331,12 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Permiso).WithMany(p => p.RolesPermisos)
                 .HasForeignKey(d => d.PermisoId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk2RolesPermisos");
 
             entity.HasOne(d => d.Rol).WithMany(p => p.RolesPermisos)
                 .HasForeignKey(d => d.RolId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk1RolesPermisos");
         });
 
@@ -352,6 +362,7 @@ public partial class RestoMalTiempoDbContext : DbContext
 
             entity.HasOne(d => d.Rol).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.RolId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fkUsuarios");
         });
 

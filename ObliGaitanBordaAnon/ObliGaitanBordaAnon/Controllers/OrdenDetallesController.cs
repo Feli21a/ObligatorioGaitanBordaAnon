@@ -62,7 +62,24 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
+                var menu = await _context.Menus.FindAsync(ordenDetalle.MenuId); //menu pedido
+                if (menu == null)
+                {
+                    return NotFound();
+                }
+
+                var orden = await _context.Ordenes.FindAsync(ordenDetalle.OrdenId);//orden ya generada
+                if (orden == null)
+                {
+                    return NotFound();
+                }
+
+                orden.Total += (menu.Precio * ordenDetalle.Cantidad);
+
+                // añade el detalle de la orden
                 _context.Add(ordenDetalle);
+
+                _context.Update(orden);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -152,8 +169,11 @@ namespace ObliGaitanBordaAnon.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var ordenDetalle = await _context.OrdenDetalles.FindAsync(id);
+            var menu = await _context.Menus.FindAsync(ordenDetalle.MenuId); //menu pedido
+            var orden = await _context.Ordenes.FindAsync(ordenDetalle.OrdenId);//orden ya generada
             if (ordenDetalle != null)
             {
+                orden.Total -= (menu.Precio * ordenDetalle.Cantidad);
                 _context.OrdenDetalles.Remove(ordenDetalle);
             }
 

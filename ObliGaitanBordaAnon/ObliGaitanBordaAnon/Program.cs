@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using ObliGaitanBordaAnon.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ObliGaitanBordaAnon.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,3 +60,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

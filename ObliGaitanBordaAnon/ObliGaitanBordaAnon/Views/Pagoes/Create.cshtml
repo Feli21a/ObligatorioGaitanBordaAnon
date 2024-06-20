@@ -17,6 +17,18 @@
                 <select asp-for="ReservaId" class="form-control" asp-items="ViewBag.ReservaId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="CotizacionId" class="control-label">Cotizacion:</label>
+                <select asp-for="CotizacionId" class="form-control" asp-items="ViewBag.CotizacionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClimaId" class="control-label">Id del clima:</label>
+                <select asp-for="ClimaId" class="form-control" asp-items="ViewBag.ClimaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrdenDetalleId" class="control-label">id orden detalle:</label>
+                <select asp-for="OrdenDetalleId" class="form-control" asp-items="ViewBag.OrdenDetalleId"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Monto" class="control-label">Monto a pagar:</label>
                 <div>
                     <div class="input-group mb-3">
@@ -40,14 +52,6 @@
                     <option value="Transferencia">Transferencia</option>
                 </select>
                 <span asp-validation-for="MetodoPago" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CotizacionId" class="control-label">Cotizacion:</label>
-                <select asp-for="CotizacionId" class="form-control" asp-items="ViewBag.CotizacionId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClimaId" class="control-label">Id del clima:</label>
-                <select asp-for="ClimaId" class="form-control" asp-items="ViewBag.ClimaId"></select>
             </div>
             <div class="form-group">
                 <hr />
