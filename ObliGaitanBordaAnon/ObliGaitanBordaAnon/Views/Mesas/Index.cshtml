@@ -45,72 +45,27 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-            @if (item.Estado == "Ocupada")
-            {
-                <tr class="table-danger">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumeroMesa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capacidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Restaurante.Direccion)
-                    </td>
-                    <td>
-                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
-                    </td>
-                </tr>
-            }
-            else if (item.Estado == "Reservada")
-            {
-                <tr class="table-warning">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumeroMesa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capacidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Restaurante.Direccion)
-                    </td>
-                    <td>
-                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
-                    </td>
-                </tr>
-            }
-            else
-            {
-                <tr class="table-success">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NumeroMesa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capacidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Restaurante.Direccion)
-                    </td>
-                    <td>
-                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
-                    </td>
-                </tr>
-            }
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroMesa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion)
+                </td>
+                <td>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

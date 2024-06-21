@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Menú";
 }
-<hr />
 <h2>Menú</h2>
 
 <form asp-action="Index" method="get" class="form-inline mb-4" id="filterForm">
@@ -48,13 +47,12 @@
 
 <style>
     .card {
-        border-radius: 20px;
         overflow: hidden;
         transition: transform 0.2s ease-in-out; /* Agregar transición para la transformación */
     }
 
         .card:hover {
-            transform: scale(1.03); /* Mover ligeramente hacia arriba en hover */
+            transform: scale(1.02);
         }
 
         .card img {

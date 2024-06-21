@@ -7,13 +7,13 @@
 
 <div class="container mt-4 text-end">
     <h2 class="text-center">Reseñas</h2>
-    <a class="btn btn-warning" style="margin-bottom: 5px" asp-action="Crear">Agregar Reseña</a>
 </div>
+<a class="btn btn-warning btn-lg" style="margin-bottom: 5px" asp-action="Crear">Agregar Reseña</a>
 
 <div class="row">
     @foreach (var item in Model)
-    {        
-        if(item.Puntaje <= 3)
+    {
+        if (item.Puntaje <= 3)
         {
             <div class="col-md-4 mb-4">
                 <div class="card border-danger mb-3" style="max-width: 40rem;">
@@ -27,7 +27,7 @@
                 </div>
             </div>
         }
-        else if(item.Puntaje > 3 && item.Puntaje < 7)
+        else if (item.Puntaje > 3 && item.Puntaje < 7)
         {
             <div class="col-md-4 mb-4">
                 <div class="card border-warning mb-3" style="max-width: 40rem;">
@@ -63,7 +63,7 @@
     .card {
         min-height: 12rem;
         max-height: 12rem;
-        max-width: 100%; 
+        max-width: 100%;
         transition: transform 0.1s ease-in-out;
     }
 

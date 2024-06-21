@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EZmZOcA8wvXddHowvu5BHTW1fAF/HNZCcujEyTE9HS4=",
+  "Hash": "+qlue/fYRdyWZ7MEQATWsDAKnwAAy7zA7RxvROBoLbI=",
   "Source": "ObliGaitanBordaAnon",
   "BasePath": "_content/ObliGaitanBordaAnon",
   "Mode": "Default",
@@ -889,6 +889,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ObliGaitanBordaAnon.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\sidebar.css",
+      "SourceId": "ObliGaitanBordaAnon",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\",
+      "BasePath": "_content/ObliGaitanBordaAnon",
+      "RelativePath": "css/sidebar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\sidebar.css"
     },
     {
       "Identity": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\site.css",

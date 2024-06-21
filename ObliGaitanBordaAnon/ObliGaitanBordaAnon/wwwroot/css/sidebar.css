@@ -1,0 +1,205 @@
+﻿/* sidebar.css */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    min-width: 230px;
+    max-width: 230px;
+    background: #ffffff;
+    color: #000;
+    transition: all 0.3s;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-y: auto;
+    justify-content: space-between; /* Asegura que el contenido esté distribuido */
+    margin-bottom: 0; /* Sin margen inferior */
+}
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #ffffff;
+        text-align: center;
+    }
+
+        #sidebar .sidebar-header img {
+            max-width: 80%;
+            height: auto;
+        }
+
+    #sidebar .list-unstyled {
+        padding: 0;
+        margin: 0;
+        flex-grow: 1; /* Permite que crezca */
+        overflow-y: auto;
+    }
+
+        #sidebar .list-unstyled li {
+            width: 100%;
+            padding: 5px 10px; /* Agrega padding para hacer los botones más pequeños */
+        }
+
+            #sidebar .list-unstyled li a {
+                color: #000;
+                text-decoration: none;
+                padding: 10px 20px;
+                display: block;
+                text-align: center;
+                transition: all 0.3s;
+                border-radius: 20px; /* Bordes más redondeados */
+                margin: 5px 10px; /* Agrega margen para que los botones no toquen los bordes del sidebar */
+            }
+
+                #sidebar .list-unstyled li a:hover {
+                    background: #cce5ff; /* Fondo azul claro al pasar el mouse */
+                    color: #000;
+                }
+
+    #sidebar .collapse .list-unstyled {
+        background: #ffffff;
+        padding-left: 20px; /* Indenta los elementos del dropdown */
+    }
+
+        #sidebar .collapse .list-unstyled li {
+            padding: 0 5px; /* Hace que los elementos del dropdown sean más pequeños */
+        }
+
+            #sidebar .collapse .list-unstyled li a {
+                padding: 5px 10px; /* Elementos del dropdown más pequeños */
+                border-radius: 10px; /* Bordes ligeramente redondeados */
+                font-size: 0.9rem; /* Hace que el texto sea más pequeño */
+            }
+
+    #sidebar .bottom-links {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        margin-top: auto; /* Empuja los enlaces de la parte inferior hacia abajo */
+    }
+
+        #sidebar .bottom-links a.login-link {
+            background-color: #007bff; /* Color azul para login */
+            color: #fff;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 0; /* Esquinas cuadradas */
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+            #sidebar .bottom-links a.login-link:hover {
+                background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+            }
+
+        #sidebar .bottom-links a.logout-link {
+            background-color: #343a40; /* Color negro para logout */
+            color: #fff;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 0; /* Esquinas cuadradas */
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+            #sidebar .bottom-links a.logout-link:hover {
+                background-color: #23272b; /* Color negro más oscuro al pasar el mouse */
+            }
+
+#content {
+    margin-left: 220px;
+    padding: 20px;
+    flex-grow: 1;
+    width: calc(100% - 220px);
+    transition: margin-left 0.3s, width 0.3s;
+}
+
+/* Estilo de la barra de desplazamiento */
+#sidebar .list-unstyled::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar .list-unstyled::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#sidebar .list-unstyled::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+    #sidebar .list-unstyled::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/* Consultas de medios para la capacidad de respuesta */
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 60px; /* Reduce el ancho del sidebar */
+        max-width: 60px;
+        height: 100vh;
+        position: fixed;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+        #sidebar .sidebar-header {
+            padding: 10px;
+        }
+
+            #sidebar .sidebar-header img {
+                max-width: 40px; /* Logo más pequeño */
+            }
+
+        #sidebar .list-unstyled li a {
+            padding: 10px 5px; /* Padding más pequeño */
+            text-align: center;
+        }
+
+            #sidebar .list-unstyled li a span {
+                display: none; /* Oculta el texto */
+            }
+
+            #sidebar .list-unstyled li a i {
+                margin: 0;
+            }
+
+        #sidebar .bottom-links a {
+            padding: 10px 5px; /* Padding más pequeño */
+        }
+
+        #sidebar .collapse .list-unstyled {
+            position: absolute;
+            left: 60px;
+            top: 0;
+            background: #ffffff;
+            width: 200px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+            #sidebar .collapse .list-unstyled li {
+                padding: 0 10px;
+            }
+
+                #sidebar .collapse .list-unstyled li a {
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+
+    #content {
+        margin-left: 60px; /* Ajusta el margen del contenido */
+        width: calc(100% - 60px);
+    }
+
+    footer {
+        margin-left: 60px; /* Ajusta el margen del footer para pantallas pequeñas */
+        width: calc(100% - 60px);
+    }
+}
