@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ObliGaitanBordaAnon.Models;
 
@@ -17,6 +18,7 @@ namespace ObliGaitanBordaAnon.Controllers
         public async Task<IActionResult> Index()
         {
             var resenias = await _context.Resenias
+                .Include(r => r.Restaurante)
                 .Select(reserva => new ReseniaViewModel
                 {
                     Id = reserva.Id,
@@ -35,6 +37,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: ReseniasVM/Create
         public IActionResult Crear()
         {
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View();
         }
 
@@ -59,6 +62,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View(model);
         }
     }

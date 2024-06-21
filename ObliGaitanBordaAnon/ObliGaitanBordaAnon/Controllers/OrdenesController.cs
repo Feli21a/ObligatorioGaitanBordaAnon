@@ -21,7 +21,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Ordenes
         public async Task<IActionResult> Index()
         {
-            var restoMalTiempoDbContext = _context.Ordenes.Include(o => o.Reserva);
+            var restoMalTiempoDbContext = _context.Ordenes.Include(o => o.Reserva).ThenInclude(m => m.Mesa);
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace ObliGaitanBordaAnon.Controllers
 
             var ordene = await _context.Ordenes
                 .Include(o => o.Reserva)
+                .ThenInclude(m => m.Mesa)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ordene == null)
             {
@@ -47,7 +48,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Ordenes/Create
         public IActionResult Create()
         {
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id");
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa");
             return View();
         }
 
@@ -65,7 +66,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", ordene.ReservaId);
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", ordene.ReservaId);
             return View(ordene);
         }
 
@@ -82,7 +83,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", ordene.ReservaId);
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), ordene.ReservaId);
             return View(ordene);
         }
 
@@ -118,7 +119,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", ordene.ReservaId);
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), ordene.ReservaId);
             return View(ordene);
         }
 
@@ -132,6 +133,7 @@ namespace ObliGaitanBordaAnon.Controllers
 
             var ordene = await _context.Ordenes
                 .Include(o => o.Reserva)
+                .ThenInclude(m => m.Mesa)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ordene == null)
             {

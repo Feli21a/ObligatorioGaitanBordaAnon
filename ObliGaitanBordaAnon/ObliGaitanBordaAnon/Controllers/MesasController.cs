@@ -19,10 +19,16 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Mesas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string estado)
         {
-            var restoMalTiempoDbContext = _context.Mesas.Include(m => m.Restaurante);
-            return View(await restoMalTiempoDbContext.ToListAsync());
+            var mesa = from m in _context.Mesas.Include(r => r.Restaurante) select m;
+
+            if (!string.IsNullOrEmpty(estado))
+            {
+                mesa = mesa.Where(m => m.Estado == estado);
+            }
+
+            return View(await mesa.ToListAsync());
         }
 
         // GET: Mesas/Details/5

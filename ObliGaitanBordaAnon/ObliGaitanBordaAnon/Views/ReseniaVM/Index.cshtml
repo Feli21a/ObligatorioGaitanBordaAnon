@@ -4,20 +4,22 @@
     ViewData["Title"] = "Reseñas";
 }
 
-<div class="container mt-4">
+
+<div class="container mt-4 text-end">
     <h2 class="text-center">Reseñas</h2>
     <a class="btn btn-warning" style="margin-bottom: 5px" asp-action="Crear">Agregar Reseña</a>
 </div>
 
 <div class="row">
     @foreach (var item in Model)
-    {
+    {        
         if(item.Puntaje <= 3)
         {
             <div class="col-md-4 mb-4">
                 <div class="card border-danger mb-3" style="max-width: 40rem;">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-person-fill"></i> @item.Email</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Sucursal: @item.RestauranteId</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Puntaje: @item.Puntaje</h6>
                         <p class="card-text">@item.Comentario</p>
                         <footer class="blockquote-footer">Fecha: @item.FechaResenia</footer>
@@ -31,6 +33,7 @@
                 <div class="card border-warning mb-3" style="max-width: 40rem;">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-person-fill"></i> @item.Email</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Sucursal: @item.RestauranteId</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Puntaje: @item.Puntaje</h6>
                         <p class="card-text">@item.Comentario</p>
                         <footer class="blockquote-footer">Fecha: @item.FechaResenia</footer>
@@ -44,6 +47,7 @@
                 <div class="card border-success mb-3" style="max-width: 40rem;">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-person-fill"></i> @item.Email</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Sucursal: @item.RestauranteId</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Puntaje: @item.Puntaje</h6>
                         <p class="card-text">@item.Comentario</p>
                         <footer class="blockquote-footer">Fecha: @item.FechaResenia</footer>

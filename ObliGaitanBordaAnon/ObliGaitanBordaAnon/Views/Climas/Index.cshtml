@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Clima>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Climas";
 }
 
 <h1>Climas</h1>
@@ -9,9 +9,9 @@
 <p>
     <a class="btn btn-warning" asp-action="Create">Registrar clima</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>

@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.Reserva):
         </dt>
         <dd class = "col-sm-10">
-            Nro. @Html.DisplayFor(model => model.Reserva.Id)
+            Nro. @Html.DisplayFor(model => model.Reserva.Id) ( Mesa: @Html.DisplayFor(model => model.Reserva.Mesa.NumeroMesa) )
         </dd>
     </dl>
 </div>

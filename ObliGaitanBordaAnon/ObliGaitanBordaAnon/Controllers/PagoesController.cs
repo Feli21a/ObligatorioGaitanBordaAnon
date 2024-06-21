@@ -24,7 +24,13 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Pagoes
         public async Task<IActionResult> Index()
         {
-            var restoMalTiempoDbContext = _context.Pagos.Include(p => p.Clima).Include(p => p.Reserva).Include(c => c.Cotizacion).Include(od => od.OrdenDetalle);
+            var restoMalTiempoDbContext = _context.Pagos
+                .Include(p => p.Clima)
+                .Include(p => p.Reserva)
+                .Include(p => p.Cotizacion)
+                .Include(p => p.OrdenDetalle)
+                .ThenInclude(od => od.Orden);
+
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
@@ -41,6 +47,7 @@ namespace ObliGaitanBordaAnon.Controllers
                 .Include(p => p.Reserva)
                 .Include(c => c.Cotizacion)
                 .Include(od => od.OrdenDetalle)
+                .ThenInclude(o => o.Orden)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pago == null)
             {
@@ -55,7 +62,7 @@ namespace ObliGaitanBordaAnon.Controllers
         {
 
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha");
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id");
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa");
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa");
             ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Id");
             return View();
@@ -72,6 +79,12 @@ namespace ObliGaitanBordaAnon.Controllers
             {
 
                 var cotizacion = await _context.Cotizaciones.FindAsync(pago.CotizacionId);
+
+                var ordenDetalle = await _context.OrdenDetalles
+                                         .Include(od => od.Orden)
+                                         .FirstOrDefaultAsync(od => od.Id == pago.OrdenDetalleId);
+
+                pago.Monto = ordenDetalle.Orden.Total;
 
                 if (cotizacion != null && cotizacion.NombreDivisa == "USD")
                 {
@@ -93,9 +106,9 @@ namespace ObliGaitanBordaAnon.Controllers
                         {
                             ModelState.AddModelError("", "No se pudo obtener la cotización de USDUYU.");
                             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
+                            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
                             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "NumeroMesa", "NumeroMesa", pago.OrdenDetalleId);
                             return View(pago);
                         }
                     }
@@ -104,9 +117,9 @@ namespace ObliGaitanBordaAnon.Controllers
                         // por si la api falla
                         ModelState.AddModelError("", "Error al obtener la cotización desde la API.");
                         ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                        ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
+                        ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
                         ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-                        ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+                        ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
                         return View(pago);
                     }
                 }
@@ -117,9 +130,9 @@ namespace ObliGaitanBordaAnon.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
+            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "NumeroMesa", pago.OrdenDetalleId);
             return View(pago);
         }
 
@@ -139,7 +152,7 @@ namespace ObliGaitanBordaAnon.Controllers
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
             return View(pago);
         }
 
@@ -182,7 +195,7 @@ namespace ObliGaitanBordaAnon.Controllers
                                 ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
                                 ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
                                 ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-                                ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+                                ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
                                 return View(pago);
                             }
                         }
@@ -193,7 +206,7 @@ namespace ObliGaitanBordaAnon.Controllers
                             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
                             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
                             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
                             return View(pago);
                         }
                     }
@@ -217,7 +230,7 @@ namespace ObliGaitanBordaAnon.Controllers
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Orden.Reserva.Mesa.NumeroMesa", pago.OrdenDetalleId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
             return View(pago);
         }
 

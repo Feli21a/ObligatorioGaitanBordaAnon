@@ -18,6 +18,11 @@
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label asp-for="RestauranteId" class="control-label">Sucursal</label>
+                            <select asp-for="RestauranteId" class ="form-control" asp-items="ViewBag.RestauranteId"></select>
+                            <span asp-validation-for="RestauranteId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="Puntaje" class="control-label">Puntaje</label>
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-emoji-frown-fill me-2"></i>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Menu>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menus";
 }
 
 <h1>Menus</h1>
@@ -10,14 +10,14 @@
     <div class="col-md-6">
         <form asp-action="Index" method="get" class="form-inline align-items-center">
             <label for="categoria" class="mr-2">Filtrar por categoría:</label>
-            <select name="categoria" class="form-control form-control-sm custom-select-width" id="categoria">
-                <option value="Principal">Principales</option>
-                <option value="Bebida">Bebidas</option>
-                <option value="Trago">Tragos</option>
-                <option value="Postre">Postres</option>
-            </select>
-            <div>
-                <input type="submit" value="Filtrar" class="btn btn-warning btn-sm" asp-action="Index" />
+            <div class="d-flex align-items-center">
+                <select name="categoria" class="form-control form-control-sm custom-select-width" id="categoria">
+                    <option value="Principal">Principales</option>
+                    <option value="Bebida">Bebidas</option>
+                    <option value="Trago">Tragos</option>
+                    <option value="Postre">Postres</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-warning btn-sm ml-2" asp-action="Index" />
             </div>
         </form>
     </div>
@@ -26,9 +26,9 @@
     </div>
 </div>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 Imagen
             </th>
