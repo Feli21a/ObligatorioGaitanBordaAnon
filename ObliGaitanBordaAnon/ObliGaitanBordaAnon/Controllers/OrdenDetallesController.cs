@@ -46,10 +46,10 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Create
-        public IActionResult Create()
+        public IActionResult Create(int? ordenId)
         {
             ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato");
-            ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id");
+            ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenId);
             return View();
         }
 

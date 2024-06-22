@@ -65,33 +65,10 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> AutoLogin()
-        {
-            var cliente = _context.Clientes.SingleOrDefault(u => u.Email == "ClienteRestoMalTiempo@gmail.com"); //usuario generico
-            if (cliente != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, cliente.Email),
-                };
-
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
-                {
-                };
-
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-                return RedirectToAction("Index", "Ordenes");
-            }
-
-            return RedirectToAction("Index");
-        }
-
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "LoginVM");
+            return RedirectToAction("Home", "Index");
         }
     }
 }

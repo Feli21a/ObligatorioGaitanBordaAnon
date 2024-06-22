@@ -9,11 +9,19 @@ public partial class Clima
 
     public DateTime? Fecha { get; set; }
 
+    public string? Pais { get; set; }
+
+    public string? Ciudad { get; set; }
+
     public int? Temperatura { get; set; }
 
     public bool? Lluvia { get; set; }
 
-    public string DescripcionClima { get; set; } = null!;
+    public string? DescripcionClima { get; set; } = null!;
 
     public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+
+
 }
+
+

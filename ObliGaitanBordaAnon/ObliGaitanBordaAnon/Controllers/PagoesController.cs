@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsoleAPI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using ObliGaitanBordaAnon.Models;
-using RestSharp;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
@@ -60,7 +57,6 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Pagoes/Create
         public IActionResult Create()
         {
-
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha");
             ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa");
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa");
@@ -69,62 +65,31 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // POST: Pagoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ReservaId,Monto,FechaPago,MetodoPago,ClimaId,CotizacionId,OrdenDetalleId")] Pago pago)
         {
             if (ModelState.IsValid)
             {
-
                 var cotizacion = await _context.Cotizaciones.FindAsync(pago.CotizacionId);
-
                 var ordenDetalle = await _context.OrdenDetalles
                                          .Include(od => od.Orden)
                                          .FirstOrDefaultAsync(od => od.Id == pago.OrdenDetalleId);
 
                 pago.Monto = ordenDetalle.Orden.Total;
 
-                if (cotizacion != null && cotizacion.NombreDivisa == "USD")
+                if (cotizacion != null)
                 {
-                    var client = new RestClient("http://api.currencylayer.com");
-                    var request = new RestRequest("/live?access_key=771c89a8a3f3742bb23555ea425637b6", Method.Get);
-                    RestResponse response = await client.ExecuteAsync(request);
-                    Console.WriteLine(response.Content);
+                    pago.Monto = pago.Monto * cotizacion.CotizacionDivisa.Value;
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Cotizacion cotizacionAPI = JsonConvert.DeserializeObject<Cotizacion>(response.Content); //cargamos con la api
-
-                        if (cotizacionAPI.Quotes != null && cotizacionAPI.Quotes.ContainsKey("USDUYU")) //nos aseguramos de encontrar la cotizacion que queremos
-                        {
-                            double cotizacionUSDUYU = cotizacionAPI.Quotes["USDUYU"];
-                            pago.Monto = (int)(pago.Monto / cotizacionUSDUYU); //convertimos en int (monto es int)
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "No se pudo obtener la cotización de USDUYU.");
-                            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
-                            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "NumeroMesa", "NumeroMesa", pago.OrdenDetalleId);
-                            return View(pago);
-                        }
-                    }
-                    else
-                    {
-                        // por si la api falla
-                        ModelState.AddModelError("", "Error al obtener la cotización desde la API.");
-                        ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                        ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
-                        ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-                        ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
-                        return View(pago);
-                    }
+                }
+                else
+                {
+                    return NotFound();
                 }
 
-                // Guardar el pago con el monto convertido
+                pago.FechaPago = DateTime.Now;
+
                 _context.Add(pago);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -132,7 +97,7 @@ namespace ObliGaitanBordaAnon.Controllers
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", pago.ReservaId);
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "NumeroMesa", pago.OrdenDetalleId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Id", pago.OrdenDetalleId);
             return View(pago);
         }
 
@@ -152,16 +117,14 @@ namespace ObliGaitanBordaAnon.Controllers
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
             ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Id", pago.OrdenDetalleId);
             return View(pago);
         }
 
         // POST: Pagoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ReservaId,Monto,FechaPago,MetodoPago,ClimaId,CotizacionId")] Pago pago)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ReservaId,Monto,FechaPago,MetodoPago,ClimaId,CotizacionId,OrdenDetalleId")] Pago pago)
         {
             if (id != pago.Id)
             {
@@ -173,43 +136,18 @@ namespace ObliGaitanBordaAnon.Controllers
                 try
                 {
                     var cotizacion = await _context.Cotizaciones.FindAsync(pago.CotizacionId);
-                    if (cotizacion != null && cotizacion.NombreDivisa == "USD")
-                    {
-                        var client = new RestClient("http://api.currencylayer.com");
-                        var request = new RestRequest("/live?access_key=771c89a8a3f3742bb23555ea425637b6", Method.Get);
-                        RestResponse response = await client.ExecuteAsync(request);
-                        Console.WriteLine(response.Content);
 
-                        if (response.IsSuccessStatusCode)
-                        {
-                            Cotizacion cotizacionAPI = JsonConvert.DeserializeObject<Cotizacion>(response.Content); // Cargamos con la API
+                if (cotizacion != null)
+                {
+                    pago.Monto = pago.Monto * cotizacion.CotizacionDivisa.Value;
 
-                            if (cotizacionAPI.Quotes != null && cotizacionAPI.Quotes.ContainsKey("USDUYU")) // Aseguramos encontrar la cotización que queremos
-                            {
-                                double cotizacionUSDUYU = cotizacionAPI.Quotes["USDUYU"];
-                                pago.Monto = (int)(pago.Monto / cotizacionUSDUYU); // Convertimos en dólares
-                            }
-                            else
-                            {
-                                ModelState.AddModelError("", "No se pudo obtener la cotización de USDUYU.");
-                                ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                                ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
-                                ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-                                ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
-                                return View(pago);
-                            }
-                        }
-                        else
-                        {
-                            // Manejar el caso donde la solicitud a la API falle
-                            ModelState.AddModelError("", "Error al obtener la cotización desde la API.");
-                            ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
-                            ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
-                            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-                            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
-                            return View(pago);
-                        }
-                    }
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+                pago.FechaPago = DateTime.Now;
 
                     _context.Update(pago);
                     await _context.SaveChangesAsync();
@@ -229,8 +167,8 @@ namespace ObliGaitanBordaAnon.Controllers
             }
             ViewData["ClimaId"] = new SelectList(_context.Climas, "Id", "Fecha", pago.ClimaId);
             ViewData["ReservaId"] = new SelectList(_context.Reservas, "Id", "Id", pago.ReservaId);
-            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "Nombre", pago.CotizacionId);
-            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles.Select(od => od.Orden.Reserva.Mesa.NumeroMesa), "Id", "Id", pago.OrdenDetalleId);
+            ViewData["CotizacionId"] = new SelectList(_context.Cotizaciones, "Id", "NombreDivisa", pago.CotizacionId);
+            ViewData["OrdenDetalleId"] = new SelectList(_context.OrdenDetalles, "Id", "Id", pago.OrdenDetalleId);
             return View(pago);
         }
 

@@ -1,5 +1,4 @@
-﻿/* sidebar.css */
-body {
+﻿body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -8,8 +7,8 @@ body {
 }
 
 #sidebar {
-    min-width: 230px;
-    max-width: 230px;
+    min-width: 228px;
+    max-width: 228px;
     background: #ffffff;
     color: #000;
     transition: all 0.3s;
@@ -20,31 +19,32 @@ body {
     flex-direction: column;
     z-index: 1000;
     overflow-y: auto;
-    justify-content: space-between; /* Asegura que el contenido esté distribuido */
-    margin-bottom: 0; /* Sin margen inferior */
+    justify-content: space-between;
 }
 
     #sidebar .sidebar-header {
-        padding: 20px;
+        padding: 15px;
         background: #ffffff;
         text-align: center;
+        margin-top: 0; /* Ajustar margen superior */
     }
 
         #sidebar .sidebar-header img {
-            max-width: 80%;
+            max-width: 100%;
             height: auto;
+            margin-top: 0;
         }
 
     #sidebar .list-unstyled {
         padding: 0;
         margin: 0;
-        flex-grow: 1; /* Permite que crezca */
+        flex-grow: 1;
         overflow-y: auto;
     }
 
         #sidebar .list-unstyled li {
             width: 100%;
-            padding: 5px 10px; /* Agrega padding para hacer los botones más pequeños */
+            padding: 5px 10px;
         }
 
             #sidebar .list-unstyled li a {
@@ -54,71 +54,77 @@ body {
                 display: block;
                 text-align: center;
                 transition: all 0.3s;
-                border-radius: 20px; /* Bordes más redondeados */
-                margin: 5px 10px; /* Agrega margen para que los botones no toquen los bordes del sidebar */
+                border-radius: 20px;
+                margin: 5px 10px;
             }
 
                 #sidebar .list-unstyled li a:hover {
-                    background: #cce5ff; /* Fondo azul claro al pasar el mouse */
+                    background: #cce5ff;
                     color: #000;
                 }
 
     #sidebar .collapse .list-unstyled {
         background: #ffffff;
-        padding-left: 20px; /* Indenta los elementos del dropdown */
+        padding-left: 20px;
     }
 
         #sidebar .collapse .list-unstyled li {
-            padding: 0 5px; /* Hace que los elementos del dropdown sean más pequeños */
+            padding: 0 5px;
         }
 
             #sidebar .collapse .list-unstyled li a {
-                padding: 5px 10px; /* Elementos del dropdown más pequeños */
-                border-radius: 10px; /* Bordes ligeramente redondeados */
-                font-size: 0.9rem; /* Hace que el texto sea más pequeño */
+                padding: 5px 10px;
+                border-radius: 10px;
+                font-size: 0.8rem; /* Reducir tamaño de fuente */
             }
 
     #sidebar .bottom-links {
         padding: 10px 0;
         width: 100%;
         text-align: center;
-        margin-top: auto; /* Empuja los enlaces de la parte inferior hacia abajo */
+        margin-top: auto;
     }
 
         #sidebar .bottom-links a.login-link {
-            background-color: #007bff; /* Color azul para login */
+            background-color: #007bff;
             color: #fff;
             padding: 10px 20px;
             display: block;
-            border-radius: 0; /* Esquinas cuadradas */
+            border-radius: 0;
             text-decoration: none;
             margin: 5px 0;
         }
 
             #sidebar .bottom-links a.login-link:hover {
-                background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+                background-color: #0056b3;
             }
 
         #sidebar .bottom-links a.logout-link {
-            background-color: #343a40; /* Color negro para logout */
+            background-color: #343a40;
             color: #fff;
             padding: 10px 20px;
             display: block;
-            border-radius: 0; /* Esquinas cuadradas */
+            border-radius: 0;
             text-decoration: none;
             margin: 5px 0;
         }
 
             #sidebar .bottom-links a.logout-link:hover {
-                background-color: #23272b; /* Color negro más oscuro al pasar el mouse */
+                background-color: #23272b;
             }
 
 #content {
-    margin-left: 220px;
+    margin-left: 225px;
     padding: 20px;
     flex-grow: 1;
-    width: calc(100% - 220px);
-    transition: margin-left 0.3s, width 0.3s;
+    transition: margin-left 0.3s;
+}
+
+footer {
+    margin-left: 225px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    width: calc(100% - 225px);
 }
 
 /* Estilo de la barra de desplazamiento */
@@ -142,64 +148,52 @@ body {
 /* Consultas de medios para la capacidad de respuesta */
 @media (max-width: 768px) {
     #sidebar {
-        min-width: 60px; /* Reduce el ancho del sidebar */
-        max-width: 60px;
-        height: 100vh;
+        display: none; /* Oculta el sidebar en pantallas pequeñas */
+    }
+
+    /* Otras reglas de estilo... */
+
+    #footer-navbar {
+        display: flex; /* Muestra el footer navbar en pantallas pequeñas */
+        justify-content: space-around;
         position: fixed;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        bottom: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        padding: 10px 0;
+        z-index: 1000;
     }
 
-        #sidebar .sidebar-header {
-            padding: 10px;
-        }
-
-            #sidebar .sidebar-header img {
-                max-width: 40px; /* Logo más pequeño */
-            }
-
-        #sidebar .list-unstyled li a {
-            padding: 10px 5px; /* Padding más pequeño */
+        #footer-navbar a {
+            color: #000;
+            text-decoration: none;
             text-align: center;
+            flex-grow: 1;
+            padding: 10px 10px; /* Añadido padding para hacer espacio alrededor de los íconos */
         }
 
-            #sidebar .list-unstyled li a span {
-                display: none; /* Oculta el texto */
+            #footer-navbar a:hover {
+                background: #cce5ff;
+                color: #000;
             }
 
-            #sidebar .list-unstyled li a i {
-                margin: 0;
-            }
-
-        #sidebar .bottom-links a {
-            padding: 10px 5px; /* Padding más pequeño */
+        #footer-navbar .footer-logo {
+            max-width: 30px; /* Tamaño más pequeño para la imagen en el footer */
+            height: auto;
+            margin: 0 10px;
         }
 
-        #sidebar .collapse .list-unstyled {
-            position: absolute;
-            left: 60px;
-            top: 0;
-            background: #ffffff;
-            width: 200px;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-            #sidebar .collapse .list-unstyled li {
-                padding: 0 10px;
-            }
-
-                #sidebar .collapse .list-unstyled li a {
-                    padding: 10px;
-                    border-radius: 5px;
-                }
-
-    #content {
-        margin-left: 60px; /* Ajusta el margen del contenido */
-        width: calc(100% - 60px);
+    #content, footer {
+        margin-left: 0;
+        padding-bottom: 60px; /* Espacio para el footer navbar */
+        width: 100%; /* Ajusta el contenido y el footer al ancho de la pantalla */
     }
 
-    footer {
-        margin-left: 60px; /* Ajusta el margen del footer para pantallas pequeñas */
-        width: calc(100% - 60px);
+    .bottom-links a.login-link, .bottom-links a.logout-link {
+        font-size: 0; /* Oculta el texto */
     }
-}
+
+        .bottom-links a.login-link i, .bottom-links a.logout-link i {
+            font-size: 24px; /* Ajusta el tamaño del ícono */
+        }

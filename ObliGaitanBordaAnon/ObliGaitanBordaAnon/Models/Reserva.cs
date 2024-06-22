@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ObliGaitanBordaAnon.Models;
 
@@ -11,6 +12,7 @@ public partial class Reserva
 
     public string? Nombre { get; set; }
 
+    [Required(ErrorMessage = "Ingrese una mesa")]
     public int? MesaId { get; set; }
 
     public DateTime FechaReservada { get; set; }

@@ -13,14 +13,25 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="NombreDivisa" class="control-label">Tipo de cotizacion:</label>
-                <input asp-for="NombreDivisa" class="form-control" />
-                <span asp-validation-for="NombreDivisa" class="text-danger"></span>
-            </div>
+            @if (Model.NombreDivisa == null)
+            {
+                <div class="form-group">
+                    <label asp-for="NombreDivisa" class="control-label">Valor:</label>
+                    <input asp-for="NombreDivisa" disabled="" class="form-control" />
+                    <span asp-validation-for="NombreDivisa" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="NombreDivisa" class="control-label">Cotizacion:</label>
+                    <select asp-for="NombreDivisa" class="form-control" asp-items="ViewBag.Divisas"></select>
+                    <span asp-validation-for="NombreDivisa" class="text-danger"></span>
+                </div>
+            }
             <div class="form-group">
                 <label asp-for="CotizacionDivisa" class="control-label">Valor:</label>
-                <input type="number" asp-for="CotizacionDivisa" class="form-control" />
+                <input asp-for="CotizacionDivisa" disabled="" class="form-control" />
                 <span asp-validation-for="CotizacionDivisa" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,5 +44,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

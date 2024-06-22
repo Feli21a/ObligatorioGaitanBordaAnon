@@ -10,9 +10,11 @@
     <div class="col-md-6">
         <form asp-action="Index" method="get" class="form-inline align-items-center">
             <label for="fechafiltro" class="mr-2">Filtrar por fecha:</label>
-            <input type="date" name="fechafiltro" class="form-control form-control-sm custom-select-width" id="fechafiltro">
-            <div>
-                <input type="submit" value="Filtrar" class="btn btn-warning btn-sm" asp-action="Index"/>
+            <div class="d-flex align-items-center">
+                <input type="date" name="fechafiltro" class="form-control form-control-sm custom-select-width" id="fechafiltro">
+                <div>
+                    <input type="submit" value="Filtrar" class="btn btn-primary btn-sm" asp-action="Index" />
+                </div>
             </div>
         </form>
     </div>
@@ -70,8 +72,11 @@
                 <td>
                     <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
                     <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a> |
-                    <a title="Confirmar" class="btn btn-success" asp-action="Confirmar" asp-route-idReserva="@item.Id" asp-route-nroMesa="@item.Mesa.NumeroMesa"><i class="bi bi-check-lg"></i></a>
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    @if (item.Estado != "Confirmada")
+                    {
+                        @Html.Raw("|") <a title="Confirmar" class="btn btn-success" asp-action="Confirmar" asp-route-idReserva="@item.Id" asp-route-nroMesa="@item.Mesa.NumeroMesa"><i class="bi bi-check-lg"></i></a>
+                    }
                 </td>
             </tr>
         }

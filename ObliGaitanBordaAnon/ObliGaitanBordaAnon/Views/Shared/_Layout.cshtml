@@ -10,75 +10,98 @@
     <link rel="stylesheet" href="~/OBGaitanBordaAnon.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color: #f8f9fa;">
     <nav id="sidebar">
         <div class="sidebar-header">
-            <img src="~/ExternalImages/LogoSF.png" alt="Logo">
+            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                <img src="~/ExternalImages/LogoSF.png" alt="Logo" title="Logo">
+            </a>
         </div>
         <ul class="list-unstyled components flex-grow-1">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> <span>Inicio</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index"><i class="bi bi-book"></i> <span>Menú</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#gestionesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-tools"></i> <span>Gestiones</span></a>
-                    <ul class="collapse list-unstyled" id="gestionesSubmenu">
-                        <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i> Restaurantes</a></li>
-                        <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i> Usuarios</a></li>
-                        <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i> Clientes</a></li>
-                        <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i> Mesas</a></li>
-                        <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i> Menú</a></li>
-                        <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i> Reservas</a></li>
-                        <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i> Ordenes</a></li>
-                        <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i> Detalles de Orden</a></li>
-                        <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i> Reseñas</a></li>
-                        <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i> Pagos</a></li>
-                        <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i> Clima</a></li>
-                        <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut-fill"></i> Roles</a></li>
-                        <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i> Permisos</a></li>
-                        <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i> Roles y permisos</a></li>
-                        <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i> Cotizaciones</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#reseniasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-pencil"></i> <span>Reseñas</span></a>
-                    <ul class="collapse list-unstyled" id="reseniasSubmenu">
-                        <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Index"><i class="bi bi-layout-text-sidebar-reverse"></i> Ver reseñas</a></li>
-                        <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i> Escribir reseña</a></li>
-                    </ul>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> <span>Inicio</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index"><i class="bi bi-book"></i> <span>Menú</span></a>
-                <li class="nav-item dropdown">
-                    <a href="#reseniasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-pencil"></i> <span>Reseñas</span></a>
-                    <ul class="collapse list-unstyled" id="reseniasSubmenu">
-                        <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Index"><i class="bi bi-layout-text-sidebar-reverse"></i> Ver reseñas</a></li>
-                        <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i> Escribir reseña</a></li>
-                    </ul>
-                </li>
-                </li>
-            }
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door-fill"></i> <span>Inicio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index">
+                    <i class="bi bi-book"></i> <span>Menú</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#gestionesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="bi bi-nut-fill"></i> <span>Gestiones</span>
+                </a>
+                <ul class="collapse list-unstyled" id="gestionesSubmenu">
+                    <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i> Restaurantes</a></li>
+                    <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i> Usuarios</a></li>
+                    <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i> Clientes</a></li>
+                    <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i> Mesas</a></li>
+                    <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i> Menú</a></li>
+                    <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i> Reservas</a></li>
+                    <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i> Ordenes</a></li>
+                    <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i> Detalles de Orden</a></li>
+                    <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i> Reseñas</a></li>
+                    <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i> Pagos</a></li>
+                    <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i> Clima</a></li>
+                    <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i> Roles</a></li>
+                    <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i> Permisos</a></li>
+                    <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i> Roles y permisos</a></li>
+                    <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i> Cotizaciones</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#reseniasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="bi bi-brush"></i> <span>Reseñas</span>
+                </a>
+                <ul class="collapse list-unstyled" id="reseniasSubmenu">
+                    <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Index"><i class="bi bi-layout-text-sidebar-reverse"></i> Ver reseñas</a></li>
+                    <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i> Escribir reseña</a></li>
+                </ul>
+            </li>
         </ul>
         <div class="bottom-links">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a class="nav-link logout-link" asp-area="" asp-controller="LoginVM" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
-            }
-            else
-            {
-                <a class="nav-link login-link" asp-area="" asp-controller="LoginVM" asp-action="Login"><i class="bi bi-person-circle"></i> <span>Login</span></a>
-            }
+            <a class="nav-link login-link" asp-area="" asp-controller="LoginVM" asp-action="Login"><i class="bi bi-person-circle"></i> Login</a>
         </div>
+    </nav>
+
+    <nav id="footer-navbar" class="d-none">
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door-fill"></i></a>
+        <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index"><i class="bi bi-book"></i></a>
+        <a class="nav-link dropdown-toggle" href="#gestionesSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false"><i class="bi bi-nut-fill"></i></a>
+        <ul class="collapse list-unstyled" id="gestionesSubmenuResponsive">
+            <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i></a></li>
+            <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i></a></li>
+        </ul>
+        <li class="nav-item dropdown">
+            <a href="#reseniasSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-brush"></i></a>
+            <ul class="collapse list-unstyled" id="reseniasSubmenuResponsive">
+                <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Index"><i class="bi bi-layout-text-sidebar-reverse"></i></a></li>
+                <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i></a></li>
+            </ul>
+        </li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a class="nav-link logout-link" asp-area="" asp-controller="LoginVM" asp-action="Logout"><i class="bi bi-box-arrow-right"></i></a>
+        }
+        else
+        {
+            <a class="nav-link login-link" asp-area="" asp-controller="LoginVM" asp-action="Login"><i class="bi bi-person-circle"></i></a>
+        }
+        <a class="nav-link" asp-controller="Home" asp-action="Index"><img src="~/ExternalImages/LogoSF.png" alt="Logo" class="footer-logo"></a>
     </nav>
 
     <div id="content">
@@ -107,6 +130,21 @@
                 }
             });
         });
+
+        // Mostrar el footer navbar en pantallas pequeñas
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        const footerNavbar = document.getElementById('footer-navbar');
+
+        function handleTabletChange(e) {
+            if (e.matches) {
+                footerNavbar.classList.remove('d-none');
+            } else {
+                footerNavbar.classList.add('d-none');
+            }
+        }
+
+        mediaQuery.addListener(handleTabletChange);
+        handleTabletChange(mediaQuery);
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

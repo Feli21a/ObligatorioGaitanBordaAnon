@@ -15,7 +15,7 @@ public partial class Pago
 
     public int? CotizacionId { get; set; }
 
-    public int Monto { get; set; }
+    public double Monto { get; set; }
 
     public DateTime FechaPago { get; set; }
 

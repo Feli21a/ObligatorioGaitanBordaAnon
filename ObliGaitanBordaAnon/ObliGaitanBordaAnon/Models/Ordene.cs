@@ -9,7 +9,7 @@ public partial class Ordene
 
     public int? ReservaId { get; set; }
 
-    public int Total { get; set; }
+    public double Total { get; set; }
 
     public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();
 

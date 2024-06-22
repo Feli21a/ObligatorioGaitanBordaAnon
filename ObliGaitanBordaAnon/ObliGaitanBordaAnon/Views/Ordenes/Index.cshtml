@@ -34,7 +34,8 @@
                 <td>
                     <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
                     <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a> |
+                    <a title="Agregar Pedidos" class="btn btn-success" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
                 </td>
             </tr>
         }

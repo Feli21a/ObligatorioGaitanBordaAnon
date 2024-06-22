@@ -74,7 +74,13 @@ namespace ObliGaitanBordaAnon.Controllers
             if (ModelState.IsValid)
             {
                 var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
-                if (reserva.Estado == "Pendiente") //PREGUNTAR PARA EL ESTADO DE LAS MESAS SEGUN LAS FECHAS
+
+                if (mesa == null)
+                {
+                    return NotFound(ModelState);
+                }
+
+                if (reserva.Estado == "Pendiente")
                 {
                     mesa.Estado = "Reservada";
                 }
@@ -87,6 +93,8 @@ namespace ObliGaitanBordaAnon.Controllers
                     //    Total = 0
                     //};
                 }
+
+                reserva.FechaReservada = DateTime.Now;
 
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
@@ -147,6 +155,8 @@ namespace ObliGaitanBordaAnon.Controllers
                         mesa.Estado = "Disponible";
                     }
 
+
+                    reserva.FechaReservada = DateTime.Now;
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                 }
@@ -202,6 +212,12 @@ namespace ObliGaitanBordaAnon.Controllers
             }
 
             var mesa = await _context.Mesas.FindAsync(reserva.MesaId);
+
+            if (mesa == null)
+            {
+                return NotFound();
+            }
+
             mesa.Estado = "Disponible";
 
             await _context.SaveChangesAsync();

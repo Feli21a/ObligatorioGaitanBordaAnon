@@ -17,14 +17,6 @@ builder.Services.AddControllersWithViews().AddViewOptions(options =>
     options.HtmlHelperOptions.ClientValidationEnabled = true;
 });
 
-// Configure cookie authentication
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/LoginVM/Login";
-        options.LogoutPath = "/LoginVM/Logout";
-    });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,7 +29,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Configura la ruta para los archivos estáticos (imágenes)
 var externalImagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Repositorio", "img");
 if (!Directory.Exists(externalImagePath))
 {

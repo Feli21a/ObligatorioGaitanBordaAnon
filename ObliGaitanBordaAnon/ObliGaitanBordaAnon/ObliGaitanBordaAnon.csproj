@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="ViewModels\**" />
+    <Compile Remove="wwwroot\img\**" />
     <Content Remove="ViewModels\**" />
+    <Content Remove="wwwroot\img\**" />
     <EmbeddedResource Remove="ViewModels\**" />
+    <EmbeddedResource Remove="wwwroot\img\**" />
     <None Remove="ViewModels\**" />
+    <None Remove="wwwroot\img\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +32,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="111.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

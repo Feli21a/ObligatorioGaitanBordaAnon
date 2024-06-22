@@ -1,4 +1,4 @@
-﻿namespace ConsoleAPI
+﻿namespace ObliGaitanBordaAnon
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public class Cotizacion
+    public class CotizacionAPI
     {
         [JsonProperty("success", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Success { get; set; }

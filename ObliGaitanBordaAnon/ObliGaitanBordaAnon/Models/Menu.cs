@@ -13,7 +13,7 @@ public partial class Menu
 
     public string Categoria { get; set; } = null!;
 
-    public int Precio { get; set; }
+    public double Precio { get; set; }
 
     public string? ImagenUrl { get; set; }
 
