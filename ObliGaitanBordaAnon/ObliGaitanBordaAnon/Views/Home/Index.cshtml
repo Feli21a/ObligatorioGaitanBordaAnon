@@ -12,7 +12,7 @@
             <div class="text-start text-md-center">
                 <h1 class="display-4">Bienvenido a Al Mal Tiempo Buena Cara</h1>
                 <p class="lead">Disfruta de una experiencia culinaria excepcional en nuestro acogedor restaurante. Nuestro menú ofrece una selección de platos deliciosos hechos con los mejores ingredientes frescos.</p>
-                <a href="@Url.Action("Index", "MenuVM")" class="btn btn-light">Ver menú</a>
+                <a asp-controller="MenuVM" asp-action="Index" class="btn btn-light">Ver menú</a>
             </div>
         </div>
     </section>
@@ -23,19 +23,29 @@
             <h2 class="display-4">Lo que dicen nuestros clientes</h2>
             <p class="lead">Descubre lo que opinan los que han disfrutado de nuestra cocina.</p>
             <div class="row mt-4">
-                @foreach (var reseña in Model)
+                @foreach (var resenia in Model)
                 {
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-4">
                                     <div>
-                                        <h4 class="card-title d-inline"> <i class="bi bi-person-fill mr-2"></i>Cliente</h4>
-                                        <p class="text-muted">Cliente satisfecho</p>
+                                        <h4 class="card-title d-inline"> <i class="bi bi-person-fill mr-2"></i>Cliente</h4>                                        
                                     </div>
                                 </div>
-                                <p class="card-text">"@(reseña.Comentario)"</p>
-                                <span class="badge bg-success">@reseña.Puntaje/5</span>
+                                <p class="card-text">"@(resenia.Comentario)"</p>
+                                @if (resenia.Puntaje < 3)
+                                {
+                                    <span class="badge rounded-pill bg-danger">@resenia.Puntaje/5</span>
+                                }
+                                else if(resenia.Puntaje > 3)
+                                {
+                                    <span class="badge rounded-pill bg-success">@resenia.Puntaje/5</span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-warning">@resenia.Puntaje/5</span>
+                                }
                             </div>
                         </div>
                     </div>
@@ -62,7 +72,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">Cliente Frecuente</h4>
-                            <p class="card-text">Recibe un 10% de descuento en todos tus platos al ser un cliente frecuente.</p>
+                            <p class="card-text">Recibe un <strong>10% de descuento</strong> en todos tus platos al ser un cliente frecuente.</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +80,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">Cliente VIP</h4>
-                            <p class="card-text">Disfruta de un 20% de descuento en todos tus platos con una suscripción mensual.</p>
+                            <p class="card-text">Disfruta de un <strong>20% de descuento</strong> en todos tus platos al ser cliente VIP!.</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +106,7 @@
                         <img src="/ExternalImages/IMGInicio2.png" class="d-block w-100 carousel-image" alt="Vista 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="/ExternalImages/IMGInicio3.png" class="d-block w-100 carousel-image" alt="Vista 3">
+                        <img src="/ExternalImages/IMGInicio4.webp" class="d-block w-100 carousel-image" alt="Vista 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -176,7 +186,7 @@
 
     .small-image {
         max-width: 100%;
-        height: auto;
+        min-height: 200px;
         max-height: 200px;
         object-fit: cover;
         transition: transform 0.3s ease, box-shadow 0.3s ease;

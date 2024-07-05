@@ -28,23 +28,23 @@
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100 menu-card">
-                    @{
-                        string ubiImg = "~/ExternalImages/Logo.png";
-                        if (!string.IsNullOrEmpty(item.ImagenUrl))
-                        {
-                            ubiImg = item.ImagenUrl;
+                <a href="@Url.Action("Detalles", "MenuVM", new { id = item.Id })" class="text-decoration-none text-dark">
+                    <div class="card h-100 menu-card">
+                        @{
+                            string ubiImg = "~/ExternalImages/Logo.png";
+                            if (!string.IsNullOrEmpty(item.ImagenUrl))
+                            {
+                                ubiImg = item.ImagenUrl;
+                            }
                         }
-                    }
-                    <img src="@Url.Content(ubiImg)" class="card-img-top small-image" alt="@item.NombrePlato">
-                    <div class="card-body menu-card-body">
-                        <h5 class="card-title menu-card-title">@item.NombrePlato</h5>
-                        <p class="card-text" style="font-style: italic; color: gray">Click para informacion</p>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
+                        <img src="@Url.Content(ubiImg)" class="card-img-top small-image" alt="@item.NombrePlato">
+                        <div class="card-body menu-card-body">
+                            <h5 class="card-title menu-card-title">@item.NombrePlato</h5>
+                            <p class="card-text" style="font-style: italic; color: gray">Click para información</p>
                             <span class="menu-card-text precio">$@item.Precio</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         }
     </div>
