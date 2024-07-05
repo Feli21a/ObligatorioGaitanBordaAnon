@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas
+        [VerificarPermisos("VerCrudReservas")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Index(DateTime? fechafiltro)
         {
             // Creamos la consulta con los Includes necesarios
@@ -34,6 +36,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas/Details/5
+        [VerificarPermisos("VerCrudReservas")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -55,6 +59,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas/Create
+        [VerificarPermisos("VerCrudReservas")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
@@ -87,11 +93,6 @@ namespace ObliGaitanBordaAnon.Controllers
                 else if (reserva.Estado == "Confirmada")
                 {
                     mesa.Estado = "Ocupada";
-                    //Ordene orden = new Ordene()
-                    //{
-                    //    ReservaId = reserva.Id,
-                    //    Total = 0
-                    //};
                 }
 
                 reserva.FechaReservada = DateTime.Now;
@@ -107,6 +108,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas/Edit/5
+        [VerificarPermisos("VerCrudReservas")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -180,6 +183,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Reservas/Delete/5
+        [VerificarPermisos("VerCrudReservas")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

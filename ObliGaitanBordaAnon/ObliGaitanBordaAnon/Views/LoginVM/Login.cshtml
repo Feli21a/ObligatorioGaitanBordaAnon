@@ -21,23 +21,17 @@
             <form asp-action="Login" method="post">
                 @Html.AntiForgeryToken()
                 <div class="mb-4">
-                    <label asp-for="Email" class="form-label">Nombre de usuario</label>
-                    <input type="email" asp-for="Email" class="form-control form-control-lg" placeholder="Ingresa tu nombre de usuario">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input type="email" asp-for="Email" class="form-control form-control-lg" placeholder="Ingresa tu email de usuario">
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="mb-4">
                     <label asp-for="Contrasenia" class="form-label">Contraseña</label>
                     <input asp-for="Contrasenia" class="form-control form-control-lg" placeholder="Ingresa tu contraseña" type="password">
                     <span asp-validation-for="Contrasenia" class="text-danger"></span>
-                    <div class="text-end">
-                        <a href="#" class="small">¿Olvidaste tu contraseña?</a>
-                    </div>
                 </div>
                 <div class="d-grid mb-4">
                     <button class="btn btn-primary btn-lg" type="submit" asp-controller="LoginVM" asp-action="Login">Iniciar sesión</button>
-                </div>
-                <div class="text-center">
-                    <p class="mb-0">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
                 </div>
             </form>
         </div>

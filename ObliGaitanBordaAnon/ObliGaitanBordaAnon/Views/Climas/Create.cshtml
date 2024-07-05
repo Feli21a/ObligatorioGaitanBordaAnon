@@ -12,26 +12,43 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label for="Ciudad" class="control-label">Ciudad:</label>
+                <input type="text" name="ciudad" id="Ciudad" class="form-control" required />
+                <span class="text-danger" data-valmsg-for="ciudad" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Pais" class="control-label">País:</label>
+                <input type="text" name="pais" id="Pais" class="form-control" required />
+                <span class="text-danger" data-valmsg-for="pais" data-valmsg-replace="true"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label">Fecha:</label>
-                <input type="date" asp-for="Fecha" class="form-control" />
+                <input type="date" asp-for="Fecha" class="form-control" disabled value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Temperatura" class="control-label">Temperatura:</label>
-                <input asp-for="Temperatura" class="form-control" />
+                <input asp-for="Temperatura" disabled class="form-control" />
                 <span asp-validation-for="Temperatura" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Lluvia" class="control-label">Lluvia</label>
-                <input asp-for="Lluvia" class="form-control" />
+                <label asp-for="Lluvia" class="control-label">Lluvia:</label>
+                <input asp-for="Lluvia" disabled class="form-control" />
                 <span asp-validation-for="Lluvia" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="DescripcionClima" class="control-label">Descripcion del clima:</label>
-                <textarea asp-for="DescripcionClima" class="form-control"></textarea>
+                <label asp-for="DescripcionClima" class="control-label">Descripción del clima:</label>
+                <textarea asp-for="DescripcionClima" disabled="" class="form-control">Descripcion clima</textarea>
                 <span asp-validation-for="DescripcionClima" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <hr />
                 <input type="submit" value="Crear" class="btn btn-primary" />
@@ -41,7 +58,8 @@
     </div>
 </div>
 
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

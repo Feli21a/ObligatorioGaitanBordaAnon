@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public class ClimaAPI
+    public partial class ClimaApi
     {
         [JsonProperty("coord", NullValueHandling = NullValueHandling.Ignore)]
         public Coord Coord { get; set; }

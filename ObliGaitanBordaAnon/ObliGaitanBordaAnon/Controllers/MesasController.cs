@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Mesas
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index(string estado)
         {
             var mesa = from m in _context.Mesas.Include(r => r.Restaurante) select m;
@@ -32,6 +34,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Mesas/Details/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,6 +55,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Mesas/Create
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
@@ -128,6 +134,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Mesas/Delete/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

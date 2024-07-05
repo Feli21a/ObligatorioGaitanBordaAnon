@@ -1,0 +1,103 @@
+﻿/* Home.css */
+
+/* Base color for buttons and cards */
+:root {
+    --base-color: #3C9BFF;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+}
+
+/* General styling */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h3 {
+    color: var(--text-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--base-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: darken(var(--base-color), 10%);
+    }
+
+/* Cards */
+.card {
+    background-color: var(--base-color);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+/* Specific styles for different sections */
+.objetivos-title {
+    color: var(--base-color);
+    font-weight: bold;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Margin and padding adjustments */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.mt-4 {
+    margin-top: 2rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 2rem !important;
+}
+
+/* Additional styling for layout */
+.container {
+    max-width: 1200px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.tipo-cliente-card {
+    background-color: var(--base-color);
+    border: none;
+}
+
+    .tipo-cliente-card h4 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .tipo-cliente-card p {
+        font-size: 1.2em;
+    }

@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
             var restoMalTiempoDbContext = _context.OrdenDetalles.Include(o => o.Menu).Include(o => o.Orden);
@@ -46,6 +48,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Create
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create(int? ordenId)
         {
             ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato");
@@ -89,6 +93,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Edit/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,6 +150,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Delete/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

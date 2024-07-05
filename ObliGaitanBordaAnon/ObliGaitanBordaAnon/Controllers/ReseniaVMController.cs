@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ObliGaitanBordaAnon.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ObliGaitanBordaAnon.Controllers
 {

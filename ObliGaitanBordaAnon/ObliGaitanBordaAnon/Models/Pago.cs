@@ -9,7 +9,7 @@ public partial class Pago
 
     public int? ReservaId { get; set; }
 
-    public int? OrdenDetalleId { get; set; }
+    public int? OrdenId { get; set; }
 
     public int? ClimaId { get; set; }
 
@@ -21,11 +21,13 @@ public partial class Pago
 
     public string MetodoPago { get; set; } = null!;
 
+    public string? Estado { get; set; }
+
     public virtual Clima? Clima { get; set; }
 
     public virtual Cotizacione? Cotizacion { get; set; }
 
-    public virtual OrdenDetalle? OrdenDetalle { get; set; }
+    public virtual Ordene? Orden { get; set; }
 
     public virtual Reserva? Reserva { get; set; }
 }

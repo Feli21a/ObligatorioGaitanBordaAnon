@@ -19,13 +19,17 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Ordenes
+        [VerificarPermisos("VerCrudOrden")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
-            var restoMalTiempoDbContext = _context.Ordenes.Include(o => o.Reserva).ThenInclude(m => m.Mesa);
+            var restoMalTiempoDbContext = _context.Ordenes.Include(o => o.Reserva).ThenInclude(m => m.Mesa).Include(o => o.Pagos);
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
         // GET: Ordenes/Details/5
+        [VerificarPermisos("VerCrudOrden")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,9 +50,13 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Ordenes/Create
+        [VerificarPermisos("VerCrudOrden")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
-            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa");
+            var reservaConMesasOcupadas = _context.Reservas.Where(R => R.Estado == "Confirmada").Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa });
+
+            ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, "Id", "NumeroMesa");
             return View();
         }
 
@@ -59,20 +67,37 @@ namespace ObliGaitanBordaAnon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ReservaId,Total")] Ordene ordene)
         {
+
+            // Verifica si hay reservas con mesas ocupadas y las reservas confirmadas
+            var reservaConMesasOcupadas =_context.Reservas.Where(R => R.Estado == "Confirmada").Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa });
+
+            if (!reservaConMesasOcupadas.Any())
+            {
+                ModelState.AddModelError("", "No se puede generar una orden sin clientes para atender.");
+                ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, "Id", "NumeroMesa", ordene.ReservaId);
+                return View(ordene);
+            }
+
             if (ModelState.IsValid)
             {
+
+                ordene.Total = 0;
 
                 _context.Add(ordene);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), "Id", "NumeroMesa", ordene.ReservaId);
+            ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, "Id", "NumeroMesa", ordene.ReservaId);
             return View(ordene);
         }
 
         // GET: Ordenes/Edit/5
+        [VerificarPermisos("VerCrudOrden")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
+            var reservaConMesasOcupadas = _context.Reservas.Where(R => R.Estado == "Confirmada").Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa });
+
             if (id == null)
             {
                 return NotFound();
@@ -83,7 +108,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), ordene.ReservaId);
+            ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, ordene.ReservaId);
             return View(ordene);
         }
 
@@ -94,6 +119,8 @@ namespace ObliGaitanBordaAnon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ReservaId,Total")] Ordene ordene)
         {
+            var reservaConMesasOcupadas = _context.Reservas.Where(R => R.Estado == "Confirmada").Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa });
+
             if (id != ordene.Id)
             {
                 return NotFound();
@@ -119,11 +146,13 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ReservaId"] = new SelectList(_context.Reservas.Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa }), ordene.ReservaId);
-            return View(ordene);
+                ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, ordene.ReservaId);
+                return View(ordene);
         }
 
         // GET: Ordenes/Delete/5
+        [VerificarPermisos("VerCrudOrden")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,7 +177,19 @@ namespace ObliGaitanBordaAnon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ordene = await _context.Ordenes.FindAsync(id);
+            var ordene = await _context.Ordenes.Include(o => o.Pagos).FirstOrDefaultAsync(o => o.Id == id);
+
+            if (ordene == null)
+            {
+                return NotFound();
+            }
+
+            // Eliminar pagos asociados
+            foreach (var pago in ordene.Pagos.ToList())
+            {
+                _context.Pagos.Remove(pago);
+            }
+
             if (ordene != null)
             {
                 _context.Ordenes.Remove(ordene);

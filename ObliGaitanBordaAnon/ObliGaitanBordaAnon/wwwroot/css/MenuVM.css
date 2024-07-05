@@ -1,0 +1,137 @@
+﻿body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+.btn-primary {
+    background-color: #3C9BFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #357ac4;
+    }
+
+.btn-light {
+    background-color: white;
+    color: #3C9BFF;
+    border: 1px solid #3C9BFF;
+}
+
+    .btn-light:hover {
+        background-color: #e6f1ff;
+    }
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+.card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333; /* Letras negras */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombreado */
+}
+
+.card-text {
+    font-size: 1.15em;
+    text-align: justify;
+}
+
+.small-image {
+    max-width: 100%;
+    height: 200px; /* Fijar la altura de la imagen */
+    object-fit: cover;
+    transition: box-shadow 0.3s ease; /* Solo sombra en hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bg-primary {
+    background-color: #3C9BFF !important;
+}
+
+.text-primary-foreground {
+    color: white !important;
+}
+
+.menu-card {
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuir espacio equitativamente */
+}
+
+.menu-card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    color: #333; /* Letras negras */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombreado */
+}
+
+.menu-card-text {
+    font-size: 1.0em;
+}
+
+    .menu-card-text.precio {
+        font-size: 1.5em;
+        color: #333; /* Precio en negro */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombreado */
+        font-weight: bold; /* Precio en negrita */
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+
+.menu-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    position: relative; /* Para posicionar el precio */
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.form-control-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
+.custom-select-width {
+    width: auto;
+    max-width: 200px;
+}
+
+.mr-2 {
+    margin-right: 5px;
+}

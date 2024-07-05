@@ -1,13 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using ObliGaitanBordaAnon.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using ObliGaitanBordaAnon.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Agregar IHttpContextAccessor
+builder.Services.AddHttpContextAccessor();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+// Configurar la sesión
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddDbContext<RestoMalTiempoDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conectionSQL")));
@@ -46,9 +57,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Habilitar la sesión
+app.UseSession();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-

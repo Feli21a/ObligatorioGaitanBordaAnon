@@ -20,11 +20,16 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes
+
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Clientes.ToListAsync());
         }
 
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +48,8 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(cliente);
         }
 
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         // GET: Clientes/Create
         public IActionResult Create()
         {
@@ -54,7 +61,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Email,TipoCliente")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Ci,Nombre,Email,TipoCliente")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +73,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes/Edit/5
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +95,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Email,TipoCliente")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ci,Nombre,Email,TipoCliente")] Cliente cliente)
         {
             if (id != cliente.Id)
             {
@@ -117,6 +126,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes/Delete/5
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

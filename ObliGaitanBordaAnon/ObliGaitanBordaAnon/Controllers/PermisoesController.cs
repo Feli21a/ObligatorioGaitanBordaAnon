@@ -19,12 +19,16 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Permisoes
+        [VerificarPermisos("VerCrudPermisos")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Permisos.ToListAsync());
         }
 
         // GET: Permisoes/Details/5
+        [VerificarPermisos("VerCrudPermisos")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +47,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Permisoes/Create
+        [VerificarPermisos("VerCrudPermisos")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +71,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Permisoes/Edit/5
+        [VerificarPermisos("VerCrudPermisos")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -116,6 +124,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Permisoes/Delete/5
+        [VerificarPermisos("VerCrudPermisos")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

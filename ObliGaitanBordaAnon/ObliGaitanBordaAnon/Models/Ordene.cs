@@ -13,5 +13,7 @@ public partial class Ordene
 
     public virtual ICollection<OrdenDetalle> OrdenDetalles { get; set; } = new List<OrdenDetalle>();
 
+    public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+
     public virtual Reserva? Reserva { get; set; }
 }

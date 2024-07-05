@@ -1,0 +1,58 @@
+﻿.card {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+    .card:hover {
+        transform: none;
+    }
+
+.card-img {
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .card-img:hover {
+        transform: scale(1.02); /* Ajustar el valor según el efecto de acercamiento deseado */
+    }
+
+.card-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.3em;
+    color: white !important; /* Asegura que el texto sea siempre blanco */
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+        background-color: #0056b3;
+        color: white !important; /* Mantiene el color del texto en blanco */
+    }

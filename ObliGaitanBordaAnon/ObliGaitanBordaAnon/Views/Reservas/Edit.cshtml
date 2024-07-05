@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaReservada" class="control-label">Fecha de la reserva:</label>
-                <input type="date" asp-for="FechaReservada" class="form-control" />
+                <input type="date" asp-for="FechaReservada" class="form-control" disabled="" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
                 <span asp-validation-for="FechaReservada" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Ordene>
 
 @{
-    ViewData["Title"] = "Ordenes";
+    ViewData["Title"] = "Órdenes";
 }
 
-<h1>Ordenes</h1>
+<h1><i class="bi bi-journal"></i> Órdenes</h1>
 
 <p>
     <a class="btn btn-warning" asp-action="Create">Agregar orden</a>
@@ -32,10 +32,24 @@
                     Nro. @Html.DisplayFor(modelItem => item.Reserva.Id) ( Mesa @Html.DisplayFor(modelItem => item.Reserva.Mesa.NumeroMesa) )
                 </td>
                 <td>
-                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a> |
-                    <a title="Agregar Pedidos" class="btn btn-success" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
+                    @if (item.Pagos.All(p => p.Estado != "Pagado"))
+                    {
+                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                        @Html.Raw("|")
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Agregar Pedidos" class="btn btn-dark" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
+                        @Html.Raw("|")
+                        <a title="Ir a pagar" class="btn btn-success" asp-controller="Pagoes" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-coin"></i></a>
+                    }
+                    else
+                    {
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    }
                 </td>
             </tr>
         }

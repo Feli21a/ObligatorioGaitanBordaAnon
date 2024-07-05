@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ObliGaitanBordaAnon.Models;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ObliGaitanBordaAnon.Controllers
@@ -15,13 +13,6 @@ namespace ObliGaitanBordaAnon.Controllers
         public LoginVMController(RestoMalTiempoDbContext context)
         {
             _context = context;
-        }
-
-        // GET: Index
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
         }
 
         // GET: Account/Login
@@ -38,37 +29,34 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _context.Usuarios.SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Contrasenia);
+                var user = _context.Usuarios
+                    .Include(u => u.Rol)
+                    .ThenInclude(r => r.RolesPermisos)
+                    .ThenInclude(rp => rp.Permiso)
+                    .SingleOrDefault(u => u.Email == model.Email && u.Contrasenia == model.Contrasenia);
+
                 if (user != null)
                 {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Email),
-
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var authProperties = new AuthenticationProperties
-                    {
-                        // Configura otras propiedades si es necesario
-                    };
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+                    // Configurar la sesión
+                    HttpContext.Session.SetInt32("UserId", user.Id);
+                    HttpContext.Session.SetString("UserRole", user.Rol.Nombre);
+                    var permisos = string.Join(",", user.Rol.RolesPermisos.Select(rp => rp.Permiso.Nombre));
+                    HttpContext.Session.SetString("UserPermissions", permisos);
 
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-
+                    ModelState.AddModelError(string.Empty, "Login inválido.");
                 }
             }
             return View(model);
         }
 
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Home", "Index");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "LoginVM");
         }
     }
 }

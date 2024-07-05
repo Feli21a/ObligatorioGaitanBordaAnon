@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,6 +13,7 @@
     <link rel="stylesheet" href="~/OBGaitanBordaAnon.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
 </head>
+
 <body style="background-color: #f8f9fa;">
     <nav id="sidebar">
         <div class="sidebar-header">
@@ -28,28 +32,86 @@
                     <i class="bi bi-book"></i> <span>Menú</span>
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a href="#gestionesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="bi bi-nut-fill"></i> <span>Gestiones</span>
-                </a>
-                <ul class="collapse list-unstyled" id="gestionesSubmenu">
-                    <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i> Restaurantes</a></li>
-                    <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i> Usuarios</a></li>
-                    <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i> Clientes</a></li>
-                    <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i> Mesas</a></li>
-                    <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i> Menú</a></li>
-                    <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i> Reservas</a></li>
-                    <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i> Ordenes</a></li>
-                    <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i> Detalles de Orden</a></li>
-                    <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i> Reseñas</a></li>
-                    <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i> Pagos</a></li>
-                    <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i> Clima</a></li>
-                    <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i> Roles</a></li>
-                    <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i> Permisos</a></li>
-                    <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i> Roles y permisos</a></li>
-                    <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i> Cotizaciones</a></li>
-                </ul>
-            </li>
+
+            @{
+                var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+                var userRole = HttpContextAccessor.HttpContext.Session.GetString("UserRole");
+                var permisos = HttpContextAccessor.HttpContext.Session.GetString("UserPermissions")?.Split(',');
+
+                if (userId != null && userRole != "Cliente")
+                {
+                    <li class="nav-item dropdown">
+                        <a href="#gestionesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="bi bi-nut-fill"></i> <span>Gestiones</span>
+                        </a>
+                        <ul class="collapse list-unstyled" id="gestionesSubmenu">
+                            @if (permisos != null)
+                            {
+                                if (permisos.Contains("VerCrudRestaurante") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i> Restaurantes</a></li>
+                                }
+                                if (permisos.Contains("VerCrudUsuario") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i> Usuarios</a></li>
+                                }
+                                if (permisos.Contains("VerCrudClientes") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i> Clientes</a></li>
+                                }
+                                if (permisos.Contains("VerCrudMesa") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i> Mesas</a></li>
+                                }
+                                if (permisos.Contains("VerCrudMenu") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i> Menú</a></li>
+                                }
+                                if (permisos.Contains("VerCrudReservas") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i> Reservas</a></li>
+                                }
+                                if (permisos.Contains("VerCrudOrden") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i> Ordenes</a></li>
+                                }
+                                if (permisos.Contains("VerCrudOrdenDetalles") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i> Detalles de Orden</a></li>
+                                }
+                                if (permisos.Contains("VerCrudPago") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i> Pagos</a></li>
+                                }
+                                if (permisos.Contains("VerCrudClima") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i> Clima</a></li>
+                                }
+                                if (permisos.Contains("VerCrudCotizaciones") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i> Cotizaciones</a></li>
+                                }
+                                if (permisos.Contains("VerCrudReseñas") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i> Reseñas</a></li>
+                                }
+                                if (permisos.Contains("VerCrudRoles") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i> Roles</a></li>
+                                }
+                                if (permisos.Contains("VerCrudPermisos") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i> Permisos</a></li>
+                                }
+                                if (permisos.Contains("VerCrudRolesPermisos") || permisos.Contains("VerTodo"))
+                                {
+                                    <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i> Roles y permisos</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
             <li class="nav-item dropdown">
                 <a href="#reseniasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="bi bi-brush"></i> <span>Reseñas</span>
@@ -59,41 +121,111 @@
                     <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i> Escribir reseña</a></li>
                 </ul>
             </li>
+
         </ul>
         <div class="bottom-links">
-            <a class="nav-link login-link" asp-area="" asp-controller="LoginVM" asp-action="Login"><i class="bi bi-person-circle"></i> Login</a>
+            @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
+            {
+                <a class="nav-link logout-link" asp-area="" asp-controller="LoginVM" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            }
+            else
+            {
+                <a class="nav-link login-link" asp-area="" asp-controller="LoginVM" asp-action="Login"><i class="bi bi-person-circle"></i> Login</a>
+            }
         </div>
     </nav>
 
-    <nav id="footer-navbar" class="d-none">
+    <nav id="footer-navbar" class="d-none" style="box-shadow: 5px;">
         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door-fill"></i></a>
         <a class="nav-link" asp-area="" asp-controller="MenuVM" asp-action="Index"><i class="bi bi-book"></i></a>
-        <a class="nav-link dropdown-toggle" href="#gestionesSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false"><i class="bi bi-nut-fill"></i></a>
-        <ul class="collapse list-unstyled" id="gestionesSubmenuResponsive">
-            <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i></a></li>
-            <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i></a></li>
-        </ul>
-        <li class="nav-item dropdown">
-            <a href="#reseniasSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-brush"></i></a>
+        @* Solo mostrar la sección "Gestiones" si el usuario está registrado y no es un Cliente *@
+        @{
+            userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+            userRole = HttpContextAccessor.HttpContext.Session.GetString("UserRole");
+            permisos = HttpContextAccessor.HttpContext.Session.GetString("UserPermissions")?.Split(',');
+
+            if (userId != null && userRole != "Cliente")
+            {
+                <a class="nav-link dropdown-toggle" href="#gestionesSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false"><i class="bi bi-nut-fill"></i></a>
+                <ul class="collapse list-unstyled" id="gestionesSubmenuResponsive">
+                    @if (permisos != null)
+                    {
+                        if (permisos.Contains("VerCrudRestaurante") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Restaurantes" asp-action="Index"><i class="bi bi-shop"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudUsuario") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudClientes") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudMesa") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Mesas" asp-action="Index"><i class="bi bi-wrench-adjustable-circle"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudMenu") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudReservas") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudOrden") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudOrdenDetalles") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudReseñas") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudPago") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Pagoes" asp-action="Index"><i class="bi bi-cash-coin"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudClima") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudRoles") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudPermisos") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudRolesPermisos") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i></a></li>
+                        }
+                        if (permisos.Contains("VerCrudCotizaciones") || permisos.Contains("VerTodo"))
+                        {
+                            <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i></a></li>
+                        }
+                    }
+                </ul>
+            }
+        }
+
+        @* Mostrar la sección "Reseñas" solo si el usuario está autenticado con cualquier rol *@
+        @if (userId != null)
+        {
+            <a href="#reseniasSubmenuResponsive" data-bs-toggle="collapse" aria-expanded="false" class="nav-link dropdown-toggle"><i class="bi bi-brush"></i></a>
             <ul class="collapse list-unstyled" id="reseniasSubmenuResponsive">
                 <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Index"><i class="bi bi-layout-text-sidebar-reverse"></i></a></li>
                 <li><a class="dropdown-item" asp-controller="ReseniaVM" asp-action="Crear"><i class="bi bi-pen"></i></a></li>
             </ul>
-        </li>
-        @if (User.Identity.IsAuthenticated)
+        }
+
+        @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
         {
             <a class="nav-link logout-link" asp-area="" asp-controller="LoginVM" asp-action="Logout"><i class="bi bi-box-arrow-right"></i></a>
         }
@@ -111,7 +243,7 @@
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - OBGaitanBordaAnon - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - AMTBC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

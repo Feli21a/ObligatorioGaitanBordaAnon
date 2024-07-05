@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Menú";
 }
-<h2>Menú</h2>
 
-<form asp-action="Index" method="get" class="form-inline mb-4" id="filterForm">
+<link rel="stylesheet" href="~/css/MenuVM.css" asp-append-version="true" />
+
+<h2 class="text-center my-4"><i class="bi bi-journal-medical"></i> Menú</h2>
+
+<form asp-action="Index" method="get" class="form-inline mb-4 d-flex justify-content-center" id="filterForm">
     <div class="form-group mr-3">
         <label for="categoria" class="mr-2">Filtrar</label>
         <div class="custom-select-container">
@@ -20,12 +23,12 @@
     </div>
 </form>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-3 mb-4">
-                <div class="card">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 menu-card">
                     @{
                         string ubiImg = "~/ExternalImages/Logo.png";
                         if (!string.IsNullOrEmpty(item.ImagenUrl))
@@ -33,94 +36,16 @@
                             ubiImg = item.ImagenUrl;
                         }
                     }
-                    <img src="@Url.Content(ubiImg)" class="card-img-top" alt="@item.NombrePlato">
-                    <div class="card-body">
-                        <h5 class="card-title" >@item.NombrePlato</h5>
-                        <p class="card-text"><strong>Precio:</strong> $@item.Precio</p>
-                        <a class="btn btn-primary" asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item?.Id">Ver Mas +</a>
+                    <img src="@Url.Content(ubiImg)" class="card-img-top small-image" alt="@item.NombrePlato">
+                    <div class="card-body menu-card-body">
+                        <h5 class="card-title menu-card-title">@item.NombrePlato</h5>
+                        <p class="card-text" style="font-style: italic; color: gray">Click para informacion</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span class="menu-card-text precio">$@item.Precio</span>
+                        </div>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
-<style>
-    .card {
-        overflow: hidden;
-        transition: transform 0.1s ease-in-out; /* Agregar transición para la transformación */
-    }
-
-        .card:hover {
-            transform: scale(1.02);
-        }
-
-        .card img {
-            height: 150px;
-            object-fit: cover;
-        }
-
-    .card-title {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-
-    .card-text {
-        margin: 10px 0;
-        max-height: 60px;
-        overflow: hidden;
-        transition: max-height 0.2s ease;
-    }
-
-        .card-text.expanded {
-            max-height: none;
-        }
-
-    .card .card-body {
-        display: flex;
-        flex-direction: column;
-    }
-
-        .card .card-body .ver-mas {
-            margin-top: auto;
-        }
-
-    .form-inline {
-        display: flex;
-        align-items: center;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        margin-right: 10px;
-    }
-
-    .form-control-sm {
-        padding: .25rem .5rem;
-        font-size: .875rem;
-        line-height: 1.5;
-        border-radius: .2rem;
-    }
-
-    .custom-select-width {
-        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
-        max-width: 200px; /* Ajusta el valor según sea necesario */
-    }
-
-    .btn-primary {
-        border: none;
-        padding: 10px 20px;
-        font-size: 1.0em;
-        color: white !important; /* Asegura que el texto sea siempre blanco */
-    }
-
-        .btn-primary:hover,
-        .btn-primary:focus,
-        .btn-primary:active {
-            color: white !important; /* Mantiene el color del texto en blanco */
-        }
-    .mr-2 {
-        margin-right: 5px;
-    }
-</style>
