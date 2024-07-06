@@ -27,14 +27,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="OrdenId" class="control-label">Nro. Orden:</label>
-                <select asp-for="OrdenId" disabled="" class="form-control" asp-items="ViewBag.OrdenId"></select>
+                <select asp-for="OrdenId" class="form-control" asp-items="ViewBag.OrdenId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Monto" class="control-label">Monto a pagar:</label>
                 <div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Monto" value="@montoConDescuento" readonly>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Monto" value="@montoConDescuento" readonly>
                     </div>
                     <span asp-validation-for="Monto" class="text-danger"></span>
                 </div>

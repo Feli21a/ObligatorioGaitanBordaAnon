@@ -21,18 +21,17 @@ namespace ObliGaitanBordaAnon.Controllers
         // GET: Reservas
         [VerificarPermisos("VerCrudReservas")]
         [VerificarPermisos("VerTodo")]
-        public async Task<IActionResult> Index(DateTime? fechafiltro)
+        public async Task<IActionResult> Index(string? estado)
         {
             // Creamos la consulta con los Includes necesarios
-            var reservasPorFechas = _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurante).AsQueryable(); // Convertimos a IQueryable para la consistencia de tipos
-
+            var reservas = from r in _context.Reservas.Include(r => r.Cliente).Include(r => r.Mesa).Include(r => r.Restaurante) select r;
             // Aplicamos el filtro de fecha si está presente
-            if (fechafiltro.HasValue)
+            if (!string.IsNullOrEmpty(estado))
             {
-                reservasPorFechas = reservasPorFechas.Where(r => r.FechaReservada.Date == fechafiltro.Value.Date);
+                reservas = reservas.Where(r => r.Estado == estado);
             }
 
-            return View(await reservasPorFechas.ToListAsync());
+            return View(await reservas.ToListAsync());
         }
 
         // GET: Reservas/Details/5
@@ -63,8 +62,9 @@ namespace ObliGaitanBordaAnon.Controllers
         [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
+            var clientes = _context.Clientes.Where(c => !string.IsNullOrEmpty(c.Nombre)).Select(c => new { c.Id, Nombre = c.Nombre ?? "Sin Nombre" }).ToList();
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre");
+            ViewData["ClienteId"] = new SelectList(clientes, "Id", "Nombre");
             ViewData["MesaId"] = new SelectList(_context.Mesas.Where(r => r.Estado == "Disponible"), "Id", "NumeroMesa");
 
             return View();

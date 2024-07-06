@@ -23,9 +23,16 @@ namespace ObliGaitanBordaAnon.Controllers
 
         [VerificarPermisos("VerCrudClientes")]
         [VerificarPermisos(("VerTodo"))]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string cedula)
         {
-            return View(await _context.Clientes.ToListAsync());
+            var clientes = from c in _context.Clientes select c;
+
+            if (!string.IsNullOrEmpty(cedula))
+            {
+                clientes = clientes.Where(c => c.Ci.Contains(cedula));
+            }
+
+            return View(await clientes.ToListAsync());
         }
 
         [VerificarPermisos("VerCrudClientes")]

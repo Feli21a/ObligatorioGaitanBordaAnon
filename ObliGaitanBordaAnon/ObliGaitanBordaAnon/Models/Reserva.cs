@@ -9,7 +9,7 @@ public partial class Reserva
     public int Id { get; set; }
 
     public int? ClienteId { get; set; }
-    [Required(ErrorMessage = "Campo obligatorio")]
+
     [StringLength(30)]
     public string? Nombre { get; set; }
 

@@ -1,12 +1,9 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-body {
+﻿body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif; /* Aplicar la fuente a todo el cuerpo */
 }
 
 #sidebar {
@@ -23,7 +20,6 @@ body {
     z-index: 1000;
     overflow-y: auto;
     justify-content: space-between;
-    font-family: 'Roboto', sans-serif; /* Aplicar la fuente al sidebar */
 }
 
     #sidebar .sidebar-header {
@@ -31,26 +27,31 @@ body {
         background: #ffffff;
         text-align: center;
         margin-top: 0;
-        font-family: 'Roboto', sans-serif; /* Aplicar la fuente a la cabecera del sidebar */
     }
 
         #sidebar .sidebar-header img {
             max-width: 100%;
             height: auto;
             margin-top: 0;
+            transition: all 0.1s;
         }
+
+            #sidebar .sidebar-header img:hover {
+                transform: scale(1.01);
+            }
 
     #sidebar .list-unstyled {
         padding: 0;
         margin: 0;
         flex-grow: 1;
         overflow-y: auto;
-        font-family: 'Roboto', sans-serif; /* Aplicar la fuente a la lista del sidebar */
     }
 
         #sidebar .list-unstyled li {
             width: 100%;
             padding: 10px 20px;
+            justify-content: center; /* Centrar contenido horizontalmente */
+            align-items: center; /* Centrar contenido verticalmente */
         }
 
             #sidebar .list-unstyled li a {
@@ -59,24 +60,23 @@ body {
                 padding: 10px 20px;
                 display: block;
                 text-align: center;
-                transition: all 0.3s;
+                transition: all 0.1s;
                 border-radius: 20px;
                 margin: 5px 10px;
                 white-space: normal; /* Permitir salto de línea */
-                font-size: 1.1rem; /* Aumentar tamaño de fuente */
-                font-family: 'Roboto', sans-serif; /* Aplicar la fuente */
                 word-break: break-word; /* Permitir el salto de línea en palabras largas */
             }
 
                 #sidebar .list-unstyled li a:hover {
                     background: #cce5ff;
+                    transform: scale(1.025);
+                    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.15);
                     color: #000;
                 }
 
     #sidebar .collapse .list-unstyled {
         background: #ffffff;
         padding-left: 20px;
-        font-family: 'Roboto', sans-serif; /* Aplicar la fuente a la lista colapsada del sidebar */
     }
 
         #sidebar .collapse .list-unstyled li {
@@ -86,31 +86,38 @@ body {
             #sidebar .collapse .list-unstyled li a {
                 padding: 5px 10px;
                 border-radius: 10px;
-                font-size: 1rem; /* Aumentar tamaño de fuente */
-                font-family: 'Roboto', sans-serif; /* Aplicar la fuente */
                 word-break: break-word; /* Permitir el salto de línea en palabras largas */
             }
 
     #sidebar .bottom-links {
         padding: 10px 0;
         width: 100%;
+        display: flex;
+        justify-content: center; /* Centrar contenido horizontalmente */
+        align-items: center; /* Centrar contenido verticalmente */
         text-align: center;
         margin-top: auto;
-        font-family: 'Roboto', sans-serif; /* Aplicar la fuente a los enlaces inferiores del sidebar */
     }
 
         #sidebar .bottom-links a.login-link {
             background-color: #007bff;
             color: #fff;
             padding: 10px 20px;
+            transition: all 0.1s;
             display: block;
-            border-radius: 0;
+            border-radius: 50px;
             text-decoration: none;
-            margin: 5px 0;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+            width: 80%; /* Ajustar el ancho automáticamente */
         }
 
             #sidebar .bottom-links a.login-link:hover {
                 background-color: #0056b3;
+                transform: scale(1.025);
+                box-shadow: 0 0px 16px rgba(0, 0, 0, 0.4);
             }
 
         #sidebar .bottom-links a.logout-link {
@@ -118,13 +125,20 @@ body {
             color: #fff;
             padding: 10px 20px;
             display: block;
-            border-radius: 0;
+            transition: all 0.1s;
+            border-radius: 50px;
             text-decoration: none;
             margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+            width: 80%; /* Ajustar el ancho automáticamente */
         }
 
             #sidebar .bottom-links a.logout-link:hover {
                 background-color: #23272b;
+                transform: scale(1.025);
+                box-shadow: 0 0px 16px rgba(0, 0, 0, 0.4);
             }
 
 #content {

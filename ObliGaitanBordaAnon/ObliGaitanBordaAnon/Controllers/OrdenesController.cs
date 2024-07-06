@@ -38,7 +38,7 @@ namespace ObliGaitanBordaAnon.Controllers
             }
 
             var ordene = await _context.Ordenes
-                .Include(o => o.Reserva)
+                .Include(o => o.Reserva)                                
                 .ThenInclude(m => m.Mesa)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ordene == null)

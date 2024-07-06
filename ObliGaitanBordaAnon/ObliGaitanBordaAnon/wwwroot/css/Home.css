@@ -1,30 +1,20 @@
-﻿/* Home.css */
-
-/* Base color for buttons and cards */
-:root {
-    --base-color: #3C9BFF;
-    --text-color: #333;
-    --background-color: #f8f9fa;
-}
-
-/* General styling */
-body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+﻿body {
+    background-color: #f8f9fa;
+    color: #333;
     font-family: 'Arial', sans-serif;
 }
 
-h1, h3 {
-    color: var(--text-color);
+.display-4 {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
 
-p {
-    color: var(--text-color);
+.lead, .text-muted {
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Buttons */
 .btn-primary {
-    background-color: var(--base-color);
+    background-color: #3C9BFF;
     border: none;
     padding: 10px 20px;
     font-size: 1.2em;
@@ -32,72 +22,90 @@ p {
 }
 
     .btn-primary:hover {
-        background-color: darken(var(--base-color), 10%);
+        background-color: #357ac4;
     }
 
-/* Cards */
-.card {
-    background-color: var(--base-color);
-    border: none;
-    border-radius: 10px;
-    color: #fff;
+.btn-light {
+    background-color: white !important;
+    color: #3C9BFF !important;
+    border: 1px solid #3C9BFF;
+    transition: transform 0.2s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .btn-light:hover {
+        color: #3C9BFF !important;
+        transform: scale(1.03);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.);
+    }
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
 }
 
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transform: scale(1.02);
     }
 
-/* Specific styles for different sections */
-.objetivos-title {
-    color: var(--base-color);
+.card-title {
+    font-size: 1.4em;
     font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.15em;
+    text-align: justify;
 }
 
 .text-justify {
     text-align: justify;
 }
 
-.img-fluid {
+.small-image {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    max-height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Margin and padding adjustments */
-.mt-5 {
-    margin-top: 3rem !important;
-}
-
-.mt-4 {
-    margin-top: 2rem !important;
-}
-
-.mb-4 {
-    margin-bottom: 2rem !important;
-}
-
-/* Additional styling for layout */
-.container {
-    max-width: 1200px;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.tipo-cliente-card {
-    background-color: var(--base-color);
-    border: none;
-}
-
-    .tipo-cliente-card h4 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
+    .small-image:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    .tipo-cliente-card p {
-        font-size: 1.2em;
+.welcome-image {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 375px; /* Ajusta el tamaño máximo de la imagen */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    height: 350px;
+    border: 10px solid white; /* Borde blanco */
+    border-radius: 20px; /* Ajusta el radio de borde */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+    .welcome-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
+
+.welcome-text {
+    max-width: 600px; /* Ajusta el tamaño máximo del contenedor de texto */
+}
+
+.carousel-image {
+    height: 500px; /* Ajusta esta altura según tus necesidades */
+    object-fit: cover;
+}
+
+.bg-primary {
+    background-color: #3C9BFF !important;
+    border: 20px solid #3C9BFF; /* Borde blanco */
+}
+
+.text-primary-foreground {
+    color: white !important;
+}

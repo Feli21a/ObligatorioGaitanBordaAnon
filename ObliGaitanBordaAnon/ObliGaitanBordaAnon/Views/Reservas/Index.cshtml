@@ -4,14 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1><i class="bi bi-journal-bookmark-fill"></i> Reservas</h1>
+<h1><i class="bi bi-journal-bookmark-fill"></i> <strong>Reservas</strong></h1>
 
 <div class="row mb-3">
     <div class="col-md-6">
         <form asp-action="Index" method="get" class="form-inline align-items-center">
-            <label for="fechafiltro" class="mr-2">Filtrar por fecha:</label>
+            <label for="fechafiltro" class="mr-2">Filtrar por estado:</label>
             <div class="d-flex align-items-center">
-                <input type="date" name="fechafiltro" class="form-control form-control-sm custom-select-width" id="fechafiltro">
+                <select type="date" name="estado" class="form-control form-control-sm custom-select-width" id="estado">
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Finalizada">Finalizada</option>
+                </select>
                 <div>
                     <input type="submit" value="Filtrar" class="btn btn-primary btn-sm" asp-action="Index" />
                 </div>

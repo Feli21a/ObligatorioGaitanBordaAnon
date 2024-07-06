@@ -4,7 +4,7 @@
     ViewData["Title"] = "Pagos";
 }
 
-<h1><i class="bi bi-cash-coin"></i> Pagos</h1>
+<h1><i class="bi bi-cash-coin"></i> <strong>Pagos</strong></h1>
 
 <p>
     <a class="btn btn-warning" asp-action="Create">Generar pago</a>
@@ -50,13 +50,23 @@
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
-                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
                     @if (item.Estado != "Pagado")
                     {
-                        @Html.Raw("| ") <a title="Confirmar" class="btn btn-success" asp-action="ConfirmarPago" asp-route-idPago="@item.Id"><i class="bi bi-check-lg"></i></a>
+                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                        @Html.Raw("| ")
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("| ")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                        @Html.Raw("| ")
+                        <a title="Confirmar" class="btn btn-success" asp-action="ConfirmarPago" asp-route-idPago="@item.Id"><i class="bi bi-check-lg"></i></a>
                     }
+                    else
+                    {
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("| ")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    }
+
                 </td>
             </tr>
         }
