@@ -7,14 +7,14 @@ namespace ObliGaitanBordaAnon.Models;
 public partial class Restaurante
 {
     public int Id { get; set; }
-
-    [Required(ErrorMessage = "Ingresa el nombre del restaurante")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(30)]
     public string Nombre { get; set; } = null!;
-
-    [Required(ErrorMessage = "Ingresale la direccion de la sucursal")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(50)]
     public string Direccion { get; set; } = null!;
-
-    [Required(ErrorMessage = "Ingresa el telefono de la sucursal")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(30)]
     public string Telefono { get; set; } = null!;
 
     public virtual ICollection<Mesa> Mesas { get; set; } = new List<Mesa>();

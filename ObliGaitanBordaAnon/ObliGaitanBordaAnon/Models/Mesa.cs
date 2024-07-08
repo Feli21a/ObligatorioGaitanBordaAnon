@@ -8,10 +8,9 @@ public partial class Mesa
 {
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "Asignale un numero a la mesa")]
+    [Required(ErrorMessage = "Campo obligatorio")]
     public int NumeroMesa { get; set; }
-
-    [Required(ErrorMessage = "Asignale capacidad a la mesa")]
+    [Required(ErrorMessage = "Campo obligatorio")]
     public int Capacidad { get; set; }
 
     public string? Estado { get; set; }

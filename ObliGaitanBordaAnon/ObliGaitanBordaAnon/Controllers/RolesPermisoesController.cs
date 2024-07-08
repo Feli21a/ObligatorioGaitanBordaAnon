@@ -19,13 +19,23 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes
-        public async Task<IActionResult> Index()
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
+        public async Task<IActionResult> Index(string porRol)
         {
-            var restoMalTiempoDbContext = _context.RolesPermisos.Include(r => r.Permiso).Include(r => r.Rol);
+            var restoMalTiempoDbContext = _context.RolesPermisos.Include(r => r.Permiso).Include(r => r.Rol).AsQueryable();
+
+            if (!string.IsNullOrEmpty(porRol))
+            {
+                restoMalTiempoDbContext = restoMalTiempoDbContext.Where(m => m.Rol.Nombre == porRol);
+            }
+
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
         // GET: RolesPermisoes/Details/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +56,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes/Create
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public IActionResult Create()
         {
             ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Nombre");
@@ -72,6 +84,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes/Edit/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -127,6 +141,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes/Delete/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

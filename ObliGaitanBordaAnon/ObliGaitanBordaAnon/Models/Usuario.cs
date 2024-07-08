@@ -7,13 +7,13 @@ namespace ObliGaitanBordaAnon.Models;
 public partial class Usuario
 {
     public int Id { get; set; }
-
-    [Required(ErrorMessage = "Ingresa un nombre de usuario")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(50)]
     public string Nombre { get; set; } = null!;
-
-    [Required(ErrorMessage = "Ingresa un email para el usuario")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(100)]
     public string Email { get; set; } = null!;
-
+    [StringLength(30)]
     public string? Contrasenia { get; set; }
 
     public int? RolId { get; set; }

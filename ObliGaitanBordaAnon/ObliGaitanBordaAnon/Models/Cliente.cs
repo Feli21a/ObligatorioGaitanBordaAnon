@@ -6,17 +6,17 @@ namespace ObliGaitanBordaAnon.Models;
 
 public partial class Cliente
 {
-
     public int Id { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Campo obligatorio")]
     [StringLength(50)]
     public string Nombre { get; set; } = null!;
-
-    [Required]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(30)]
+    public string? Ci { get; set; }
     [StringLength(100)]
     public string? Email { get; set; }
 
-    [Required]
     public string? TipoCliente { get; set; }
 
     public virtual ICollection<Resenia> Resenia { get; set; } = new List<Resenia>();

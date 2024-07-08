@@ -1,17 +1,37 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.RolesPermiso>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Asignaciones rol-permiso";
 }
 
-<h1>Asignaciones</h1>
+<h1><i class="bi bi-toggles"></i> <strong>Asignaciones</strong></h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Asignar permisos a roles</a>
-</p>
-<table class="table">
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="porRol" class="mr-2">Filtrar por categoría:</label>
+            <div class="d-flex align-items-center">
+                <select name="porRol" class="form-control form-control-sm custom-select-width" id="porRol">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Mozo">Mozo</option>
+                    <option value="Recepcionista">Recepcionista</option>
+                    <option value="Cajero">Cajero</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-primary btn-sm ml-2" asp-action="Index" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Asignar permiso a rol</a>
+    </div>
+</div>
+
+
+
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 @Html.DisplayNameFor(model => model.Permiso)
             </th>

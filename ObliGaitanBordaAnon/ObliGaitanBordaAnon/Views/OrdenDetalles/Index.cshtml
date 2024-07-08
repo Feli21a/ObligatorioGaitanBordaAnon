@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.OrdenDetalle>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Detalles de ordenes";
 }
 
-<h1>Detalles de ordenes</h1>
+<h1><i class="bi bi-journal-text"></i> <strong>Detalles de orden</strong></h1>
 
 <p>
     <a class="btn btn-warning" asp-action="Create">Agregar detalles de orden</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 Cantidad de menu
             </th>
@@ -29,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cantidad)
+                    @Html.DisplayFor(modelItem => item.Cantidad) plato
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Menu.NombrePlato)
@@ -40,7 +40,8 @@
                 <td>
                     <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
                     <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a> |
+                    <a title="Volver a la orden" class="btn btn-dark" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-arrow-return-left"></i></a>
                 </td>
             </tr>
         }

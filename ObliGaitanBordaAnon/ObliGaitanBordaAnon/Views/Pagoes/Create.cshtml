@@ -1,8 +1,13 @@
 ﻿@model ObliGaitanBordaAnon.Models.Pago
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Generar pago";
+    var montoOriginal = ViewBag.MontoOriginal ?? 0;
+    var descuentosAplicados = ViewBag.DescuentosAplicados ?? "";
+    var montoConDescuento = ViewBag.MontoConDescuento ?? 0;
 }
+
+<link rel="stylesheet" href="~/css/Descuentos.css" asp-append-version="true" />
 
 <h1>Crear pago</h1>
 
@@ -10,26 +15,39 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ReservaId" class="control-label">Id de la reserva:</label>
-                <select asp-for="ReservaId" class="form-control" asp-items="ViewBag.ReservaId"></select>
+                <label asp-for="ReservaId" class="control-label">Nro. Mesa:</label>
+                <select asp-for="ReservaId" readonly class="form-control" asp-items="ViewBag.ReservaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CotizacionId" class="control-label">Cotizacion:</label>
+                <select asp-for="CotizacionId" class="form-control" asp-items="ViewBag.CotizacionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrdenId" class="control-label">Nro. Orden:</label>
+                <select asp-for="OrdenId" readonly class="form-control" asp-items="ViewBag.OrdenId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Monto" class="control-label">Monto a pagar:</label>
                 <div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="j8b7h" asp-for="Monto">
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Monto" value="@montoConDescuento" readonly>
                     </div>
                     <span asp-validation-for="Monto" class="text-danger"></span>
                 </div>
                 <span asp-validation-for="Monto" class="text-danger"></span>
+                <div class="descuentos-aplicados">
+                    <label>Descuentos:</label>
+                    <p>@descuentosAplicados</p>
+                </div>
+                <input type="hidden" name="montoConDescuento" value="@montoConDescuento" />
             </div>
             <div class="form-group">
                 <label asp-for="FechaPago" class="control-label">Fecha del pago:</label>
-                <input type="date" asp-for="FechaPago" class="form-control" />
+                <input type="date" asp-for="FechaPago" class="form-control" disabled="" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="FechaPago" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,12 +60,12 @@
                 <span asp-validation-for="MetodoPago" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CotizacionId" class="control-label">Cotizacion:</label>
-                <select asp-for="CotizacionId" class="form-control" asp-items="ViewBag.CotizacionId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClimaId" class="control-label">Id del clima:</label>
-                <select asp-for="ClimaId" class="form-control" asp-items="ViewBag.ClimaId"></select>
+                <label asp-for="Estado" class="control-label">Estado:</label>
+                <select asp-for="Estado" class="form-control">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Pagado">Pagado</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <hr />
@@ -57,7 +75,6 @@
         </form>
     </div>
 </div>
-
 
 @section Scripts {
     @{

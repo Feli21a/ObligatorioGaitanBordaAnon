@@ -8,7 +8,8 @@ public partial class Permiso
 {
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "Asignale un nombre para el permiso")]
+    [Required(ErrorMessage = "Campo obligatorio")]
+    [StringLength(250)]
     public string Nombre { get; set; } = null!;
 
     public virtual ICollection<RolesPermiso> RolesPermisos { get; set; } = new List<RolesPermiso>();

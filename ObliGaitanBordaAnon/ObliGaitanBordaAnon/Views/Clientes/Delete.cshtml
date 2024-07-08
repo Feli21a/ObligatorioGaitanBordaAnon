@@ -1,6 +1,6 @@
 ﻿@model ObliGaitanBordaAnon.Models.Cliente
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Borrar cliente";
 }
 
 <h1>Borrar un cliente</h1>
@@ -9,6 +9,12 @@
     <h4>@Html.DisplayFor(model => model.Nombre)</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            Cedula:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ci)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nombre) del cliente:
         </dt>

@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Role>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Roles";
 }
 
-<h1>Roles</h1>
+<h1><i class="bi bi-nut"></i> <strong>Roles</strong></h1>
 
 <p>
     <a class="btn btn-warning" asp-action="Create">Crear rol</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>

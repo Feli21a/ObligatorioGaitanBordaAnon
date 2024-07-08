@@ -10,11 +10,11 @@ public partial class Reserva
 
     public int? ClienteId { get; set; }
 
+    [StringLength(30)]
     public string? Nombre { get; set; }
 
     public int? MesaId { get; set; }
 
-    [Required(ErrorMessage = "Ingresa una fecha para tu reserva")]
     public DateTime FechaReservada { get; set; }
 
     public string? Estado { get; set; }

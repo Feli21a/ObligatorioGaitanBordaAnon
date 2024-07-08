@@ -1,17 +1,17 @@
 ﻿@model ObliGaitanBordaAnon.Models.OrdenDetalle
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles orden";
 }
 
-<h1>Detalles de la orden @Html.DisplayFor(model => model.Orden.Id)</h1>
+<h1>Detalles de la orden NRO. @Html.DisplayFor(model => model.Orden.Id)</h1>
 
 <div>
     <h4>Detalles de la orden</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad) de ordenes:
+            @Html.DisplayNameFor(model => model.Cantidad) de platos:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Cantidad)

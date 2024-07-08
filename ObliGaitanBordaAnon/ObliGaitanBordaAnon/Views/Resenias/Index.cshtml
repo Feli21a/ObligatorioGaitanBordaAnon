@@ -1,66 +1,98 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Resenia>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reseñas";
 }
 
-<h1>Reseñas</h1>
-
-<p>
-    <a class="btn btn-warning" asp-action="Create">Agregar reseña</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Puntaje)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comentario)
-            </th>
-            <th>
-                Fecha
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Restaurante) (sucursal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0"><i class="bi bi-pencil"></i> <strong>Reseñas</strong></h1>
+        <a class="btn btn-warning" asp-action="Create">Agregar reseña</a>
+    </div>
+    <div class="row justify-content-center">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Puntaje)
-                </td>
-                <td style="max-width: 200px;">
-                    @Html.DisplayFor(modelItem => item.Comentario)
-                </td>
-                <td style="max-width: 150px;">
-                    @Html.DisplayFor(modelItem => item.FechaResenia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td style="max-width: 150px;">
-                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion) (@Html.DisplayFor(modelItem => item.Restaurante.Id))
-                </td>
-                <td>
-                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
-                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
-                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
-                </td>
-            </tr>
+            <div class="col-md-10 mb-4">
+                <div class="card review-card shadow-sm @(item.Puntaje <= 2  ? "border-danger" : item.Puntaje > 2 && item.Puntaje < 4 ? "border-warning" : "border-success")">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+                                <h5 class="card-title mb-0">@item.Email</h5>
+                            </div>
+                            <div>
+                                <a title="Editar" class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                <a title="Detalles" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                                <a title="Borrar" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">Sucursal: @item.Restaurante.Direccion (@item.RestauranteId)</h6>
+                        <div class="mb-2">
+                            @for (var i = 1; i <= 5; i++)
+                            {
+                                <i class="bi bi-star-fill @(i <= item.Puntaje ? "text-warning" : "text-muted")"></i>
+                            }
+                        </div>
+                        <p class="card-text">@item.Comentario</p>
+                        <footer class="blockquote-footer">Fecha: @item.FechaResenia?.ToString("dd/MM/yyyy")</footer>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
+
+<style>
+    .review-card {
+        background-color: #ffffff;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        min-height: 12rem;
+        max-height: 15rem;
+        transition: transform 0.1s ease-in-out;
+        border-radius: 8px;
+    }
+
+        .review-card:hover {
+            transform: scale(1.01);
+        }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .blockquote-footer {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    .bi-star-fill {
+        font-size: 1.25rem;
+    }
+
+    .border-danger {
+        border: 2px solid red !important;
+    }
+
+    .border-warning {
+        border: 2px solid orange !important;
+    }
+
+    .border-success {
+        border: 2px solid green !important;
+    }
+</style>

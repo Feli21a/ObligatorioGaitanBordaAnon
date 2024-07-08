@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ObliGaitanBordaAnon.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ObliGaitanBordaAnon.Controllers
 {
@@ -19,12 +17,16 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Restaurantes
+        [VerificarPermisos("VerCrudRestaurante")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Restaurantes.ToListAsync());
         }
 
         // GET: Restaurantes/Details/5
+        [VerificarPermisos("VerCrudRestaurante")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,14 +45,14 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Restaurantes/Create
+        [VerificarPermisos("VerCrudRestaurante")]
+        [VerificarPermisos("VerTodo")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Restaurantes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Direccion,Telefono")] Restaurante restaurante)
@@ -65,6 +67,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Restaurantes/Edit/5
+        [VerificarPermisos("VerCrudRestaurante")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,8 +85,6 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // POST: Restaurantes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Direccion,Telefono")] Restaurante restaurante)
@@ -116,6 +118,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Restaurantes/Delete/5
+        [VerificarPermisos("VerCrudRestaurante")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

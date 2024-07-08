@@ -1,17 +1,33 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Mesa>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Mesas";
 }
 
-<h1>Mesas</h1>
+<h1><i class="bi bi-wrench-adjustable-circle"></i> <strong>Mesas</strong></h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Agregar mesa</a>
-</p>
-<table class="table">
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="categoria" class="mr-2">Filtrar por estado:</label>
+            <div class="d-flex align-items-center">
+                <select name="estado" class="form-control form-control-sm custom-select-width" id="estado">
+                    <option value="Disponible">Disponible</option>
+                    <option value="Reservada">Reservada</option>
+                    <option value="Ocupada">Ocupada</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-primary btn-sm ml-2" asp-action="Index" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar mesa</a>
+    </div>
+</div>
+
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 Nro mesa
             </th>
@@ -41,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Restaurante.Nombre) (@Html.DisplayFor(modelItem => item.Restaurante.Direccion))
+                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion)
                 </td>
                 <td>
                     <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
@@ -52,3 +68,11 @@
         }
     </tbody>
 </table>
+
+<style>
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 150px; /* Ajusta el valor según sea necesario */
+    }
+
+</style>

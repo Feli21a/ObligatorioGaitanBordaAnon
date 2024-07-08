@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.Ordene
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar orden";
 }
 
 <h1>Editar ordenes</h1>
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="ReservaId" class="control-label">Nro. reserva:</label>
+                <label asp-for="ReservaId" class="control-label">Nro. Mesa:</label>
                 <select asp-for="ReservaId" class="form-control" asp-items="ViewBag.ReservaId"></select>
             </div>
             <div class="form-group">

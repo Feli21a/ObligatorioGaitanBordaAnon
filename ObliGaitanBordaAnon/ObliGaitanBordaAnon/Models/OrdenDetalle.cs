@@ -11,7 +11,7 @@ public partial class OrdenDetalle
     public int? OrdenId { get; set; }
 
     public int? MenuId { get; set; }
-    [Required(ErrorMessage = "Ingresa la cantidad de menus")]
+    [Required(ErrorMessage = "Campo obligatorio")]
     public int Cantidad { get; set; }
 
     public virtual Menu? Menu { get; set; }

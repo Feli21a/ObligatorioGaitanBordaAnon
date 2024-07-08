@@ -1,0 +1,47 @@
+﻿@model ObliGaitanBordaAnon.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+        <div class="bg-white p-5 rounded shadow-sm" style="max-width: 600px; width: 100%;">
+            <h2 class="text-center mb-4">Iniciar sesión</h2>
+            <p class="text-center text-muted">Ingresa tus credenciales para acceder a tu cuenta.</p>
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-4">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input type="email" asp-for="Email" class="form-control form-control-lg" placeholder="Ingresa tu email de usuario">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Contrasenia" class="form-label">Contraseña</label>
+                    <input asp-for="Contrasenia" class="form-control form-control-lg" placeholder="Ingresa tu contraseña" type="password">
+                    <span asp-validation-for="Contrasenia" class="text-danger"></span>
+                </div>
+                <div class="d-grid mb-4">
+                    <button class="btn btn-primary btn-lg" type="submit" asp-controller="LoginVM" asp-action="Login">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>
