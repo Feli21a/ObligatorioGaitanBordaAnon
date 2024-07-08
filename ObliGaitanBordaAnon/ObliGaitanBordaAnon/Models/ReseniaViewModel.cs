@@ -14,6 +14,7 @@ namespace ObliGaitanBordaAnon.Models
         public string? Comentario { get; set; }
         public DateTime? FechaResenia { get; set; }
         public string? Email { get; set; }
+
         [NotMapped]
         public string? DireccionRestaurante { get; set;}
     }

@@ -63,9 +63,16 @@ namespace ObliGaitanBordaAnon.Controllers
         public IActionResult Create()
         {
             var clientes = _context.Clientes.Where(c => !string.IsNullOrEmpty(c.Nombre)).Select(c => new { c.Id, Nombre = c.Nombre ?? "Sin Nombre" }).ToList();
+            var mesasDisponbiles = _context.Mesas.Where(r => r.Estado == "Disponible");
+
+            if(mesasDisponbiles.Count() == 0 || _context.Restaurantes.Count() == 0)
+            {
+                return RedirectToAction("ErrorAction", "Home");
+            }
+
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             ViewData["ClienteId"] = new SelectList(clientes, "Id", "Nombre");
-            ViewData["MesaId"] = new SelectList(_context.Mesas.Where(r => r.Estado == "Disponible"), "Id", "NumeroMesa");
+            ViewData["MesaId"] = new SelectList(mesasDisponbiles, "Id", "NumeroMesa");
 
             return View();
         }

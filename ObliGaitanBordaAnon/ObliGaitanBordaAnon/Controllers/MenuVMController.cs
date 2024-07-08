@@ -35,7 +35,7 @@ public class MenuVMController : Controller
         return View(await menus.ToListAsync());
     }
 
-    // GET: Menu/Details/5
+    // GET: Menu/Detalles/5
     public async Task<IActionResult> Detalles(int? id)
     {
         if (id == null)

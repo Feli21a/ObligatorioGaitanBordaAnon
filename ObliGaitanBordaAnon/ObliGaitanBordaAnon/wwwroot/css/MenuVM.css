@@ -2,6 +2,7 @@
     background-color: #f8f9fa;
     color: #333;
 }
+
 .btn-primary {
     background-color: #3C9BFF;
     border: none;
@@ -107,6 +108,22 @@
     padding: 10px;
     position: relative; /* Para posicionar el precio */
 }
+
+.card-logo {
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Cambiado a la izquierda */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .card-logo:hover {
+        transform: scale(1.01);
+    }
 
 .form-inline {
     display: flex;

@@ -55,6 +55,11 @@ namespace ObliGaitanBordaAnon.Controllers
         public IActionResult Create()
         {
             var reservaConMesasOcupadas = _context.Reservas.Where(R => R.Estado == "Confirmada").Include(m => m.Mesa).Where(r => r.Mesa.Estado == "Ocupada").Select(r => new { r.Id, NumeroMesa = r.Mesa.NumeroMesa });
+            if(reservaConMesasOcupadas.Count() == 0)
+            {
+                return RedirectToAction("ErrorAction", "Home");
+            }
+
 
             ViewData["ReservaId"] = new SelectList(reservaConMesasOcupadas, "Id", "NumeroMesa");
             return View();

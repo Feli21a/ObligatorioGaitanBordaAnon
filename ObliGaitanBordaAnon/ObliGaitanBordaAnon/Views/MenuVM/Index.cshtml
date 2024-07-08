@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <a href="@Url.Action("Detalles", "MenuVM", new { id = item.Id })" class="text-decoration-none text-dark">
+                <a asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item.Id" class="text-decoration-none text-dark">
                     <div class="card h-100 menu-card">
                         @{
                             string ubiImg = "~/ExternalImages/Logo.png";
@@ -43,6 +43,7 @@
                             <p class="card-text" style="font-style: italic; color: gray">Click para información</p>
                             <span class="menu-card-text precio">$@item.Precio</span>
                         </div>
+                        <img src="~/ExternalImages/LogoSF.png" alt="Logo" class="card-logo" title="Logo">
                     </div>
                 </a>
             </div>

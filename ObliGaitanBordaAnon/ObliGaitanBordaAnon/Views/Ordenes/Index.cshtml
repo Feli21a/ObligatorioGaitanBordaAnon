@@ -40,7 +40,7 @@
                         @Html.Raw("|")
                         <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
                         @Html.Raw("|")
-                        <a title="Agregar Pedidos" class="btn btn-dark" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
+                        <a title="Agregar platos" class="btn btn-dark" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
                         @Html.Raw("|")
                         <a title="Ir a pagar" class="btn btn-success" asp-controller="Pagoes" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-coin"></i></a>
                     }

@@ -59,6 +59,12 @@ namespace ObliGaitanBordaAnon.Controllers
         [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
+            
+            if(_context.Restaurantes.Count() == 0)
+            {
+                return RedirectToAction("ErrorAction", "Home");
+            }
+
             ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View();
         }

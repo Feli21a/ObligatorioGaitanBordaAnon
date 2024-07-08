@@ -24,7 +24,7 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(reseñas);
         }
 
-        public IActionResult Privacy()
+        public IActionResult ErrorAction()
         {
             return View();
         }

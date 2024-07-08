@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "ErrorMessage";
+}
+
+<div class="modal show d-flex justify-content-center align-items-center" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+            </div>
+            <div class="modal-body">
+                <p>Aún no hay trabajo que hacer.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="@(Url.Action("Index", "Home"))" class="btn btn-primary">Ir al Inicio</a>
+            </div>
+        </div>
+    </div>
+</div>
