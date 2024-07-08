@@ -75,7 +75,7 @@ namespace ObliGaitanBordaAnon.Controllers
             double descuento = 0;
             List<string> descuentosAplicados = new List<string>();
 
-            // Descuentos según el clima
+            // Descuentos por el clima
             if (temperatura < 10)
             {
                 descuento += 0.05;

@@ -20,8 +20,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddDbContext<RestoMalTiempoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("conectionSQL")));
+builder.Services.AddDbContext<RestoMalTiempoDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conectionSQL")));
 
 builder.Services.AddControllersWithViews().AddViewOptions(options =>
 {
