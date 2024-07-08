@@ -236,7 +236,7 @@ namespace ObliGaitanBordaAnon.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Confirmar(int? idReserva, int? nroMesa)
+        public async Task<IActionResult> ConfirmarReserva(int? idReserva, int? nroMesa)
         {
             if (idReserva == null || nroMesa == null)
             {

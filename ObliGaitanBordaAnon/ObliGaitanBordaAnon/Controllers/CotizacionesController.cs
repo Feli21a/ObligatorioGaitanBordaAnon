@@ -48,8 +48,8 @@ public class CotizacionesController : Controller
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Create(string divisa)
     {
-        divisa = divisa ?? "UYU"; // Si 'divisa' es nulo, asignar "UYU" por defecto
-        var divisas = await GetAvailableDivisas(divisa);
+        divisa = divisa ?? "UYU"; // Si 'divisa' es nulo, asignar uyu
+        var divisas = await GetDivisasDisponibles(divisa);
         ViewBag.Divisas = new SelectList(divisas, "Value", "Text");
         return View();
     }
@@ -88,7 +88,7 @@ public class CotizacionesController : Controller
             }
         }
 
-        ViewBag.Divisas = new SelectList(await GetAvailableDivisas("UYU"));
+        ViewBag.Divisas = new SelectList(await GetDivisasDisponibles("UYU"));
         return View(cotizacione);
     }
 
@@ -214,7 +214,7 @@ public class CotizacionesController : Controller
         return new Dictionary<string, double>();
     }
 
-    private async Task<List<SelectListItem>> GetAvailableDivisas(string source)
+    private async Task<List<SelectListItem>> GetDivisasDisponibles(string source)
     {
         var cotizaciones = await GetCotizacionesApi(source);
         var divisas = cotizaciones.Keys
