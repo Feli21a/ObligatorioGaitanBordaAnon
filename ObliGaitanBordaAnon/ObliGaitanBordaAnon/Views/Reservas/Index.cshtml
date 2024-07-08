@@ -4,14 +4,35 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Reservas</h1>
+<h1><i class="bi bi-journal-bookmark-fill"></i> <strong>Reservas</strong></h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Crear reserva</a>
-</p>
-<table class="table">
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="fechafiltro" class="mr-2">Filtrar por estado:</label>
+            <div class="d-flex align-items-center">
+                <select type="date" name="estado" class="form-control form-control-sm custom-select-width" id="estado">
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Finalizada">Finalizada</option>
+                </select>
+                <div>
+                    <input type="submit" value="Filtrar" class="btn btn-primary btn-sm" asp-action="Index" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar reserva</a>
+    </div>
+</div>
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
+            <th>
+                Sucursal
+            </th>
             <th>
                 Fecha reserva
             </th>
@@ -32,23 +53,62 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Restaurante.Direccion) (@Html.DisplayFor(modelItem => item.RestauranteId))
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FechaReservada)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
                 <td>
-                   Nro. @Html.DisplayFor(modelItem => item.Cliente.Id)
+                    @if (item.Nombre != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                    }
                 </td>
                 <td>
-                    ID @Html.DisplayFor(modelItem => item.Mesa.Id)
+                    Nro. @Html.DisplayFor(modelItem => item.Mesa.NumeroMesa) (@Html.DisplayFor(modelItem => item.Mesa.Estado))
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    @if (item.Estado != "Confirmada" && item.Estado != "Finalizada")
+                    {
+                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                        @Html.Raw("|")
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Confirmar" class="btn btn-success" asp-action="ConfirmarReserva" asp-route-idReserva="@item.Id" asp-route-nroMesa="@item.Mesa.NumeroMesa"><i class="bi bi-check-lg"></i></a>
+                    }
+                    else if(item.Estado == "Finalizada")
+                    {
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    }
+                    else
+                    {
+                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                        @Html.Raw("|")
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 150px; /* Ajusta el valor según sea necesario */
+    }
+
+</style>

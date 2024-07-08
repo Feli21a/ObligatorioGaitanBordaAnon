@@ -1,17 +1,37 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Menu>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menus";
 }
 
-<h1>Menus</h1>
+<h1><i class="bi bi-journal-medical"></i> <strong>Menus</strong></h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Agregar menu</a>
-</p>
-<table class="table">
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="categoria" class="mr-2">Filtrar por categoría:</label>
+            <div class="d-flex align-items-center">
+                <select name="categoria" class="form-control form-control-sm custom-select-width" id="categoria">
+                    <option value="Principal">Principales</option>
+                    <option value="Bebida">Bebidas</option>
+                    <option value="Trago">Tragos</option>
+                    <option value="Postre">Postres</option>
+                </select>
+                <input type="submit" value="Filtrar" class="btn btn-primary btn-sm ml-2" asp-action="Index" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar menú</a>
+    </div>
+</div>
+
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
+            <th>
+                Imagen
+            </th>
             <th>
                 Nombre del plato
             </th>
@@ -21,6 +41,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,20 +52,34 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                    <img src="@item.ImagenUrl" alt="@item.NombrePlato" style="max-width: 50px; max-height: 50px;" />
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.NombrePlato)
+                </td>
+                <td class="text-truncate" style="max-width: 200px;">
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
                     $ @Html.DisplayFor(modelItem => item.Precio)
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+    .custom-select-width {
+        width: auto; /* Cambia a tu preferencia, por ejemplo: 150px o 200px */
+        max-width: 150px; /* Ajusta el valor según sea necesario */
+    }
+
+</style>

@@ -1,0 +1,226 @@
+﻿body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    min-width: 250px; /* Ajustado para más espacio */
+    max-width: 250px;
+    background: #ffffff;
+    color: #000;
+    transition: all 0.3s;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-y: auto;
+    justify-content: space-between;
+}
+
+    #sidebar .sidebar-header {
+        padding: 10px;
+        background: #ffffff;
+        text-align: center;
+        margin-top: 0;
+    }
+
+        #sidebar .sidebar-header img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 0;
+            transition: all 0.1s;
+        }
+
+            #sidebar .sidebar-header img:hover {
+                transform: scale(1.01);
+            }
+
+    #sidebar .list-unstyled {
+        padding: 0;
+        margin: 0;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+        #sidebar .list-unstyled li {
+            width: 100%;
+            padding: 10px 20px;
+            justify-content: center; /* Centrar contenido horizontalmente */
+            align-items: center; /* Centrar contenido verticalmente */
+        }
+
+            #sidebar .list-unstyled li a {
+                color: #000;
+                text-decoration: none;
+                padding: 10px 20px;
+                display: block;
+                text-align: center;
+                transition: all 0.1s;
+                border-radius: 20px;
+                margin: 5px 10px;
+                white-space: normal; /* Permitir salto de línea */
+                word-break: break-word; /* Permitir el salto de línea en palabras largas */
+            }
+
+                #sidebar .list-unstyled li a:hover {
+                    background: #cce5ff;
+                    transform: scale(1.025);
+                    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.15);
+                    color: #000;
+                }
+
+    #sidebar .collapse .list-unstyled {
+        background: #ffffff;
+        padding-left: 20px;
+    }
+
+        #sidebar .collapse .list-unstyled li {
+            padding: 0 5px;
+        }
+
+            #sidebar .collapse .list-unstyled li a {
+                padding: 5px 10px;
+                border-radius: 10px;
+                word-break: break-word; /* Permitir el salto de línea en palabras largas */
+            }
+
+    #sidebar .bottom-links {
+        padding: 10px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Centrar contenido horizontalmente */
+        align-items: center; /* Centrar contenido verticalmente */
+        text-align: center;
+        margin-top: auto;
+    }
+
+        #sidebar .bottom-links a.login-link {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            transition: all 0.1s;
+            display: block;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+            width: 80%; /* Ajustar el ancho automáticamente */
+        }
+
+            #sidebar .bottom-links a.login-link:hover {
+                background-color: #0056b3;
+                transform: scale(1.025);
+                box-shadow: 0 0px 16px rgba(0, 0, 0, 0.4);
+            }
+
+        #sidebar .bottom-links a.logout-link {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.1s;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
+            width: 80%; /* Ajustar el ancho automáticamente */
+        }
+
+            #sidebar .bottom-links a.logout-link:hover {
+                background-color: #23272b;
+                transform: scale(1.025);
+                box-shadow: 0 0px 16px rgba(0, 0, 0, 0.4);
+            }
+
+#content {
+    margin-left: 250px; /* Ajustado para que coincida con el sidebar */
+    padding: 20px;
+    flex-grow: 1;
+    transition: margin-left 0.3s;
+}
+
+footer {
+    margin-left: 250px; /* Ajustado para que coincida con el sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s;
+    width: calc(100% - 250px);
+}
+
+/* Estilo de la barra de desplazamiento */
+#sidebar .list-unstyled::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar .list-unstyled::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#sidebar .list-unstyled::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+    #sidebar .list-unstyled::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/* Consultas de medios para la capacidad de respuesta */
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+
+    #footer-navbar {
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+        #footer-navbar a {
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            flex-grow: 1;
+            padding: 10px 10px;
+        }
+
+            #footer-navbar a:hover {
+                background: #cce5ff;
+                color: #000;
+            }
+
+        #footer-navbar .footer-logo {
+            max-width: 30px;
+            height: auto;
+            margin: 0 10px;
+        }
+
+    #content, footer {
+        margin-left: 0;
+        padding-bottom: 60px;
+        width: 100%;
+    }
+
+    .bottom-links a.login-link, .bottom-links a.logout-link {
+        font-size: 0;
+    }
+
+        .bottom-links a.login-link i, .bottom-links a.logout-link i {
+            font-size: 24px;
+        }
+}

@@ -1,41 +1,57 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Ordene>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ordenes";
 }
 
-<h1>Ordenes</h1>
+<h1><i class="bi bi-journal"></i> <strong>Ordenes</strong></h1>
 
 <p>
     <a class="btn btn-warning" asp-action="Create">Agregar orden</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
-                @Html.DisplayNameFor(model => model.Total):
+                @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reserva):
+                @Html.DisplayNameFor(model => model.Reserva)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                $ @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                Nro. @Html.DisplayFor(modelItem => item.Reserva.Id)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    $ @Html.DisplayFor(modelItem => item.Total)
                 </td>
-        </tr>
-}
+                <td>
+                    Nro. @Html.DisplayFor(modelItem => item.Reserva.Id) ( Mesa @Html.DisplayFor(modelItem => item.Reserva.Mesa.NumeroMesa) )
+                </td>
+                <td>
+                    @if (item.Pagos.All(p => p.Estado != "Pagado"))
+                    {
+                        <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                        @Html.Raw("|")
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Agregar platos" class="btn btn-dark" asp-controller="OrdenDetalles" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-cart-plus"></i></a>
+                        @Html.Raw("|")
+                        <a title="Ir a pagar" class="btn btn-success" asp-controller="Pagoes" asp-action="Create" asp-route-ordenId="@item.Id"><i class="bi bi-coin"></i></a>
+                    }
+                    else
+                    {
+                        <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a>
+                        @Html.Raw("|")
+                        <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

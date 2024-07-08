@@ -19,13 +19,23 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes
-        public async Task<IActionResult> Index()
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
+        public async Task<IActionResult> Index(string porRol)
         {
-            var restoMalTiempoDbContext = _context.RolesPermisos.Include(r => r.Permiso).Include(r => r.Rol);
+            var restoMalTiempoDbContext = _context.RolesPermisos.Include(r => r.Permiso).Include(r => r.Rol).AsQueryable();
+
+            if (!string.IsNullOrEmpty(porRol))
+            {
+                restoMalTiempoDbContext = restoMalTiempoDbContext.Where(m => m.Rol.Nombre == porRol);
+            }
+
             return View(await restoMalTiempoDbContext.ToListAsync());
         }
 
         // GET: RolesPermisoes/Details/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,10 +56,12 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: RolesPermisoes/Create
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public IActionResult Create()
         {
-            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Id");
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Nombre");
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre");
             return View();
         }
 
@@ -66,12 +78,14 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Id", rolesPermiso.PermisoId);
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", rolesPermiso.RolId);
+            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Nombre", rolesPermiso.PermisoId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", rolesPermiso.RolId);
             return View(rolesPermiso);
         }
 
         // GET: RolesPermisoes/Edit/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,8 +98,8 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Id", rolesPermiso.PermisoId);
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", rolesPermiso.RolId);
+            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Nombre", rolesPermiso.PermisoId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", rolesPermiso.RolId);
             return View(rolesPermiso);
         }
 
@@ -121,12 +135,14 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Id", rolesPermiso.PermisoId);
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", rolesPermiso.RolId);
+            ViewData["PermisoId"] = new SelectList(_context.Permisos, "Id", "Nombre", rolesPermiso.PermisoId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", rolesPermiso.RolId);
             return View(rolesPermiso);
         }
 
         // GET: RolesPermisoes/Delete/5
+        [VerificarPermisos("VerCrudRolesPermisos")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

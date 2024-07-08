@@ -13,25 +13,33 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ClienteId" class="control-label">Id del cliente:</label>
-                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
+                <label asp-for="RestauranteId" class="control-label">Sucursal del restaurante:</label>
+                <select asp-for="RestauranteId" class="form-control" asp-items="ViewBag.RestauranteId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="MesaId" class="control-label">Id de la mesa:</label>
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label">Nombre para reserva:</label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MesaId" class="control-label">Nro. mesa:</label>
                 <select asp-for="MesaId" class ="form-control" asp-items="ViewBag.MesaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="FechaReservada" class="control-label">Fecha de la reserva:</label>
-                <input asp-for="FechaReservada" class="form-control" />
+                <input type="date" asp-for="FechaReservada" class="form-control" disabled="" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="FechaReservada" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label">Estado de la reserva:</label>
-                <label asp-for="Estado" class="control-label">Estado de la mesa:</label>
-                <select asp-for="Estado" class="form-control">
+                <select asp-for="Estado" class="form-select" id="exampleDisabledSelect1" fdprocessedid="4i5fj">
                     <option value="Pendiente">Pendiente</option>
                     <option value="Confirmada">Confirmada</option>
-                    <option value="Cancelada">Cancelada</option>
                 </select>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>

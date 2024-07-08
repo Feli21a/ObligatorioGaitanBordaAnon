@@ -1,0 +1,50 @@
+﻿@model ObliGaitanBordaAnon.Models.Cotizacione
+
+@{
+    ViewData["Title"] = "Editar cotizacion";
+}
+
+<h1>Editar cotizacion</h1>
+
+<h4>Cotizaciones</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            @if (Model.NombreDivisa == null)
+            {
+                <div class="form-group">
+                    <label asp-for="NombreDivisa" class="control-label">Valor:</label>
+                    <input asp-for="NombreDivisa" disabled="" class="form-control" />
+                    <span asp-validation-for="NombreDivisa" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="NombreDivisa" class="control-label">Cotizacion:</label>
+                    <select asp-for="NombreDivisa" class="form-control" asp-items="ViewBag.Divisas"></select>
+                    <span asp-validation-for="NombreDivisa" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="CotizacionDivisa" class="control-label">Valor:</label>
+                <input asp-for="CotizacionDivisa" disabled="" class="form-control" />
+                <span asp-validation-for="CotizacionDivisa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

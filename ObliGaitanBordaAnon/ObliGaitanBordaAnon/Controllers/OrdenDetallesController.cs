@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
             var restoMalTiempoDbContext = _context.OrdenDetalles.Include(o => o.Menu).Include(o => o.Orden);
@@ -46,10 +48,18 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Create
-        public IActionResult Create()
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
+        public IActionResult Create(int? ordenId)
         {
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id");
-            ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id");
+
+            if(_context.Ordenes.Count() == 0 || _context.Menus.Count() == 0)
+            {
+                return RedirectToAction("ErrorAction", "Home");
+            }
+
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato");
+            ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenId);
             return View();
         }
 
@@ -62,16 +72,35 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             if (ModelState.IsValid)
             {
+                var menu = await _context.Menus.FindAsync(ordenDetalle.MenuId); //menu pedido
+                if (menu == null)
+                {
+                    return NotFound();
+                }
+
+                var orden = await _context.Ordenes.FindAsync(ordenDetalle.OrdenId);//orden ya generada
+                if (orden == null)
+                {
+                    return NotFound();
+                }
+
+                orden.Total += (menu.Precio * ordenDetalle.Cantidad);
+
+                // añade el detalle de la orden
                 _context.Add(ordenDetalle);
+
+                _context.Update(orden);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id", ordenDetalle.MenuId);
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato", ordenDetalle.MenuId);
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenDetalle.OrdenId);
             return View(ordenDetalle);
         }
 
         // GET: OrdenDetalles/Edit/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,7 +113,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id", ordenDetalle.MenuId);
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato", ordenDetalle.MenuId);
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenDetalle.OrdenId);
             return View(ordenDetalle);
         }
@@ -121,12 +150,14 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "Id", ordenDetalle.MenuId);
+            ViewData["MenuId"] = new SelectList(_context.Menus, "Id", "NombrePlato", ordenDetalle.MenuId);
             ViewData["OrdenId"] = new SelectList(_context.Ordenes, "Id", "Id", ordenDetalle.OrdenId);
             return View(ordenDetalle);
         }
 
         // GET: OrdenDetalles/Delete/5
+        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -152,8 +183,11 @@ namespace ObliGaitanBordaAnon.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var ordenDetalle = await _context.OrdenDetalles.FindAsync(id);
+            var menu = await _context.Menus.FindAsync(ordenDetalle.MenuId); //menu pedido
+            var orden = await _context.Ordenes.FindAsync(ordenDetalle.OrdenId);//orden ya generada
             if (ordenDetalle != null)
             {
+                orden.Total -= (menu.Precio * ordenDetalle.Cantidad);
                 _context.OrdenDetalles.Remove(ordenDetalle);
             }
 

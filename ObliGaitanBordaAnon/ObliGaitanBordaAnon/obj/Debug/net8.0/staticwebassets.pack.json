@@ -181,8 +181,28 @@
       "PackagePath": "staticwebassets\\ObliGaitanBordaAnon.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\Descuentos.css",
+      "PackagePath": "staticwebassets\\css\\Descuentos.css"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\DetallesMenu.css",
+      "PackagePath": "staticwebassets\\css\\DetallesMenu.css"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\Home.css",
+      "PackagePath": "staticwebassets\\css\\Home.css"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\MenuVM.css",
+      "PackagePath": "staticwebassets\\css\\MenuVM.css"
+    },
+    {
       "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\Zhapyr.css",
       "PackagePath": "staticwebassets\\css\\Zhapyr.css"
+    },
+    {
+      "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\sidebar.css",
+      "PackagePath": "staticwebassets\\css\\sidebar.css"
     },
     {
       "Id": "C:\\Users\\felia\\Desktop\\REPOSITORIO\\ObligatorioGaitanBordaAnon\\ObliGaitanBordaAnon\\ObliGaitanBordaAnon\\wwwroot\\css\\site.css",

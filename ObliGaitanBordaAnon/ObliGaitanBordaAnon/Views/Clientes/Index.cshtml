@@ -1,17 +1,33 @@
 ﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes";
 }
 
-<h1>Clientes</h1>
+<h1><i class="bi bi-person-hearts"></i> <strong>Clientes</strong></h1>
 
-<p>
-    <a class="btn btn-warning" asp-action="Create">Agregar un cliente</a>
-</p>
-<table class="table">
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get" class="form-inline align-items-center">
+            <label for="cedula" class="mr-2">Filtrar por cédula:</label>
+            <div class="d-flex align-items-center">
+                <input type="text" name="cedula" class="form-control form-control-sm" style="width: 35%;" id="cedula" placeholder="Ingrese la cédula" />
+                <div>
+                    <input type="submit" value="Filtrar" class="btn btn-primary btn-sm ml-2" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-warning mt-3" asp-action="Create">Agregar cliente</a>
+    </div>
+</div>
+<table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="table-info">
+            <th>
+                Cedula
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -29,6 +45,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Ci)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
@@ -38,9 +57,9 @@
                     @Html.DisplayFor(modelItem => item.TipoCliente)
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
                 </td>
             </tr>
         }

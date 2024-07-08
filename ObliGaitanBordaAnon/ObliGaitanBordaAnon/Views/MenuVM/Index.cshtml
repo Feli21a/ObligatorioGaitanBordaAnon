@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.MenuViewModel>
+
+@{
+    ViewData["Title"] = "Menú";
+}
+
+<link rel="stylesheet" href="~/css/MenuVM.css" asp-append-version="true" />
+
+<h1 class="text-center my-4" style="font-size: 50px;"><i class="bi bi-journal-medical"></i> <strong>Menú</strong></h1>
+
+<form asp-action="Index" method="get" class="form-inline mb-4 d-flex justify-content-center" id="filterForm">
+    <div class="form-group mr-3">
+        <label for="categoria" class="mr-2">Filtrar</label>
+        <div class="custom-select-container">
+            <select name="categoria" class="form-control form-control-sm" id="categoria" onchange="this.form.submit()">
+                <option>Categoria</option>
+                <option value="Principal">Principales</option>
+                <option value="Bebida">Bebidas</option>
+                <option value="Trago">Tragos</option>
+                <option value="Postre">Postres</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <a asp-controller="MenuVM" asp-action="Detalles" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                    <div class="card h-100 menu-card">
+                        @{
+                            string ubiImg = "~/ExternalImages/Logo.png";
+                            if (!string.IsNullOrEmpty(item.ImagenUrl))
+                            {
+                                ubiImg = item.ImagenUrl;
+                            }
+                        }
+                        <img src="@Url.Content(ubiImg)" class="card-img-top small-image" alt="@item.NombrePlato">
+                        <div class="card-body menu-card-body">
+                            <h5 class="card-title menu-card-title">@item.NombrePlato</h5>
+                            <p class="card-text" style="font-style: italic; color: gray">Click para información</p>
+                            <span class="menu-card-text precio">$@item.Precio</span>
+                        </div>
+                        <img src="~/ExternalImages/LogoSF.png" alt="Logo" class="card-logo" title="Logo">
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

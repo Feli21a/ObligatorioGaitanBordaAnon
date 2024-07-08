@@ -13939,8 +13939,18 @@ thead th {
 }
 
 .card {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
 }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card a {
+        text-decoration: none;
+        color: inherit;
+    }
 
 .modal-footer {
     background-color: var(--bs-tertiary-bg);
@@ -13948,4 +13958,9 @@ thead th {
 
 .modal-content {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

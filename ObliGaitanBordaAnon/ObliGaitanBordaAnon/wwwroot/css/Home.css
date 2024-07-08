@@ -1,0 +1,125 @@
+﻿body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.display-4 {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.lead, .text-muted {
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn-primary {
+    background-color: #3C9BFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #357ac4;
+    }
+
+.btn-light {
+    background-color: white !important;
+    color: #3C9BFF !important;
+    border: 1px solid #3C9BFF;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .btn-light:hover {
+        color: #3C9BFF !important;
+        transform: scale(1.03);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.);
+    }
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+.card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.15em;
+    text-align: justify;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.small-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .small-image:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.welcome-image {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 375px; /* Ajusta el tamaño máximo de la imagen */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    height: 350px;
+    border: 10px solid white; /* Borde blanco */
+    border-radius: 20px; /* Ajusta el radio de borde */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+    .welcome-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+.welcome-text {
+    max-width: 600px; /* Ajusta el tamaño máximo del contenedor de texto */
+}
+
+.carousel-image {
+    height: 500px; /* Ajusta esta altura según tus necesidades */
+    object-fit: cover;
+}
+
+.bg-primary {
+    background-color: #3C9BFF !important;
+    border: 20px solid #3C9BFF; /* Borde blanco */
+}
+
+.text-primary-foreground {
+    color: white !important;
+}
+
+.text-container {
+    max-width: 70%; /* Ajusta este valor según lo necesites */
+    margin: 0 auto;
+}
+
+    .text-container h4 {
+        font-size: 1.5rem; /* Ajusta el tamaño de la fuente según lo necesites */
+        margin-top: 1rem;
+    }
+
+    .text-container p {
+        font-size: 1rem; /* Ajusta el tamaño de la fuente según lo necesites */
+    }

@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Usuarios
+        [VerificarPermisos("VerCrudUsuario")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Index()
         {
             var restoMalTiempoDbContext = _context.Usuarios.Include(u => u.Rol);
@@ -26,6 +28,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Usuarios/Details/5
+        [VerificarPermisos("VerCrudUsuario")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,9 +49,10 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Usuarios/Create
+        [VerificarPermisos("VerCrudUsuario")]
         public IActionResult Create()
         {
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre");
             return View();
         }
 
@@ -64,11 +69,13 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.RolId);
             return View(usuario);
         }
 
         // GET: Usuarios/Edit/5
+        [VerificarPermisos("VerCrudUsuario")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +88,7 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.RolId);
             return View(usuario);
         }
 
@@ -117,11 +124,13 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolId);
+            ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Nombre", usuario.RolId);
             return View(usuario);
         }
 
         // GET: Usuarios/Delete/5
+        [VerificarPermisos("VerCrudUsuario")]
+        [VerificarPermisos("VerTodo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

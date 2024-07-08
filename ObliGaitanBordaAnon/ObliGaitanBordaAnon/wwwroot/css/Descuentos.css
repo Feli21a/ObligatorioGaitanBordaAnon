@@ -1,0 +1,11 @@
+﻿.descuentos-aplicados {
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    color: gray;
+}
+
+    .descuentos-aplicados p {
+        margin: 0;
+        padding-left: 10px;
+    }

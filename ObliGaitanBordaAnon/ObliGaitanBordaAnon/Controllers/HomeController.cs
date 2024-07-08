@@ -7,18 +7,24 @@ namespace ObliGaitanBordaAnon.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RestoMalTiempoDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RestoMalTiempoDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var reseñas = _context.Resenias
+                .OrderByDescending(r => r.Puntaje)
+                .Take(3)
+                .ToList();
+            return View(reseñas);
         }
 
-        public IActionResult Privacy()
+        public IActionResult ErrorAction()
         {
             return View();
         }

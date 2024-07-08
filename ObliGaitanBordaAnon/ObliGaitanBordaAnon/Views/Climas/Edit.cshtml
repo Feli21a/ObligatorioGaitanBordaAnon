@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.Clima
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar clima";
 }
 
 <h1>Editar clima</h1>
@@ -15,7 +15,7 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label">Fecha:</label>
-                <input asp-for="Fecha" class="form-control" />
+                <input type="date" asp-for="Fecha" class="form-control" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,7 +26,6 @@
             <div class="form-group">
                 <label asp-for="Lluvia" class="control-label">Lluvia</label>
                 <input type="checkbox" asp-for="Lluvia" class="form-control" />
-                <input type="hidden" name="Lluvia" value="false" />
                 <span asp-validation-for="Lluvia" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +35,7 @@
             </div>
             <div class="form-group">
                 <hr />
-                <input type="submit" value="Crear" class="btn btn-success" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
                 <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
             </div>
         </form>

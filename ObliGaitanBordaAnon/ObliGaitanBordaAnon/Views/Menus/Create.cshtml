@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.Menu
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear menu";
 }
 
 <h1>Agregar Menu</h1>
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NombrePlato" class="control-label">Nombre del plato:</label>
@@ -23,24 +23,38 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Categoria" class="control-label">Categoria del plato:</label>
+                <select asp-for="Categoria" class="form-control">
+                    <option value="Principal">Principales</option>
+                    <option value="Bebida">Bebidas</option>
+                    <option value="Trago">Tragos</option>
+                    <option value="Postre">Postres</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagenUrl" class="control-label">Imagen:</label>
+                <input type="file" name="ImagenFile" class="form-control" />
+                <input type="hidden" asp-for="ImagenUrl" />
+            </div>
+            <div class="form-group">
                 <label asp-for="Precio" class="control-label">Precio del menu:</label>
                 <div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="j8b7h" asp-for="Precio">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Precio">
                     </div>
                     <span asp-validation-for="Precio" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <hr />
-                    <input type="submit" value="Crear" class="btn btn-primary" />
-                    <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
-                </div>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
             </div>
         </form>
     </div>
 </div>
-
 
 @section Scripts {
     @{

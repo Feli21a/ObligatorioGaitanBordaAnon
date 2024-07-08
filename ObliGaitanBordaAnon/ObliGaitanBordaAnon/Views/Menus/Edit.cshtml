@@ -1,18 +1,17 @@
 ﻿@model ObliGaitanBordaAnon.Models.Menu
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar menu";
 }
 
-<h1>Editar menu</h1>
+<h1>Editar Menu</h1>
 
 <h4>Menu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="NombrePlato" class="control-label">Nombre del plato:</label>
                 <input asp-for="NombrePlato" class="form-control" />
@@ -24,24 +23,42 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Categoria" class="control-label">Categoria del plato:</label>
+                <select asp-for="Categoria" class="form-control">
+                    <option value="Principal">Principales</option>
+                    <option value="Bebida">Bebidas</option>
+                    <option value="Trago">Tragos</option>
+                    <option value="Postre">Postres</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ImagenFile" class="control-label">Imagen:</label>
+                <input type="file" name="ImagenFile" class="form-control" />
+                @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                {
+                    <img src="@Model.ImagenUrl" alt="@Model.NombrePlato" style="max-width: 100px; max-height: 100px;" />
+                }
+                <input type="hidden" asp-for="ImagenUrl" />
+            </div>
+            <div class="form-group">
                 <label asp-for="Precio" class="control-label">Precio del menu:</label>
                 <div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" fdprocessedid="vd754c" asp-for="Precio">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Precio">
                     </div>
                     <span asp-validation-for="Precio" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <hr />
-                    <input type="submit" value="Guardar" class="btn btn-success" />
-                    <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
-                </div>
+            </div>
+            <div class="form-group">
+                <hr />
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
             </div>
         </form>
     </div>
 </div>
-
 
 @section Scripts {
     @{

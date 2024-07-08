@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.Cotizacione>
+
+@{
+    ViewData["Title"] = "Cotizaciones";
+}
+
+<h1><i class="bi bi-currency-exchange"></i> <strong>Cotizaciones</strong></h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create">Agregar cotizacion</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-info">
+            <th>
+                Tipo de moneda
+            </th>
+            <th>
+                Valor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDivisa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CotizacionDivisa)
+                </td>
+                <td>
+                    <a title="Editar" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a> |
+                    <a title="Detalles" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square-fill"></i></a> |
+                    <a title="Borrar" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

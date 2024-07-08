@@ -58,6 +58,10 @@ public partial class RestoMalTiempoDbContext : DbContext
             entity.HasIndex(e => e.Email, "uqClientesEmail").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Ci)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("ci");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -79,14 +83,22 @@ public partial class RestoMalTiempoDbContext : DbContext
             entity.ToTable("Clima");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.DescripcionClima)
+            entity.Property(e => e.Ciudad)
                 .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("ciudad");
+            entity.Property(e => e.DescripcionClima)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("descripcionClima");
             entity.Property(e => e.Fecha)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha");
             entity.Property(e => e.Lluvia).HasColumnName("lluvia");
+            entity.Property(e => e.Pais)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("pais");
             entity.Property(e => e.Temperatura).HasColumnName("temperatura");
         });
 
@@ -192,6 +204,7 @@ public partial class RestoMalTiempoDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("metodoPago");
             entity.Property(e => e.Monto).HasColumnName("monto");
+            entity.Property(e => e.OrdenId).HasColumnName("ordenId");
             entity.Property(e => e.ReservaId).HasColumnName("reservaId");
 
             entity.HasOne(d => d.Clima).WithMany(p => p.Pagos)
@@ -203,6 +216,10 @@ public partial class RestoMalTiempoDbContext : DbContext
                 .HasForeignKey(d => d.CotizacionId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("fk3Pagos");
+
+            entity.HasOne(d => d.Orden).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.OrdenId)
+                .HasConstraintName("fk4Pagos");
 
             entity.HasOne(d => d.Reserva).WithMany(p => p.Pagos)
                 .HasForeignKey(d => d.ReservaId)
@@ -268,6 +285,7 @@ public partial class RestoMalTiempoDbContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
+            entity.Property(e => e.RestauranteId).HasColumnName("restauranteId");
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.Reservas)
                 .HasForeignKey(d => d.ClienteId)
@@ -276,6 +294,10 @@ public partial class RestoMalTiempoDbContext : DbContext
             entity.HasOne(d => d.Mesa).WithMany(p => p.Reservas)
                 .HasForeignKey(d => d.MesaId)
                 .HasConstraintName("fk2Reservas");
+
+            entity.HasOne(d => d.Restaurante).WithMany(p => p.Reservas)
+                .HasForeignKey(d => d.RestauranteId)
+                .HasConstraintName("fk3Reservas");
         });
 
         modelBuilder.Entity<Restaurante>(entity =>

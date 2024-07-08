@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.RolesPermiso
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Asignacion roles-permiso";
 }
 
 <h1>Asignar permisos a roles</h1>
@@ -13,11 +13,11 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="RolId" class="control-label">ID del rol:</label>
+                <label asp-for="RolId" class="control-label">Rol:</label>
                 <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PermisoId" class="control-label">Id del permiso:</label>
+                <label asp-for="PermisoId" class="control-label">Permiso:</label>
                 <select asp-for="PermisoId" class="form-control" asp-items="ViewBag.PermisoId"></select>
             </div>
             <div class="form-group">

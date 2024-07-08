@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +20,23 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes
-        public async Task<IActionResult> Index()
+
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
+        public async Task<IActionResult> Index(string cedula)
         {
-            return View(await _context.Clientes.ToListAsync());
+            var clientes = from c in _context.Clientes select c;
+
+            if (!string.IsNullOrEmpty(cedula))
+            {
+                clientes = clientes.Where(c => c.Ci.Contains(cedula));
+            }
+
+            return View(await clientes.ToListAsync());
         }
 
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -42,6 +55,8 @@ namespace ObliGaitanBordaAnon.Controllers
             return View(cliente);
         }
 
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         // GET: Clientes/Create
         public IActionResult Create()
         {
@@ -53,7 +68,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Email,TipoCliente")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Ci,Nombre,Email,TipoCliente")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +80,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes/Edit/5
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +102,7 @@ namespace ObliGaitanBordaAnon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Email,TipoCliente")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ci,Nombre,Email,TipoCliente")] Cliente cliente)
         {
             if (id != cliente.Id)
             {
@@ -116,6 +133,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Clientes/Delete/5
+        [VerificarPermisos("VerCrudClientes")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -152,5 +171,6 @@ namespace ObliGaitanBordaAnon.Controllers
         {
             return _context.Clientes.Any(e => e.Id == id);
         }
+
     }
 }

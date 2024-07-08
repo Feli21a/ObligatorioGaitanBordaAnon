@@ -1,0 +1,33 @@
+﻿@model ObliGaitanBordaAnon.Models.MenuViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Plato";
+}
+
+<link rel="stylesheet" href="~/css/DetallesMenu.css" />
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                @{
+                    string ubiImg = Model.ImagenUrl ?? "~/ExternalImages/Logo.png";
+                }
+                <img src="@Url.Content(ubiImg)" class="card-img" alt="@Model.NombrePlato">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h1 class="card-title">@Html.DisplayFor(model => model.NombrePlato)</h1>
+                    <hr />
+                    <h4>Descripción</h4>
+                    <p class="card-text">@Html.DisplayFor(model => model.Descripcion)</p>
+                    <h4>Categoria:</h4>
+                    <p class="card-text">@Html.DisplayFor(model => model.Categoria)</p>
+                    <h4>Precio</h4>
+                    <p class="card-text display-4">$@Html.DisplayFor(model => model.Precio)</p>
+                    <a class="btn btn-primary btn-lg mt-3" asp-action="Index">Volver al Menú</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

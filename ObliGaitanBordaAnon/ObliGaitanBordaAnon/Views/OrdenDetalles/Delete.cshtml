@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.OrdenDetalle
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Borrar detalles";
 }
 
 <h1>Borrar detalles de orden</h1>
@@ -17,16 +17,16 @@
             @Html.DisplayFor(model => model.Cantidad)
         </dd>
         <dt class = "col-sm-2">
-            Nro. @Html.DisplayNameFor(model => model.Menu) Nro.:
+            Nro. @Html.DisplayNameFor(model => model.Menu):
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Menu.Id)
+            @Html.DisplayFor(model => model.Menu.NombrePlato)
         </dd>
         <dt class = "col-sm-2">
-            Nro. @Html.DisplayNameFor(model => model.Orden) Nro.:
+            Nro. @Html.DisplayNameFor(model => model.Orden):
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Orden.Id)
+            Nro. @Html.DisplayFor(model => model.Orden.Id)
         </dd>
     </dl>
     

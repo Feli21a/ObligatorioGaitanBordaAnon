@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ObliGaitanBordaAnon.Models.ReseniaViewModel>
+
+@{
+    ViewData["Title"] = "Reseñas";
+}
+
+<div class="container mt-6">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0"><i class="bi bi-pencil"></i> <strong>Reseñas</strong></h1>
+        <a class="btn btn-warning" asp-action="Crear">Agregar reseña</a>
+    </div>
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-10 mb-4">
+                <div class="card review-card shadow-sm @(item.Puntaje <= 2 ? "border-danger" : item.Puntaje > 2 && item.Puntaje < 4 ? "border-warning" : "border-success")">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+                                    <h5 class="card-title mb-0">@item.Email</h5>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">Sucursal: @item.DireccionRestaurante (@item.RestauranteId)</h6>
+                            <div class="mb-2">
+                                @for (var i = 1; i <= 5; i++)
+                                {
+                                    <i class="bi bi-star-fill @(i <= item.Puntaje ? "text-warning" : "text-muted")"></i>
+                                }
+                            </div>
+                            <p class="card-text">@item.Comentario</p>
+                        </div>
+                        <footer class="blockquote-footer align-content-center">Fecha: @item.FechaResenia?.ToString("dd/MM/yyyy")</footer>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .review-card {
+        background-color: #ffffff;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        min-height: 12rem;
+        max-height: 15rem;
+        transition: transform 0.1s ease-in-out;
+        border-radius: 8px;
+    }
+
+        .review-card:hover {
+            transform: scale(1.01);
+        }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .blockquote-footer {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    .bi-star-fill {
+        font-size: 1.25rem;
+    }
+
+    .border-danger {
+        border: 2px solid red !important;
+    }
+
+    .border-warning {
+        border: 2px solid orange !important;
+    }
+
+    .border-success {
+        border: 2px solid green !important;
+    }
+</style>

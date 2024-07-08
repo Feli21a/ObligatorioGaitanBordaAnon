@@ -1,7 +1,7 @@
 ﻿@model ObliGaitanBordaAnon.Models.Pago
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle pago";
 }
 
 <h1>Detalles del pago</h1>
@@ -14,7 +14,7 @@
             @Html.DisplayNameFor(model => model.Monto):
         </dt>
         <dd class="col-sm-10">
-            $ @Html.DisplayFor(model => model.Monto)
+            $ @Html.DisplayFor(model => model.Monto) (@Html.DisplayFor(model => model.Cotizacion.NombreDivisa))
         </dd>
         <dt class="col-sm-2">
             Fecha del pago:

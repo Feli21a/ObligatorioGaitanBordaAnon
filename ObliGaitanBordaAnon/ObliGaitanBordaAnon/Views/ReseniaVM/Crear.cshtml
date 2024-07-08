@@ -1,0 +1,87 @@
+﻿@model ObliGaitanBordaAnon.Models.ReseniaViewModel
+
+@{
+    ViewData["Title"] = "Agregar Reseña";
+}
+
+<div class="container mt-6">
+    <h2 class="text-center" style="font-weight: bold;">Agregar Reseña</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm" style="background-color: #ffffff; margin-top: 10px; max-width: 80%; margin: 0 auto;">
+                <div class="card-body">
+                    <form asp-action="Crear" method="post">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label">Email:</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RestauranteId" class="control-label">Sucursal</label>
+                            <select asp-for="RestauranteId" class="form-control" asp-items="ViewBag.RestauranteId"></select>
+                            <span asp-validation-for="RestauranteId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Puntaje" class="control-label" style="margin-top: 5px;">Puntaje </label>
+                            <div class="star-rating" style="align-content: initial;">
+                                @for (int i = 5; i >= 1; i--)
+                                {
+                                    <input type="radio" name="Puntaje" id="star-@i" value="@i" />
+                                    <label for="star-@i" class="bi bi-star-fill"></label>
+                                }
+                            </div>
+                            <span asp-validation-for="Puntaje" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Comentario" class="control-label">Comentario</label>
+                            <textarea asp-for="Comentario" class="form-control"></textarea>
+                            <span asp-validation-for="Comentario" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Agregar" class="btn btn-primary btn-lg" style="margin-top: 10px" />
+                            <a asp-action="Index" class="btn btn-secondary btn-lg" style="margin-top: 10px">Volver a la lista</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .card:hover {
+        transform: none;
+    }
+
+    .star-rating {
+        direction: rtl;
+        display: flex;
+        justify-content: center;
+    }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+            .star-rating input:checked ~ label,
+            .star-rating label:hover,
+            .star-rating label:hover ~ label {
+                color: #ffc107;
+            }
+
+                .star-rating label:hover ~ label {
+                    color: #ffc107;
+                }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

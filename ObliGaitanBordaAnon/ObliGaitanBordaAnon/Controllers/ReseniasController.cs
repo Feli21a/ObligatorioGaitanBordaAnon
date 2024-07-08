@@ -19,6 +19,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Resenias
+        [VerificarPermisos("VerCrudReseñas")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
             var restoMalTiempoDbContext = _context.Resenias.Include(r => r.Cliente).Include(r => r.Restaurante);
@@ -26,6 +28,8 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Resenias/Details/5
+        [VerificarPermisos("VerCrudReseñas")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,10 +50,12 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: Resenias/Create
+        [VerificarPermisos("VerCrudReseñas")]
+        [VerificarPermisos(("VerTodo"))]
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id");
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email");
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion");
             return View();
         }
 
@@ -66,12 +72,14 @@ namespace ObliGaitanBordaAnon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 
         // GET: Resenias/Edit/5
+        [VerificarPermisos("VerCrudReseñas")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,8 +92,8 @@ namespace ObliGaitanBordaAnon.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 
@@ -121,12 +129,14 @@ namespace ObliGaitanBordaAnon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id", resenia.ClienteId);
-            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Id", resenia.RestauranteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Email", resenia.ClienteId);
+            ViewData["RestauranteId"] = new SelectList(_context.Restaurantes, "Id", "Direccion", resenia.RestauranteId);
             return View(resenia);
         }
 
         // GET: Resenias/Delete/5
+        [VerificarPermisos("VerCrudReseñas")]
+        [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
