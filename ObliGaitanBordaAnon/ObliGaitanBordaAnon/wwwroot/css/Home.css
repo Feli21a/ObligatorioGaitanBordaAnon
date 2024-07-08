@@ -109,3 +109,17 @@
 .text-primary-foreground {
     color: white !important;
 }
+
+.text-container {
+    max-width: 70%; /* Ajusta este valor según lo necesites */
+    margin: 0 auto;
+}
+
+    .text-container h4 {
+        font-size: 1.5rem; /* Ajusta el tamaño de la fuente según lo necesites */
+        margin-top: 1rem;
+    }
+
+    .text-container p {
+        font-size: 1rem; /* Ajusta el tamaño de la fuente según lo necesites */
+    }
