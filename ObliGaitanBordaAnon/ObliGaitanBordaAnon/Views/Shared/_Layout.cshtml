@@ -55,7 +55,7 @@
                                 {
                                     <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i> Usuarios</a></li>
                                 }
-                                if (permisos.Contains("VerCrudClientes") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudCliente") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i> Clientes</a></li>
                                 }
@@ -67,7 +67,7 @@
                                 {
                                     <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i> Menú</a></li>
                                 }
-                                if (permisos.Contains("VerCrudReservas") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudReserva") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i> Reservas</a></li>
                                 }
@@ -75,7 +75,7 @@
                                 {
                                     <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i> Ordenes</a></li>
                                 }
-                                if (permisos.Contains("VerCrudOrdenDetalles") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudOrdenDetalle") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i> Detalles de Orden</a></li>
                                 }
@@ -87,23 +87,23 @@
                                 {
                                     <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i> Clima</a></li>
                                 }
-                                if (permisos.Contains("VerCrudCotizaciones") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudCotizacion") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i> Cotizaciones</a></li>
                                 }
-                                if (permisos.Contains("VerCrudReseñas") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudReseña") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i> Reseñas</a></li>
                                 }
-                                if (permisos.Contains("VerCrudRoles") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudRol") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i> Roles</a></li>
                                 }
-                                if (permisos.Contains("VerCrudPermisos") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudPermiso") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i> Permisos</a></li>
                                 }
-                                if (permisos.Contains("VerCrudRolesPermisos") || permisos.Contains("VerTodo"))
+                                if (permisos.Contains("VerCrudRolPermiso") || permisos.Contains("VerTodo"))
                                 {
                                     <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i> Roles y permisos</a></li>
                                 }
@@ -158,7 +158,7 @@
                         {
                             <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Index"><i class="bi bi-person-fill-gear"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudClientes") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudCliente") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index"><i class="bi bi-person-hearts"></i></a></li>
                         }
@@ -170,7 +170,7 @@
                         {
                             <li><a class="dropdown-item" asp-controller="Menus" asp-action="Index"><i class="bi bi-journal-medical"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudReservas") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudReserva") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Reservas" asp-action="Index"><i class="bi bi-journal-bookmark-fill"></i></a></li>
                         }
@@ -178,11 +178,11 @@
                         {
                             <li><a class="dropdown-item" asp-controller="Ordenes" asp-action="Index"><i class="bi bi-journal"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudOrdenDetalles") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudOrdenDetalle") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="OrdenDetalles" asp-action="Index"><i class="bi bi-journal-text"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudReseñas") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudReseña") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Resenias" asp-action="Index"><i class="bi bi-pencil"></i></a></li>
                         }
@@ -194,19 +194,19 @@
                         {
                             <li><a class="dropdown-item" asp-controller="Climas" asp-action="Index"><i class="bi bi-cloud-sun-fill"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudRoles") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudRol") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Roles" asp-action="Index"><i class="bi bi-nut"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudPermisos") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudPermiso") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Permisoes" asp-action="Index"><i class="bi bi-person-fill-lock"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudRolesPermisos") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudRolPermiso") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="RolesPermisoes" asp-action="Index"><i class="bi bi-toggles"></i></a></li>
                         }
-                        if (permisos.Contains("VerCrudCotizaciones") || permisos.Contains("VerTodo"))
+                        if (permisos.Contains("VerCrudCotizacion") || permisos.Contains("VerTodo"))
                         {
                             <li><a class="dropdown-item" asp-controller="Cotizaciones" asp-action="Index"><i class="bi bi-currency-exchange"></i></a></li>
                         }

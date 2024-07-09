@@ -36,18 +36,12 @@
                                     </div>
                                 </div>
                                 <p class="card-text">"@(resenia.Comentario)"</p>
-                                @if (resenia.Puntaje < 3)
-                                {
-                                    <span class="badge rounded-pill bg-danger">@resenia.Puntaje / 5</span>
-                                }
-                                else if (resenia.Puntaje > 3)
-                                {
-                                    <span class="badge rounded-pill bg-success">@resenia.Puntaje / 5</span>
-                                }
-                                else
-                                {
-                                    <span class="badge rounded-pill bg-warning">@resenia.Puntaje / 5</span>
-                                }
+                                <div class="mt-auto">
+                                    @for (var i = 1; i <= 5; i++)
+                                    {
+                                        <i class="bi bi-star-fill @(i <= resenia.Puntaje ? "text-warning" : "text-muted")"></i>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>

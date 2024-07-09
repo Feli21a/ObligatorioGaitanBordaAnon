@@ -19,7 +19,7 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles
-        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos("VerCrudOrdenDetalle")]
         [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Index()
         {
@@ -48,7 +48,7 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Create
-        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos("VerCrudOrdenDetalle")]
         [VerificarPermisos(("VerTodo"))]
         public IActionResult Create(int? ordenId)
         {
@@ -99,7 +99,7 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Edit/5
-        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos("VerCrudOrdenDetalle")]
         [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -156,7 +156,7 @@ namespace ObliGaitanBordaAnon.Controllers
         }
 
         // GET: OrdenDetalles/Delete/5
-        [VerificarPermisos("VerCrudMesa")]
+        [VerificarPermisos("VerCrudOrdenDetalle")]
         [VerificarPermisos(("VerTodo"))]
         public async Task<IActionResult> Delete(int? id)
         {

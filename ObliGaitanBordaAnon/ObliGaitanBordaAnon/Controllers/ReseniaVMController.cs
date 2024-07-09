@@ -29,7 +29,7 @@ namespace ObliGaitanBordaAnon.Controllers
                     Puntaje = reserva.Puntaje,
                     Comentario = reserva.Comentario,
                     FechaResenia = reserva.FechaResenia,
-                    Email = reserva.Email ?? "Cliente Generico",
+                    Email = reserva.Email ?? "Cliente",
                     DireccionRestaurante = reserva.Restaurante.Direccion
                 })
                 .ToListAsync();

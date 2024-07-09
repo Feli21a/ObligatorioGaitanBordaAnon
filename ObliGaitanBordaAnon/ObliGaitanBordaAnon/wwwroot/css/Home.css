@@ -123,3 +123,19 @@
     .text-container p {
         font-size: 1rem; /* Ajusta el tamaño de la fuente según lo necesites */
     }
+
+.bi-star-fill {
+    font-size: 1.25rem;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

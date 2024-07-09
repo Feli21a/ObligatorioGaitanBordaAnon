@@ -23,8 +23,6 @@ public partial class Pago
 
     public string? Estado { get; set; }
 
-    public int? CotizacionId { get; set; }
-
     public virtual Clima? Clima { get; set; }
 
     public virtual Cotizacione? Cotizacion { get; set; }

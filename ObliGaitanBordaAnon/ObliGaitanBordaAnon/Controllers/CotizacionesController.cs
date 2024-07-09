@@ -16,7 +16,7 @@ public class CotizacionesController : Controller
     }
 
     // GET: Cotizaciones
-    [VerificarPermisos("VerCrudCotizaciones")]
+    [VerificarPermisos("VerCrudCotizacion")]
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Index()
     {
@@ -24,7 +24,7 @@ public class CotizacionesController : Controller
     }
 
     // GET: Cotizaciones/Details/5
-    [VerificarPermisos("VerCrudCotizaciones")]
+    [VerificarPermisos("VerCrudCotizacion")]
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Details(int? id)
     {
@@ -44,7 +44,7 @@ public class CotizacionesController : Controller
     }
 
     // GET: Cotizaciones/Create
-    [VerificarPermisos("VerCrudCotizaciones")]
+    [VerificarPermisos("VerCrudCotizacion")]
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Create(string divisa)
     {
@@ -93,7 +93,7 @@ public class CotizacionesController : Controller
     }
 
     // GET: Cotizaciones/Edit/5
-    [VerificarPermisos("VerCrudCotizaciones")]
+    [VerificarPermisos("VerCrudCotizacion")]
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Edit(int? id)
     {
@@ -155,7 +155,7 @@ public class CotizacionesController : Controller
     }
 
     // GET: Cotizaciones/Delete/5
-    [VerificarPermisos("VerCrudCotizaciones")]
+    [VerificarPermisos("VerCrudCotizacion")]
     [VerificarPermisos(("VerTodo"))]
     public async Task<IActionResult> Delete(int? id)
     {
